@@ -1,0 +1,32 @@
+{
+    "1" : {
+        "type" : 1,
+        "fromQuest" : 0,
+        "toQuest" : 2,
+        "goal" : 5,
+        "message" : 
+        {
+            "title" : "Quest1 TITLE",
+            "desc" : "Quest1 DESCRIPTION"
+        }
+    },
+
+    "2" : {
+        "type" : 10,
+        "fromQuest" : 1,
+        "toQuest" : 3,
+        "goal" : 100
+    },
+
+    "3" : {
+        "type" : 100,
+        "fromQuest" : 0,
+        "toQuest" : 0,
+        "goal" : null,
+        "message" : 
+        {
+            "title" : "Quest2 TITLE",
+            "desc" : "Quest2 DESCRIPTION"
+        }
+    }
+}

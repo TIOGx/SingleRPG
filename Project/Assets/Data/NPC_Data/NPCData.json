@@ -1,0 +1,27 @@
+{
+    "1" : {
+        "Name" : "NPC1",
+        "type" : 1,
+        "quest" : [1,2],
+        "fromNPC" : null,
+        "message" : 
+        {
+            "title" : "TEST1 111111TITLE",
+            "desc" : "TEST1 111111DESCRIPTION"
+        },
+        "isCompleted": false
+    },
+
+    "2" : {
+        "name" : "NPC2",
+        "type" : 2,
+        "quest" : [3],
+        "fromNPC" : null,
+        "message" : 
+        {
+            "title" : "TEST2 22222TITLE",
+            "desc" : "TEST2 22222DESCRIPTION"
+        },
+        "isCompleted": false
+    }
+}
