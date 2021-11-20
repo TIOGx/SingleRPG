@@ -3,12 +3,13 @@
         "type" : 1,
         "fromQuest" : 0,
         "toQuest" : 2,
-        "goal" : 5,
-        "compensation" : 1000,
+        "goal" : 0,
+        "compensation_ItemID" : 1,
+        "compensation_ItemNum" : 5,
         "message" : 
         {
-            "title" : "Quest1 TITLE",
-            "desc" : "Quest1 DESCRIPTION"
+            "title" : "사과 받기 퀘스트",
+            "desc" : "사과 5를 받을래요 말래요?!"
         }
     },
 
@@ -17,7 +18,8 @@
         "fromQuest" : 1,
         "toQuest" : 3,
         "goal" : 100,
-        "compensation" : 1,
+        "compensation_ItemID" : 2,
+        "compensation_ItemNum" : 99,
         "message" : 
         {
             "title" : "Quest2 TITLE",
@@ -30,7 +32,8 @@
         "fromQuest" : 0,
         "toQuest" : 0,
         "goal" : null,
-        "compensation" : 1000,
+        "compensation_ItemID" : 1,
+        "compensation_ItemNum" : 30,
         "message" : 
         {
             "title" : "Quest3 TITLE",

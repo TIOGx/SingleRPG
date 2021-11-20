@@ -15,25 +15,23 @@ namespace Item
 
     public class ItemBase : MonoBehaviour
     {
-        private EItemType Type;
-        private int ItemCode;
-        private bool bIsDropped;
+        protected EItemType Type;
+        protected int ItemCode;
+        protected bool bIsDropped;
 
-        public ItemBase(EItemType _type, int _itemCode, bool _bIsDropped)
-        {
-            this.Type = _type;
-            this.ItemCode = _itemCode;
-            this.bIsDropped = _bIsDropped;
-        }
+        int GetItemCode() { return ItemCode; }
+        EItemType GetItemType() { return Type; }
+        bool GetbIsDropped() { return bIsDropped; }
 
         void SendToPlayerInventory(int InItemCode)
         {
             GameObject.FindWithTag("Player").GetComponent<InventoryManager>().GetItemfrom(InItemCode, 1, EGetType.Drop);
         }
 
-        private void OnCollisionEnter(Collision other) {
+        protected void OnCollisionEnter(Collision other) {
             if(other.gameObject.tag != "Player") { return; }
             SendToPlayerInventory(this.ItemCode);
+            Destroy(gameObject);
         }
     }
 }

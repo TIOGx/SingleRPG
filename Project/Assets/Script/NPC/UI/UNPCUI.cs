@@ -12,11 +12,16 @@ public class UNPCUI : MonoBehaviour, INPCUI
     [SerializeField]
     private GameObject NPC_FirstTalk, NPC_QuestTalk;
     [SerializeField]
-    private Button Button_Next,Button_Accept, Button_Reject, Button_Exit;
+    private Button Button_Next, Button_Exit;
+    
+    // NPC 인스턴스에 있는 Accept, reject와 바인딩 하기 위해서 public으로 선언
+    public Button Button_Accept, Button_Reject;
+
     private bool isOpening = false;
 
     private JsonData NPCData;
     private List<JsonData> QuestData;
+    private JsonData CurrentQuest;
 
     void Start()
     {
@@ -34,6 +39,8 @@ public class UNPCUI : MonoBehaviour, INPCUI
     {
         NPCData = InNPCData;
         QuestData = InInQuestData;
+        CurrentQuest = QuestData[0];
+
         //데이터 받아와서 파싱후 알맞게 넣어주기
         SetText();
     }
@@ -57,12 +64,12 @@ public class UNPCUI : MonoBehaviour, INPCUI
 
     public void OnClicked_Reject()
     {
-        Destroy(gameObject);
+        EndUI();
     }
 
     public void OnClicked_Exit()
     {
-        Destroy(gameObject);
+        EndUI();
     }
 
     public void ProccessToQuest()
@@ -70,5 +77,15 @@ public class UNPCUI : MonoBehaviour, INPCUI
         // 테스트 임시로 0번재 퀘스트를 띄움
         Text_Title.GetComponent<Text>().text = QuestData[0]["message"]["title"].ToString();
         Text_Desc.GetComponent<Text>().text = QuestData[0]["message"]["desc"].ToString();
+    }
+
+    public JsonData GetCurrentQuestData()
+    {
+        return CurrentQuest;
+    }
+
+    public void EndUI()
+    {
+        Destroy(gameObject);
     }
 }

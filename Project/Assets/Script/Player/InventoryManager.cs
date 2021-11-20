@@ -17,7 +17,7 @@ namespace InventoryMGR{
 
         void Start()
         {
-            
+            InventoryList = new Dictionary<int, int>();
         }
 
         public void GetItemfrom(int ItemCode, int num, EGetType Type)
@@ -32,33 +32,32 @@ namespace InventoryMGR{
             }
 
             InventoryList[ItemCode] = InventoryList[ItemCode] + num;
-                
+            
+            UpdateInventoryUI();
         }
 
         public void RemoveFromInventory(int ItemCode, int num)
         {
             if(!InventoryList.ContainsKey(ItemCode)) { return; }
 
-            if(InventoryList[ItemCode] == 1)
+            if(InventoryList[ItemCode] - num < 1)
             {
                 InventoryList.Remove(ItemCode);
             }
 
-            else // 여기 로직 중요
+            else // 여기 로직 좀더 세분화 필요
             {
                 InventoryList[ItemCode] = InventoryList[ItemCode] - num;
             }
 
             UpdateInventoryUI();
-
         }
 
         private void GetAllItem()
         {
-            foreach (KeyValuePai<int, int> el in InventoryList)
+            foreach (KeyValuePair<int, int> el in InventoryList)
             {
-                Debug.LogFormat("Item : {0}", el.Key);
-            }
+                Debug.LogFormat("Item : {0}, Count = {1}", el.Key, el.Value);            }
         }
         
         // important

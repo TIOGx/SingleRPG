@@ -6,8 +6,8 @@
         "fromNPC" : null,
         "message" : 
         {
-            "title" : "TEST1 111111TITLE",
-            "desc" : "TEST1 111111DESCRIPTION"
+            "title" : "NPC1",
+            "desc" : "안녕! 나는 NPC1이야 퀘스트할래 이자식아?"
         },
         "isCompleted": false
     },

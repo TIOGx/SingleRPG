@@ -1382,9 +1382,9 @@ MonoBehaviour:
   NPC_FirstTalk: {fileID: 2395417358931739956}
   NPC_QuestTalk: {fileID: 6986294469121881474}
   Button_Next: {fileID: 3059387231749737649}
-  Button_Accept: {fileID: 3059387231749737649}
-  Button_Reject: {fileID: 1078502571754866558}
   Button_Exit: {fileID: 1249656040405825629}
+  Button_Accept: {fileID: 7084840490819600914}
+  Button_Reject: {fileID: 1078502571754866558}
 --- !u!1 &8315397339372074732
 GameObject:
   m_ObjectHideFlags: 0
