@@ -7,10 +7,10 @@ using UnityEngine;
 namespace NPCManager{
     // NPC관련한 모든 interface와 class를 여기에 작성
 
-    public enum NPCType{
+    public enum ENPCType{
         // NPCData의 type에 대응하는 NPC Type 
         // 그러면 Quest_MGR 에도 QuestType이 있어야겠죠?
-        Type1 = 1,
+        Type1 = 1, // 
         Type2 = 2,
         Type3 = 3,
     }

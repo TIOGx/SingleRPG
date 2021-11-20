@@ -4,6 +4,7 @@
         "fromQuest" : 0,
         "toQuest" : 2,
         "goal" : 5,
+        "compensation" : 1000,
         "message" : 
         {
             "title" : "Quest1 TITLE",
@@ -15,7 +16,13 @@
         "type" : 10,
         "fromQuest" : 1,
         "toQuest" : 3,
-        "goal" : 100
+        "goal" : 100,
+        "compensation" : 1,
+        "message" : 
+        {
+            "title" : "Quest2 TITLE",
+            "desc" : "Quest2 DESCRIPTION"
+        }
     },
 
     "3" : {
@@ -23,10 +30,11 @@
         "fromQuest" : 0,
         "toQuest" : 0,
         "goal" : null,
+        "compensation" : 1000,
         "message" : 
         {
-            "title" : "Quest2 TITLE",
-            "desc" : "Quest2 DESCRIPTION"
+            "title" : "Quest3 TITLE",
+            "desc" : "Quest3 DESCRIPTION"
         }
     }
 }
