@@ -34,6 +34,7 @@ namespace InventoryMGR{
             InventoryList[ItemCode] = InventoryList[ItemCode] + num;
             
             UpdateInventoryUI();
+            SaveData();
         }
 
         public void RemoveFromInventory(int ItemCode, int num)
@@ -65,6 +66,12 @@ namespace InventoryMGR{
         {
             GetAllItem();
             // TODO
+        }
+
+        private void SaveData()
+        {
+            Debug.Log("File try save");
+            FileSystem.Save<Dictionary<int, int>>(InventoryList);
         }
     }
 }
