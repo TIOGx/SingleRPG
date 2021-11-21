@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using InventoryUI;
 
 namespace InventoryMGR{
 
@@ -13,6 +14,11 @@ namespace InventoryMGR{
 
     public class InventoryManager : MonoBehaviour
     {
+        [SerializeField]
+        private GameObject InventoryUI; // 인벤토리 UI프리팹
+
+        private UInventoryUI UI;
+
         [System.Serializable]
         struct ItemData
         {
@@ -26,11 +32,21 @@ namespace InventoryMGR{
             }
         }
 
+        // 딕셔너리 형식 <ItemCode : NumOfItem>
         Dictionary<int, int> InventoryList;
 
         void Start()
         {
             InventoryList = new Dictionary<int, int>();
+        }
+
+        void Update()
+        {
+            // 인풋 저번에 내가 카톡에 올린 Bind, Delegate로 변경하기! 아래는 테스트
+            if(Input.GetKeyDown(KeyCode.I))
+            {
+                InitUI();                
+            }
         }
 
         public void GetItemfrom(int ItemCode, int num, EGetType Type)
@@ -71,7 +87,8 @@ namespace InventoryMGR{
         {
             foreach (KeyValuePair<int, int> el in InventoryList)
             {
-                Debug.LogFormat("Item : {0}, Count = {1}", el.Key, el.Value);            }
+                Debug.LogFormat("Item : {0}, Count = {1}", el.Key, el.Value);
+            }
         }
         
         // important
@@ -85,6 +102,19 @@ namespace InventoryMGR{
         {
             Debug.Log("File try save");
             FileSystem.Save<ItemData>(new ItemData(1,1));
+        }
+
+        public void InitUI()
+        {
+            UI = Instantiate(InventoryUI).GetComponent<UInventoryUI>();
+            if(UI == null) { return; }
+
+            UI.Init(InventoryList);
+        }
+
+        public void EndUI()
+        {
+            Destroy(InventoryUI);
         }
     }
 }
