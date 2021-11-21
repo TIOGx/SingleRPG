@@ -13,6 +13,19 @@ namespace InventoryMGR{
 
     public class InventoryManager : MonoBehaviour
     {
+        [System.Serializable]
+        struct ItemData
+        {
+            int ItemCode;
+            int Num;
+
+            public ItemData(int _c, int _n)
+            {
+                this.ItemCode = _c;
+                this.Num = _n;
+            }
+        }
+
         Dictionary<int, int> InventoryList;
 
         void Start()
@@ -71,7 +84,7 @@ namespace InventoryMGR{
         private void SaveData()
         {
             Debug.Log("File try save");
-            FileSystem.Save<Dictionary<int, int>>(InventoryList);
+            FileSystem.Save<ItemData>(new ItemData(1,1));
         }
     }
 }
