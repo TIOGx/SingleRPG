@@ -17,20 +17,27 @@ public class DummyController : MonoBehaviour
 
     public float moveSpeed {set; get;}
     public float rotationSpeed {set; get;}
+    public float normalSpeed {set; get;}
+    public float runSpeed {set; get;}
+
+    Rigidbody m_Rigidbody;
 
 
     void Start() {
         animator = characterBody.GetComponent<Animator>();
-        moveSpeed = 2.0f;
+        normalSpeed = 2.0f;
+        runSpeed = 5.0f;
+        m_Rigidbody = GetComponent<Rigidbody>();
     }
     void Update(){
         LookAround();
-        HandsUp();
+        DiveRoll();
+        Attack();
+        Jump();
     }
     
     void FixedUpdate() {
         Move();
-        
     }
 
 
@@ -39,7 +46,17 @@ public class DummyController : MonoBehaviour
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         bool isMove = moveInput.magnitude > 0;
         animator.SetBool("isMove", isMove);
+        
         if(isMove){
+            if(Input.GetKey(KeyCode.LeftShift))
+            {
+                animator.SetBool("isRun", true);
+                moveSpeed = runSpeed;
+            }
+            else{
+                animator.SetBool("isRun", false);
+                moveSpeed = normalSpeed;
+            }
             Vector3 lookForward = new Vector3(cameraArm.forward.x , 0f, cameraArm.forward.z).normalized;
             Vector3 lookright = new Vector3(cameraArm.right.x, 0f, cameraArm.right.z).normalized;
             Vector3 moveDir = lookForward * moveInput.y + lookright * moveInput.x;
@@ -47,6 +64,7 @@ public class DummyController : MonoBehaviour
             characterBody.forward = moveDir;
             transform.position += moveDir * Time.deltaTime * moveSpeed;
         }
+        
     }
     
     private void LookAround(){
@@ -63,10 +81,23 @@ public class DummyController : MonoBehaviour
 
         cameraArm.rotation = Quaternion.Euler(x, y, camAngle.z);   
     }
-    private void HandsUp(){
+    private void DiveRoll(){
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            animator.SetTrigger("HandsUp");
+            animator.SetTrigger("DiveRoll");
+        }
+    }
+    private void Attack(){
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            animator.SetTrigger("Attack");
+        }
+    }
+    private void Jump(){
+        if(Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            animator.SetTrigger("isJump");
+            m_Rigidbody.AddForce(transform.up * 100f);
         }
     }
 }
