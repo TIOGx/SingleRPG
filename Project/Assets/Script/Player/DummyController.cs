@@ -98,7 +98,7 @@ public class DummyController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftControl))
         {
             animator.SetTrigger("isJump");
-            m_Rigidbody.AddForce(transform.up * 100f);
+            m_Rigidbody.AddForce(transform.up * 80f);
         }
     }
 
