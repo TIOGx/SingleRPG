@@ -30,7 +30,7 @@ public class DummyController : MonoBehaviour
         m_Rigidbody = GetComponent<Rigidbody>();
     }
     void Update(){
-        LookAround();
+        //LookAround();
         DiveRoll();
         Attack();
         Jump();
@@ -67,20 +67,21 @@ public class DummyController : MonoBehaviour
         
     }
     
-    private void LookAround(){
-        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * CamSensitive;
-        Vector3 camAngle = cameraArm.rotation.eulerAngles;
-        float x = (camAngle.x + mouseDelta.y);
-        float y = (camAngle.y + mouseDelta.x);
-        if( x < 180f){
-            x = Mathf.Clamp(x, -1f, 70f);
-        }
-        else{
-            x = Mathf.Clamp(x, 355f, 361);
-        }
+    //private void LookAround(){
+    //    Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * CamSensitive;
+    //    Vector3 camAngle = cameraArm.rotation.eulerAngles;
+    //    float x = (camAngle.x + mouseDelta.y);
+    //    float y = (camAngle.y + mouseDelta.x);
+    //    if( x < 180f){
+    //        x = Mathf.Clamp(x, -1f, 70f);
+    //    }
+    //    else{
+    //        x = Mathf.Clamp(x, 355f, 361);
+    //    }
 
-        cameraArm.rotation = Quaternion.Euler(x, y, camAngle.z);   
-    }
+    //    cameraArm.rotation = Quaternion.Euler(x, y, camAngle.z);   
+    //}
+
     private void DiveRoll(){
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -98,6 +99,18 @@ public class DummyController : MonoBehaviour
         {
             animator.SetTrigger("isJump");
             m_Rigidbody.AddForce(transform.up * 100f);
+        }
+    }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            animator.SetTrigger("isDead");
+        }
+        if (col.gameObject.CompareTag("Npc"))
+        {
+            animator.SetTrigger("Talk");
         }
     }
 }
