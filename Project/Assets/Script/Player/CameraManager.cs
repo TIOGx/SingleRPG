@@ -29,17 +29,9 @@ public class CameraManager : MonoBehaviour
 
     private void Zoom()
     {
-        
-
         wheel += Input.GetAxis("Mouse ScrollWheel");
-        if (wheel >= -1)
-        {
-            wheel = -1;
-        }
-        else if(wheel <= -7)
-        {
-            wheel = -7;
-        }
+        if (wheel >= -3){wheel = -3;}
+        else if(wheel <= -7){wheel = -7;}
 
         cam.localPosition = new Vector3(0, 0, wheel);
     }

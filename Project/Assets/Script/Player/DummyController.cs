@@ -8,12 +8,12 @@ public class DummyController : MonoBehaviour
     private Animator animator;
     [SerializeField]
     private Transform characterBody;
-
     [SerializeField]
     private Transform cameraArm;
     [SerializeField]
-    private float CamSensitive;
+    private bool isDelay;
 
+    private int attackNum;
 
     public float moveSpeed {set; get;}
     public float rotationSpeed {set; get;}
@@ -22,15 +22,23 @@ public class DummyController : MonoBehaviour
 
     Rigidbody m_Rigidbody;
 
+    IEnumerator getDelayTime(float delayTime)
+    {
+        Debug.Log("delay " + delayTime + " time");
+        yield return new WaitForSeconds(delayTime);
+        isDelay = false;
+        
+    }
 
     void Start() {
         animator = characterBody.GetComponent<Animator>();
         normalSpeed = 2.0f;
         runSpeed = 5.0f;
+        attackNum = 0;
+        isDelay = false; 
         m_Rigidbody = GetComponent<Rigidbody>();
     }
     void Update(){
-        //LookAround();
         DiveRoll();
         Attack();
         Jump();
@@ -66,39 +74,50 @@ public class DummyController : MonoBehaviour
         }
         
     }
-    
-    //private void LookAround(){
-    //    Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y")) * CamSensitive;
-    //    Vector3 camAngle = cameraArm.rotation.eulerAngles;
-    //    float x = (camAngle.x + mouseDelta.y);
-    //    float y = (camAngle.y + mouseDelta.x);
-    //    if( x < 180f){
-    //        x = Mathf.Clamp(x, -1f, 70f);
-    //    }
-    //    else{
-    //        x = Mathf.Clamp(x, 355f, 361);
-    //    }
-
-    //    cameraArm.rotation = Quaternion.Euler(x, y, camAngle.z);   
-    //}
 
     private void DiveRoll(){
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (!isDelay)
         {
-            animator.SetTrigger("DiveRoll");
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                isDelay = true;
+                animator.SetTrigger("DiveRoll");
+                StartCoroutine(getDelayTime(3.0f));
+            }
         }
     }
     private void Attack(){
-        if(Input.GetKeyDown(KeyCode.Q))
-        {
-            animator.SetTrigger("Attack");
+        if (!isDelay){
+            if (Input.GetKeyDown(KeyCode.Q)){
+                isDelay = true;
+                if (attackNum % 3 == 0){
+                    animator.SetTrigger("Attack");
+                    attackNum = attackNum / 3 + 1;
+
+                }
+                else if (attackNum % 3 == 1){
+                    animator.SetTrigger("Attack2");
+                    attackNum += 1;
+                }
+                else{
+                    animator.SetTrigger("Attack3");
+                    attackNum += 1;
+                }
+                StartCoroutine(getDelayTime(1.0f));
+            }
         }
     }
+
     private void Jump(){
-        if(Input.GetKeyDown(KeyCode.LeftControl))
+        if (!isDelay)
         {
-            animator.SetTrigger("isJump");
-            m_Rigidbody.AddForce(transform.up * 80f);
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                isDelay = true;
+                animator.SetTrigger("isJump");
+                m_Rigidbody.AddForce(transform.up * 80f);
+                StartCoroutine(getDelayTime(3.0f));
+            }
         }
     }
 
