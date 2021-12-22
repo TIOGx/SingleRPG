@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DummyController : MonoBehaviour
 {
+    public static DummyController instance;
+
     [SerializeField]
     private Animator animator;
     [SerializeField]
@@ -22,6 +24,7 @@ public class DummyController : MonoBehaviour
 
     Rigidbody m_Rigidbody;
 
+
     IEnumerator getDelayTime(float delayTime)
     {
         Debug.Log("delay " + delayTime + " time");
@@ -29,7 +32,9 @@ public class DummyController : MonoBehaviour
         isDelay = false;
         
     }
-
+    private void Awake() {
+        instance = this;
+    }
     void Start() {
         animator = characterBody.GetComponent<Animator>();
         normalSpeed = 2.0f;
@@ -131,5 +136,8 @@ public class DummyController : MonoBehaviour
         {
             animator.SetTrigger("Talk");
         }
+    }
+    public Transform GetPlayerTransform(){
+        return this.transform;
     }
 }

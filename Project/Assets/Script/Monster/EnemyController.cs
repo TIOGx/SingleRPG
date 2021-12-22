@@ -16,10 +16,11 @@ public class EnemyController : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         nav = GetComponent<NavMeshAgent>();
+        
     }
     void Start()
     {
-        
+        Target = DummyController.instance.GetPlayerTransform();
     }
 
     // Update is called once per frame
