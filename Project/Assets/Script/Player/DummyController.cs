@@ -128,10 +128,10 @@ public class DummyController : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.CompareTag("Enemy"))
-        {
-            animator.SetTrigger("isDead");
-        }
+        // if (col.gameObject.CompareTag("Enemy"))
+        // {
+        //     animator.SetTrigger("isDead");
+        // }
         if (col.gameObject.CompareTag("Npc"))
         {
             animator.SetTrigger("Talk");

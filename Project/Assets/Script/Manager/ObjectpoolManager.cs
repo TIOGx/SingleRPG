@@ -52,7 +52,7 @@ public class ObjectpoolManager : MonoBehaviour
         Vector3 SpawnPos = new Vector3(posX, posY, posZ);
         return SpawnPos;
     } 
-    public static void ReturnObject(Monster obj) {
+    public void ReturnObject(Monster obj) {
         obj.gameObject.SetActive(false); 
         obj.transform.SetParent(Instance.transform); 
         Instance.poolingObjectQueue.Enqueue(obj); 

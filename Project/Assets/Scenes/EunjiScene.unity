@@ -1408,59 +1408,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae9772ea62bbc724eb9b8ef81109f733, type: 3}
---- !u!1 &154831828
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 154831829}
-  - component: {fileID: 154831831}
-  - component: {fileID: 154831830}
-  m_Layer: 0
-  m_Name: SwordArea
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &154831829
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154831828}
-  m_LocalRotation: {x: 0.22725976, y: -0.62439096, z: 0.7471789, w: 0.014584927}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
-  m_Children: []
-  m_Father: {fileID: 1966385253}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 70, y: 70, z: 230}
---- !u!65 &154831830
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154831828}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!33 &154831831
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154831828}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &182677832 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4931211907768612, guid: e88b7bb02ae149940a5a0cddf34fe370, type: 3}
@@ -5140,7 +5087,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1966385253}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &606247070
 TrailRenderer:
@@ -18040,7 +17987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd3f5ec71e6cbd458f386487611eac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SwordArea: {fileID: 154831830}
+  SwordArea: {fileID: 0}
   damage: 10
   TrailEffect: {fileID: 606247070}
 --- !u!65 &1966385257
@@ -18054,8 +18001,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.42596424, y: 0.33063456, z: 0.5}
-  m_Center: {x: -0.17600882, y: -0.07599577, z: 2}
+  m_Size: {x: 0.42596424, y: 0.33063456, z: 2}
+  m_Center: {x: -0.17600882, y: -0.07599577, z: 1.2}
 --- !u!1001 &1966431373
 PrefabInstance:
   m_ObjectHideFlags: 0
