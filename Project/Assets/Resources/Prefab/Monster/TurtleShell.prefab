@@ -753,11 +753,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   monsterBody: {fileID: 3339968729708200622}
-  MaxHealth: 100
-  CurHealth: 100
+  MaxHealth: 10
+  CurHealth: 10
   Target: {fileID: 0}
   thisObject: {fileID: 3336653208864712852}
-  isDelay: 0
 --- !u!195 &3335104012272512085
 NavMeshAgent:
   m_ObjectHideFlags: 0

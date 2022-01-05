@@ -13,131 +13,177 @@ public class DummyController : MonoBehaviour
     [SerializeField]
     private Transform cameraArm;
     [SerializeField]
-    private bool isDelay;
+    private bool isDiveDelay;
+    [SerializeField]
+    private bool isAttackDelay;
+    [SerializeField]
+    private bool isJumpDelay;
 
     private int attackNum;
 
-    public float moveSpeed {set; get;}
-    public float rotationSpeed {set; get;}
-    public float normalSpeed {set; get;}
-    public float runSpeed {set; get;}
+    public float moveSpeed { set; get; }
+    public float rotationSpeed { set; get; }
+    public float normalSpeed { set; get; }
+    public float runSpeed { set; get; }
 
     Rigidbody m_Rigidbody;
 
+    //Coroutine 함수
 
-    IEnumerator getDelayTime(float delayTime)
+    IEnumerator setDiveDelay(float delayTime)
     {
         Debug.Log("delay " + delayTime + " time");
         yield return new WaitForSeconds(delayTime);
-        isDelay = false;
-        
+        isDiveDelay = false;
     }
-    private void Awake() {
+
+    IEnumerator setAttackDelay(float delayTime)
+    {
+        Debug.Log("delay " + delayTime + " time");
+        yield return new WaitForSeconds(delayTime);
+        isAttackDelay = false;
+    }
+
+    IEnumerator setJumpDelay(float delayTime)
+    {
+        Debug.Log("delay " + delayTime + " time");
+        yield return new WaitForSeconds(delayTime);
+        isJumpDelay = false;
+    }
+
+    // Life Cycle 함수
+
+    private void Awake()
+    {
         instance = this;
     }
-    void Start() {
+    void Start()
+    {
         animator = characterBody.GetComponent<Animator>();
         normalSpeed = 2.0f;
         runSpeed = 5.0f;
         attackNum = 0;
-        isDelay = false; 
+        isDiveDelay = false;
+        isAttackDelay = false;
+        isJumpDelay = false;
         m_Rigidbody = GetComponent<Rigidbody>();
     }
-    void Update(){
+    void Update()
+    {
         DiveRoll();
         Attack();
         Jump();
     }
-    
-    void FixedUpdate() {
+
+    void FixedUpdate()
+    {
         Move();
     }
 
 
-    private void Move(){
-        Debug.DrawRay(cameraArm.position, new Vector3(cameraArm.forward.x , 0f, cameraArm.forward.z).normalized, Color.red);
+    // move & run 함수
+    private void Move()
+    {
+        Debug.DrawRay(cameraArm.position, new Vector3(cameraArm.forward.x, 0f, cameraArm.forward.z).normalized, Color.red);
         Vector2 moveInput = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         bool isMove = moveInput.magnitude > 0;
         animator.SetBool("isMove", isMove);
-        
-        if(isMove){
-            if(Input.GetKey(KeyCode.LeftShift))
+
+        if (isMove)
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 animator.SetBool("isRun", true);
                 moveSpeed = runSpeed;
             }
-            else{
+            else
+            {
                 animator.SetBool("isRun", false);
                 moveSpeed = normalSpeed;
             }
-            Vector3 lookForward = new Vector3(cameraArm.forward.x , 0f, cameraArm.forward.z).normalized;
+            Vector3 lookForward = new Vector3(cameraArm.forward.x, 0f, cameraArm.forward.z).normalized;
             Vector3 lookright = new Vector3(cameraArm.right.x, 0f, cameraArm.right.z).normalized;
             Vector3 moveDir = lookForward * moveInput.y + lookright * moveInput.x;
-            
+
             characterBody.forward = moveDir;
             transform.position += moveDir * Time.deltaTime * moveSpeed;
         }
-        
+
     }
 
-    private void DiveRoll(){
-        if (!isDelay)
+    // dive 함수
+    private void DiveRoll()
+    {
+        if (!isDiveDelay)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                isDelay = true;
+                isDiveDelay = true;
                 animator.SetTrigger("DiveRoll");
-                StartCoroutine(getDelayTime(3.0f));
+                StartCoroutine(setDiveDelay(3.0f));
+                
             }
+
         }
     }
-    private void Attack(){
-        if (!isDelay){
-            if (Input.GetKeyDown(KeyCode.Q)){
-                isDelay = true;
-                if (attackNum % 3 == 0){
+    private void Attack()
+    {
+        if (!isAttackDelay)
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                isAttackDelay = true;
+                if (attackNum % 3 == 0)
+                {
                     animator.SetTrigger("Attack");
                     attackNum = attackNum / 3 + 1;
 
                 }
-                else if (attackNum % 3 == 1){
+                else if (attackNum % 3 == 1)
+                {
                     animator.SetTrigger("Attack2");
                     attackNum += 1;
                 }
-                else{
+                else
+                {
                     animator.SetTrigger("Attack3");
                     attackNum += 1;
                 }
-                StartCoroutine(getDelayTime(1.0f));
+                StartCoroutine(setAttackDelay(1.0f));
+               
             }
+
         }
     }
 
-    private void Jump(){
-        if (!isDelay)
+    // jump 함수
+    private void Jump()
+    {
+        if (!isJumpDelay)
         {
             if (Input.GetKeyDown(KeyCode.LeftControl))
             {
-                isDelay = true;
+                isJumpDelay = true;
                 animator.SetTrigger("isJump");
                 m_Rigidbody.AddForce(transform.up * 80f);
-                StartCoroutine(getDelayTime(3.0f));
+                StartCoroutine(setJumpDelay(3.0f));
+                
             }
+
         }
     }
 
+    // 충돌 함수
     void OnCollisionEnter(Collision col)
     {
-        // if (col.gameObject.CompareTag("Enemy"))
-        // {
-        //     animator.SetTrigger("isDead");
-        // }
         if (col.gameObject.CompareTag("Npc"))
         {
             animator.SetTrigger("Talk");
         }
     }
-    public Transform GetPlayerTransform(){
+
+    public Transform GetPlayerTransform()
+    {
         return this.transform;
     }
 }

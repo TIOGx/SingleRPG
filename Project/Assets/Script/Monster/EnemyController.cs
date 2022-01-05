@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
     BoxCollider boxCollider;
     public Transform Target;
     NavMeshAgent nav;
+    GameObject Item_0001;
 
     public GameObject thisObject;
 
@@ -24,8 +25,10 @@ public class EnemyController : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
         
     }
+
     void Start()
     {
+        Item_0001 = Resources.Load("Prefab/Item/Item_0001") as GameObject;
         Target = DummyController.instance.GetPlayerTransform();
         animator = monsterBody.GetComponent<Animator>();
     }
@@ -35,6 +38,7 @@ public class EnemyController : MonoBehaviour
     {
         nav.SetDestination(Target.position);
     }
+
     void OnTriggerEnter(Collider other) {
         Debug.Log("Who");
         if(other.tag == "Weapon"){
@@ -47,6 +51,7 @@ public class EnemyController : MonoBehaviour
         }
 
     }
+
     void OnCollisionEnter(Collision other) {
         if(other.gameObject.tag == "Player"){
             animator.SetTrigger("Attack");
@@ -56,11 +61,20 @@ public class EnemyController : MonoBehaviour
 
     void die(){
         animator.SetTrigger("Died");
-        
     }
+
+    public void ItemDrop(GameObject gameObject, Transform transform)
+    {
+        Instantiate(gameObject, transform.position, Quaternion.identity);
+    }
+
     public void Died(){
         ObjectpoolManager.Instance.ReturnObject(thisObject.GetComponent<Monster>());
+        Debug.Log("아이템 드롭!");
+        ItemDrop(Item_0001, gameObject.transform);
     }
+
+  
     IEnumerator WaitForIt(float delayTime)
     {
         Debug.Log("5초만 기다려");
