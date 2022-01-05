@@ -22,13 +22,13 @@ public class CameraManager : MonoBehaviour
         //Debug.Log(MainCamera.transform.position.y);
          if (Input.GetMouseButton(1)) // 마우스 오른쪽 버튼 클릭
          {
-            if (MainCamera.transform.position.y <= 0.4  || MainCamera.transform.position.y >= 5)
-            {
+            //if (MainCamera.transform.position.y <= 0.4  || MainCamera.transform.position.y >= 5)
+            //{
                 
-                mouseX -= Input.GetAxis("Mouse X"); 
-                mouseY -= Input.GetAxis("Mouse Y") * -1;
-            }
-            else
+            //    mouseX -= Input.GetAxis("Mouse X"); 
+            //    mouseY -= Input.GetAxis("Mouse Y") * -1;
+            //}
+            //else
             {
                 mouseX += Input.GetAxis("Mouse X"); // 프로젝트 세팅에 입력 값 매니저를 보면 이름이 Mouse X로 설정되어있음
                 mouseY += Input.GetAxis("Mouse Y") * -1;

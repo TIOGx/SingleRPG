@@ -11,6 +11,13 @@ public class ObjectpoolManager : MonoBehaviour
     [SerializeField]
     int MAX_MONSTER_CNT = 10;
 
+    IEnumerator setSpawnDelay(float delayTime)
+    {
+        Debug.Log("spawn delay " + delayTime + " time");
+        yield return new WaitForSeconds(delayTime);
+
+
+    }
     private void Awake() {
         Instance = this;
         Initialize(MAX_MONSTER_CNT);
@@ -36,10 +43,7 @@ public class ObjectpoolManager : MonoBehaviour
             return obj; 
         } 
         else { 
-            var newObj = Instance.CreateNewObject(); 
-            newObj.gameObject.SetActive(true); 
-            newObj.transform.SetParent(null); 
-            return newObj; 
+            return null; 
         } 
     }
     public Vector3 RandomPosition(){
@@ -57,13 +61,20 @@ public class ObjectpoolManager : MonoBehaviour
         obj.transform.SetParent(Instance.transform); 
         Instance.poolingObjectQueue.Enqueue(obj); 
     }
-    private void Update() {
-        Spawn();
+    private void Start()
+    {
+        StartCoroutine("Spawn",10.0f);
     }
-    private void Spawn(){
-        if (Input.GetKeyDown(KeyCode.E))
+    private void Update() {
+       
+    }
+    
+    IEnumerator Spawn(float delayTime){
+        while (Instance.poolingObjectQueue.Count > 0)
         {
-            SpawnMonster();
+            SpawnMonster();  
         }
+        yield return new WaitForSeconds(delayTime);
+        StartCoroutine("Spawn", 10.0f);
     }
 }
