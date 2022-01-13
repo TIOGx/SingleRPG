@@ -119,6 +119,7 @@ namespace NPCManager{
         public void OnCollisionEnter(Collision other) 
         {        
             if(UI != null) { return; } //UI 중복으로 안되게
+
             InitUI(NPC_ID);
         }
 

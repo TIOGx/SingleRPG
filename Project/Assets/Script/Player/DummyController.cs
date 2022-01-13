@@ -29,7 +29,6 @@ public class DummyController : MonoBehaviour
     Rigidbody m_Rigidbody;
 
     //Coroutine 함수
-
     IEnumerator setDiveDelay(float delayTime)
     {
         Debug.Log("delay " + delayTime + " time");
@@ -68,6 +67,7 @@ public class DummyController : MonoBehaviour
         isJumpDelay = false;
         m_Rigidbody = GetComponent<Rigidbody>();
     }
+
     void Update()
     {
         DiveRoll();
@@ -121,11 +121,11 @@ public class DummyController : MonoBehaviour
                 isDiveDelay = true;
                 animator.SetTrigger("DiveRoll");
                 StartCoroutine(setDiveDelay(3.0f));
-                
             }
-
         }
     }
+
+
     private void Attack()
     {
         if (!isAttackDelay)

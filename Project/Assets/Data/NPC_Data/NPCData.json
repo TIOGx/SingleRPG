@@ -1,26 +1,48 @@
 {
-    "1" : {
-        "Name" : "NPC1",
-        "type" : 1,
-        "quest" : [1,2],
-        "fromNPC" : null,
-        "message" : 
-        {
-            "title" : "NPC1",
-            "desc" : "안녕! 나는 NPC1이야 퀘스트할래 이자식아?"
+    "1": {
+        "Name": "NPC1",
+        "type": 1,
+        "quest": [ 1, 2 ],
+        "fromNPC": null,
+        "message": {
+            "title": "[철수]",
+            "desc": " 어서와! 여기 퀘스트 보상이야 "
         },
         "isCompleted": false
     },
 
-    "2" : {
-        "name" : "NPC2",
-        "type" : 2,
-        "quest" : [3],
-        "fromNPC" : null,
-        "message" : 
-        {
-            "title" : "TEST2 22222TITLE",
-            "desc" : "TEST2 22222DESCRIPTION"
+    "2": {
+        "name": "NPC1",
+        "type": 2,
+        "quest": [ 3 ],
+        "fromNPC": null,
+        "message": {
+            "title": "[철수]",
+            "desc": "왼쪽 쉬프트키를 누르면 달리기, 왼쪽 컨트롤키를 누르면 점프를, 스페이스바를 누르면 구르기를 할 수 있어."
+        },
+        "isCompleted": false
+    },
+
+    "3": {
+        "name": "NPC1",
+        "type": 3,
+        "quest": [ 4 ],
+        "fromNPC": null,
+        "message": {
+            "title": "[철수]",
+            "desc": " 잘했어! "
+        },
+        "isCompleted": false
+    },
+
+    "4": {
+        "name": "NPC2",
+        "type": 3,
+        "quest": [ 4 ],
+        "fromNPC": "NPC1",
+        "message": {
+            "title": "[영희]",
+            "desc": " "
         },
         "isCompleted": false
     }

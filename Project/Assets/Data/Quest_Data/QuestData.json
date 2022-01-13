@@ -1,43 +1,39 @@
 {
-    "1" : {
-        "type" : 1,
-        "fromQuest" : 0,
-        "toQuest" : 2,
-        "goal" : 0,
-        "compensation_ItemID" : 1,
-        "compensation_ItemNum" : 5,
-        "message" : 
-        {
-            "title" : "사과 받기 퀘스트",
-            "desc" : "사과 5를 받을래요 말래요?!"
-        }
+    "1": {
+        "type": 1,
+        "fromQuest": 0,
+        "toQuest": 2,
+        "goal": 0, 
+        "compensation_ItemID": 1,
+        "compensation_ItemNum": 5,
+        "title": " 주민에게 말걸기",
+        "desc": " 주민에게 다가가 말을 걸어 보자 "
+
     },
 
-    "2" : {
-        "type" : 10,
-        "fromQuest" : 1,
-        "toQuest" : 3,
-        "goal" : 100,
-        "compensation_ItemID" : 2,
-        "compensation_ItemNum" : 99,
-        "message" : 
-        {
-            "title" : "Quest2 TITLE",
-            "desc" : "Quest2 DESCRIPTION"
-        }
+    "2": {
+        "type": 2,
+        "fromQuest": 1,
+        "toQuest": 3,
+        "goal": 100,
+        "compensation_ItemID": 1,
+        "compensation_ItemNum": 10,
+        "title": " Completed ",
+        "desc": " 주민에게 말걸기 퀘스트 완료"
+
     },
 
-    "3" : {
-        "type" : 100,
-        "fromQuest" : 0,
-        "toQuest" : 0,
-        "goal" : null,
-        "compensation_ItemID" : 1,
-        "compensation_ItemNum" : 30,
-        "message" : 
-        {
-            "title" : "Quest3 TITLE",
-            "desc" : "Quest3 DESCRIPTION"
-        }
+    "3": {
+        "type": 1,
+        "fromQuest": 1,
+        "toQuest": 3,
+        "goal": 100,
+        "compensation_ItemID": 1,
+        "compensation_ItemNum": 10,
+        "title": " 조작키 사용해보기 ",
+        "desc": " 조작키를 통해 캐릭터를 움직여보자"
+
     }
+
+
 }

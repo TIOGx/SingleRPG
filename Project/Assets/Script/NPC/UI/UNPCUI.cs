@@ -10,9 +10,9 @@ public class UNPCUI : MonoBehaviour, INPCUI
     [SerializeField]
     private Text Text_Title, Text_Desc;
     [SerializeField]
-    private GameObject NPC_FirstTalk, NPC_QuestTalk;
+    private GameObject NPC_FirstTalk, NPC_QuestTalk, NPC_QuestCompleteTalk;
     [SerializeField]
-    private Button Button_Next, Button_Exit;
+    private Button Button_Next, Button_Exit, Button_Completed;
     
     // NPC 인스턴스에 있는 Accept, reject와 바인딩 하기 위해서 public으로 선언
     public Button Button_Accept, Button_Reject;
@@ -31,7 +31,8 @@ public class UNPCUI : MonoBehaviour, INPCUI
         Button_Next.onClick.AddListener(OnClicked_Next);  
         Button_Accept.onClick.AddListener(OnClicked_Accept);  
         Button_Reject.onClick.AddListener(OnClicked_Reject);  
-        Button_Exit.onClick.AddListener(OnClicked_Exit);  
+        Button_Exit.onClick.AddListener(OnClicked_Exit);
+        Button_Completed.onClick.AddListener(OnClicked_Completed);
     }
 
     // UI 생성 직후 바로 SetData 해주기
@@ -54,12 +55,13 @@ public class UNPCUI : MonoBehaviour, INPCUI
     public void OnClicked_Next()
     {
         NPC_FirstTalk.SetActive(false);
-        NPC_QuestTalk.SetActive(true);
+       
         ProccessToQuest();
     }
 
     public void OnClicked_Accept()
     {
+
     }
 
     public void OnClicked_Reject()
@@ -72,11 +74,28 @@ public class UNPCUI : MonoBehaviour, INPCUI
         EndUI();
     }
 
+    public void OnClicked_Completed()
+    {
+        // 보상 주는 함수 짜기
+        EndUI();
+    }
+
     public void ProccessToQuest()
     {
         // 테스트 임시로 0번재 퀘스트를 띄움
-        Text_Title.GetComponent<Text>().text = QuestData[0]["message"]["title"].ToString();
-        Text_Desc.GetComponent<Text>().text = QuestData[0]["message"]["desc"].ToString();
+        Text_Title.GetComponent<Text>().text = QuestData[1]["message"]["title"].ToString();
+        Text_Desc.GetComponent<Text>().text = QuestData[1]["message"]["desc"].ToString();
+
+        if(QuestData[1]["type"].ToString() == "1") // 퀘스트 내용
+        {
+            NPC_QuestTalk.SetActive(true);
+        }   
+        else if (QuestData[1]["type"].ToString() == "2")// 퀘스트 완료
+        {
+            NPC_QuestCompleteTalk.SetActive(true);
+        }
+
+           
     }
 
     public JsonData GetCurrentQuestData()

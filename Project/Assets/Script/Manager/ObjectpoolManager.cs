@@ -34,10 +34,11 @@ public class ObjectpoolManager : MonoBehaviour
         newObj.transform.SetParent(transform);
         return newObj;
     }
+
     public Monster SpawnMonster() { 
         if(Instance.poolingObjectQueue.Count > 0) { 
             var obj = Instance.poolingObjectQueue.Dequeue(); 
-            obj.transform.SetParent(null); 
+            obj.transform.SetParent(transform); 
             obj.gameObject.transform.position = RandomPosition();
             obj.gameObject.SetActive(true);
             return obj; 
@@ -63,7 +64,7 @@ public class ObjectpoolManager : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine("Spawn",10.0f);
+        //StartCoroutine("Spawn",10.0f);
     }
     private void Update() {
        
