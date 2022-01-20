@@ -8,19 +8,25 @@ public class QuestData
     public int questType;
     public int fromQuest;
     public int toQuest;
-    public int goal;
+    public int goal0;
+    public int goal1;
+    public int nowstate0;
+    public int nowstate1;
     public int compensation_ItemID;
     public int compensation_ItemNum;
     public string title;
     public string desc;
 
-    public QuestData(int questIdx, int questType, int fromQuest, int toQuest, int goal, int compensation_ItemID, int compensation_ItemNum, string title, string desc)
+    public QuestData(int questIdx, int questType, int fromQuest, int toQuest, int goal0, int goal1, int nowstate0, int nowstate1, int compensation_ItemID, int compensation_ItemNum, string title, string desc)
     {
         this.questIdx = questIdx;
         this.questType = questType;
         this.fromQuest = fromQuest;
         this.toQuest = toQuest;
-        this.goal = goal;
+        this.goal0 = goal0;
+        this.goal1 = goal1;
+        this.nowstate0 = nowstate0;
+        this.nowstate1 = nowstate1;
         this.compensation_ItemID = compensation_ItemID;
         this.compensation_ItemNum = compensation_ItemNum;
         this.title = title;

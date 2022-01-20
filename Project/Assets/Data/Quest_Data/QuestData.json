@@ -1,39 +1,42 @@
 {
-    "1": {
-        "type": 1,
-        "fromQuest": 0,
-        "toQuest": 2,
-        "goal": 0, 
-        "compensation_ItemID": 1,
-        "compensation_ItemNum": 5,
-        "title": " 주민에게 말걸기",
-        "desc": " 주민에게 다가가 말을 걸어 보자 "
+	"0": {
+		"type": 1, // 사냥 퀘스트
+		"fromQuest": 0, // 선행퀘스트
+		"toQuest": 1, // 다음 퀘스트
+		"goal": [0, 2], // [몬스터아이디, 목표 마리수]
+		"nowstate" : [0, 0],
+		"compensation_ItemID": 1, //보상 아이템 id
+		"compensation_ItemNum": 5, // 보상 아이템 개수
+		"title": " Turtle Shell 사냥 퀘스트 0",
+		"desc": " Turtle Shell 2마리 잡기 "
 
-    },
+	},
 
-    "2": {
-        "type": 2,
-        "fromQuest": 1,
-        "toQuest": 3,
-        "goal": 100,
-        "compensation_ItemID": 1,
-        "compensation_ItemNum": 10,
-        "title": " Completed ",
-        "desc": " 주민에게 말걸기 퀘스트 완료"
+	"1": {
+		"type": 1, // 사냥 퀘스트
+		"fromQuest": 1, // 선행퀘스트
+		"toQuest": 2, // 다음 퀘스트
+		"goal": [0, 5], // [몬스터아이디, 목표 마리수]
+		"nowstate" : [0, 0],
+		"compensation_ItemID": 2, //보상 아이템 id
+		"compensation_ItemNum": 5, // 보상 아이템 개수
+		"title": " Turtle Shell 사냥 퀘스트 1",
+		"desc": " Turtle Shell 5마리 잡기 "
 
-    },
+	},
 
-    "3": {
-        "type": 1,
-        "fromQuest": 1,
-        "toQuest": 3,
-        "goal": 100,
-        "compensation_ItemID": 1,
-        "compensation_ItemNum": 10,
-        "title": " 조작키 사용해보기 ",
-        "desc": " 조작키를 통해 캐릭터를 움직여보자"
+	"2": {
+		"type": 1, // 사냥 퀘스트
+		"fromQuest": 2, // 선행퀘스트
+		"toQuest": 3, // 다음 퀘스트
+		"goal": [0, 10], // [몬스터아이디, 목표 마리수]
+		"nowstate" : [0, 0],
+		"compensation_ItemID": 1, //보상 아이템 id
+		"compensation_ItemNum": 10, // 보상 아이템 개수
+		"title": " Turtle Shell 사냥 퀘스트 2",
+		"desc": " Turtle Shell 10마리 잡기 "
 
-    }
+	}
 
 
 }

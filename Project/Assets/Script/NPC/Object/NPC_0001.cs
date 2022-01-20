@@ -9,7 +9,7 @@ public class NPC_0001 : NPCBase
     {
         base.Start(); // 부모의 Start를 먼저 호출해서 QuestUI 로드하기
         NPC_ID = 1;
-        QuestList = new List<int>{1,2};
+        QuestList = new List<int>{0,1};
     }
 
 }

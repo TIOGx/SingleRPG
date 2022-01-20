@@ -186,4 +186,10 @@ public class DummyController : MonoBehaviour
     {
         return this.transform;
     }
+    public void killMonster(int Monterid)
+    {
+        Debug.Log("이거 죽였엄");
+        Debug.Log(Monterid);
+        QuestManager.instance.checkQuest(1, Monterid); // 퀘스트 타입: 사냥, 몬스터 id
+    }
 }

@@ -61,7 +61,7 @@ public class UNPCUI : MonoBehaviour, INPCUI
 
     public void OnClicked_Accept()
     {
-
+        Debug.Log("퀘스트 수락");
     }
 
     public void OnClicked_Reject()
@@ -83,8 +83,8 @@ public class UNPCUI : MonoBehaviour, INPCUI
     public void ProccessToQuest()
     {
         // 테스트 임시로 0번재 퀘스트를 띄움
-        Text_Title.GetComponent<Text>().text = QuestData[1]["message"]["title"].ToString();
-        Text_Desc.GetComponent<Text>().text = QuestData[1]["message"]["desc"].ToString();
+        Text_Title.GetComponent<Text>().text = QuestData[1]["title"].ToString();
+        Text_Desc.GetComponent<Text>().text = QuestData[1]["desc"].ToString();
 
         if(QuestData[1]["type"].ToString() == "1") // 퀘스트 내용
         {
