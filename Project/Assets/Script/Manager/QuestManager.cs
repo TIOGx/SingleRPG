@@ -15,6 +15,8 @@ public class QuestManager : MonoBehaviour
     [SerializeField]
     private Queue<QuestData> questQueue;
 
+    public GameObject[] compensationItemArr = new GameObject[5];
+
     private string jsonString;
     private void Awake()
     {
@@ -24,7 +26,6 @@ public class QuestManager : MonoBehaviour
     {
         questQueue = new Queue<QuestData>();
         Init();
-
     }
 
     private void Init()
@@ -69,6 +70,11 @@ public class QuestManager : MonoBehaviour
                     quest.nowstate1 += 1;
                     if (IsComplete(quest)){
                         Debug.Log("퀘스트 클리어");
+                        Debug.Log(quest.compensation_ItemID);
+                        Debug.Log(compensationItemArr[0]);
+                        Debug.Log(compensationItemArr[quest.compensation_ItemID]);
+                        Item getItem = compensationItemArr[quest.compensation_ItemID].transform.GetComponent<ItemPickUp>().item;
+                        Inventory.instance.AcquireItem(getItem, quest.compensation_ItemNum);
                         ChangeToNextQuest(quest.questIdx);
                         break;
                     }

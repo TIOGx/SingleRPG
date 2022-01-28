@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using LitJson;
 using UnityEngine;
-using InventoryMGR;
 
 namespace NPCManager{
     // NPC관련한 모든 interface와 class를 여기에 작성
@@ -75,6 +74,7 @@ namespace NPCManager{
         private bool bIsTalking = false;
         private string jsonString;
 
+
         public List<int> QuestList
         {
             get => _QuestList;
@@ -101,7 +101,7 @@ namespace NPCManager{
             // Quest1 예시
             int Compensation_ItemID = int.Parse(UI.GetCurrentQuestData()["compensation_ItemID"].ToString());
             int Compensation_ItemNum = int.Parse(UI.GetCurrentQuestData()["compensation_ItemNum"].ToString());
-            GameObject.FindWithTag("Player").GetComponent<InventoryManager>().GetItemfrom(Compensation_ItemID, Compensation_ItemNum, EGetType.Compensation);
+            // GameObject.FindWithTag("Player").GetComponent<InventoryManager>().GetItemfrom(Compensation_ItemID, Compensation_ItemNum, EGetType.Compensation);
 
             UI.EndUI();
         }
