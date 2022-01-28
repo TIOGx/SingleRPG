@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
     BoxCollider boxCollider;
     public Transform Target;
     NavMeshAgent nav;
-    GameObject Item_0001;
+    public GameObject DropItem;
     private bool IsAlive;
     public GameObject thisObject;
     public int MonsterId = 0;
@@ -31,7 +31,6 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        Item_0001 = Resources.Load("Prefab/Item/Item_0001") as GameObject;
         Target = DummyController.instance.GetPlayerTransform();
         animator = monsterBody.GetComponent<Animator>();
     }
@@ -77,7 +76,7 @@ public class EnemyController : MonoBehaviour
     public void Died(){
         ObjectpoolManager.Instance.ReturnObject(thisObject.GetComponent<Monster>());
         Debug.Log("아이템 드롭!");
-        ItemDrop(Item_0001, gameObject.transform);
+        ItemDrop(DropItem, gameObject.transform);
     }
 
   

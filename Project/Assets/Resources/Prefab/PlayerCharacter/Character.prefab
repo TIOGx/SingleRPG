@@ -1921,7 +1921,6 @@ GameObject:
   - component: {fileID: 2275313122777157194}
   - component: {fileID: 2275313122777157189}
   - component: {fileID: 2275313122777157188}
-  - component: {fileID: 2275313122777157191}
   - component: {fileID: 2275313122777157190}
   - component: {fileID: 2275313122777157195}
   m_Layer: 0
@@ -1962,7 +1961,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   characterBody: {fileID: 2275313121202406712}
   cameraArm: {fileID: 2275313122103440735}
-  CamSensitive: 2
+  isDiveDelay: 0
+  isAttackDelay: 0
+  isJumpDelay: 0
 --- !u!54 &2275313122777157188
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1979,22 +1980,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &2275313122777157191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2275313122777157185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 889804720df31a646be9a4bb75f36962, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  characterBody: {fileID: 2275313121202406712}
-  cameraArm: {fileID: 2275313122103440735}
-  CamSensitive: 0.5
 --- !u!136 &2275313122777157190
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -756,7 +756,9 @@ MonoBehaviour:
   MaxHealth: 10
   CurHealth: 10
   Target: {fileID: 0}
+  DropItem: {fileID: 7052658652495919744, guid: c1d84a54f70a049f5984d7ba3ea0d44d, type: 3}
   thisObject: {fileID: 3336653208864712852}
+  MonsterId: 0
 --- !u!195 &3335104012272512085
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -791,6 +793,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 400f5141e88ec8f47a4e1ddba0f7541d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MonsterId: 0
 --- !u!1 &3336690641894828856
 GameObject:
   m_ObjectHideFlags: 0
