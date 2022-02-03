@@ -985,8 +985,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5969018378054800460}
-        m_TargetAssemblyTypeName: UNPCUI_Manager, Assembly-CSharp
-        m_MethodName: OnClicked_Accept
+        m_TargetAssemblyTypeName: UNPCUI, Assembly-CSharp
+        m_MethodName: OnClicked_Next
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using LitJson;
 using System.IO;
+using System;
 
 public class QuestManager : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class QuestManager : MonoBehaviour
     [SerializeField]
     private Queue<QuestData> questQueue;
 
+    public int nowCompleteIdx ;
+    public int nextIdx = 0;
     public GameObject[] compensationItemArr = new GameObject[5];
 
     private string jsonString;
@@ -36,16 +39,16 @@ public class QuestManager : MonoBehaviour
         if (jsonString == "") { return; }
         JsonData QuestJsonData = JsonMapper.ToObject(jsonString);
 
-        questQueue.Enqueue(new QuestData(0, int.Parse(QuestJsonData[0]["type"].ToString()), int.Parse(QuestJsonData[0]["fromQuest"].ToString()), int.Parse(QuestJsonData[0]["toQuest"].ToString()), int.Parse(QuestJsonData[0]["goal"][0].ToString()), int.Parse(QuestJsonData[0]["goal"][1].ToString()), int.Parse(QuestJsonData[0]["nowstate"][0].ToString()), int.Parse(QuestJsonData[0]["nowstate"][1].ToString()), int.Parse(QuestJsonData[0]["compensation_ItemID"].ToString()), int.Parse(QuestJsonData[0]["compensation_ItemNum"].ToString()), QuestJsonData[0]["title"].ToString(), QuestJsonData[0]["desc"].ToString()));
-        //Debug.Log(questQueue);
-        Text_Title.GetComponent<Text>().text = questQueue.Peek().title;
-        Text_Desc.GetComponent<Text>().text = questQueue.Peek().desc;
+        jsonString = File.ReadAllText(Application.dataPath + "/Data/NPC_Data/NPCData.json");
+        if (jsonString == "") { return; }
+        JsonData NPCJsonData = JsonMapper.ToObject(jsonString);
 
+        questQueue.Enqueue(new QuestData(0, int.Parse(QuestJsonData[0]["type"].ToString()), int.Parse(QuestJsonData[0]["fromQuest"].ToString()), int.Parse(QuestJsonData[0]["toQuest"].ToString()), int.Parse(QuestJsonData[0]["goal"][0].ToString()), int.Parse(QuestJsonData[0]["goal"][1].ToString()), int.Parse(QuestJsonData[0]["nowstate"][0].ToString()), int.Parse(QuestJsonData[0]["nowstate"][1].ToString()), int.Parse(QuestJsonData[0]["compensation_ItemID"].ToString()), int.Parse(QuestJsonData[0]["compensation_ItemNum"].ToString()), QuestJsonData[0]["title"].ToString(), QuestJsonData[0]["desc"].ToString(), QuestJsonData[0]["completed_text"].ToString(), bool.Parse(QuestJsonData[0]["isCompleted"].ToString())));
     }
 
-    private void UpdateQuestUI()
+    public void UpdateQuestUI()
     {
-        Debug.Log("´ÙÀ½Äù½ºÆ®UI·Î ¾÷µ¥ÀÌÆ® ÇÏÀÚ");
+        Debug.Log("UI ë‹¤ìŒ í€˜ìŠ¤íŠ¸ ë‚´ìš©ìœ¼ë¡œ ì—…ë°ì´íŠ¸");
         foreach (var el in questQueue)
         {
             Debug.Log(el.title);
@@ -57,51 +60,45 @@ public class QuestManager : MonoBehaviour
     }
     public void checkQuest(int QType, int value)
     {
-        Debug.Log("Äù½ºÆ® È®ÀÎÇØº¸ÀÚ");
-        Debug.Log("Äù½ºÆ® Å¸ÀÔÀº");
-        Debug.Log(QType);
-        foreach (var quest in questQueue){
-            if (quest.questType == QType){
-                Debug.Log("Äù½ºÆ® Å¸ÀÔ ÀÏÄ¡");
-                Debug.Log(quest.goal0);
-                if (quest.goal0 == value) // ¸ó½ºÅÍ Å¸ÀÔ ÀÏÄ¡ÇÒ±î?
+        if (questQueue == null) { return; }
+        Debug.Log("ë“¤ì–´ì˜¨ í€˜ìŠ¤íŠ¸ íƒ€ì…" + QType);
+        foreach (var quest in questQueue)
+        {
+            if (quest.questType == QType)
+            {
+                Debug.Log("í€˜ìŠ¤íŠ¸ í ì•ˆì˜ í€˜ìŠ¤íŠ¸íƒ€ì…" + quest.questType);
+                if (quest.goal0 == value) // í€˜ìŠ¤íŠ¸ íƒ€ì… 1ì¼ë•Œ_ ì‚¬ëƒ¥ í€˜ìŠ¤íŠ¸
                 {
-                    Debug.Log("¸ó½ºÅÍ Å¸ÀÔ ÀÏÄ¡");
                     quest.nowstate1 += 1;
-                    if (IsComplete(quest)){
-                        Debug.Log("Äù½ºÆ® Å¬¸®¾î");
-                        Debug.Log(quest.compensation_ItemID);
-                        Debug.Log(compensationItemArr[0]);
-                        Debug.Log(compensationItemArr[quest.compensation_ItemID]);
+                    if (IsComplete(quest))
+                    {
+                        Debug.Log(" í€˜ìŠ¤íŠ¸ ì™„ë£Œ ì¡°ê±´ ì¶©ì¡±");
                         Item getItem = compensationItemArr[quest.compensation_ItemID].transform.GetComponent<ItemPickUp>().item;
                         Inventory.instance.AcquireItem(getItem, quest.compensation_ItemNum);
-                        ChangeToNextQuest(quest.questIdx);
+                        nowCompleteIdx = quest.questIdx;
+                        
                         break;
                     }
-                }
-                else
-                {
-                    Debug.Log("¸ó½ºÅÍ Å¸ÀÔ ºÒÀÏÄ¡");
-                    Debug.Log(quest.questType);
-                    Debug.Log(value);
                 }
             }
         }
     }
+
     public bool IsComplete(QuestData quest)
     {
-        Debug.Log("¸ñÇ¥ ¸¶¸®¼ö");
+        Debug.Log("í€˜ìŠ¤íŠ¸ ì™„ë£Œ ì¡°ê±´ í™•ì¸í•˜ê¸°");
         Debug.Log(quest.goal1);
-        Debug.Log("³»°¡ ÀâÀº ¸¶¸®¼ö");
         Debug.Log(quest.nowstate1);
         if (quest.goal1 == quest.nowstate1)
         {
-            Debug.Log("Äù½ºÆ® Á¶°Ç ÃæÁ·");
+            quest.iscompleted = true;
+            Debug.Log("í€˜ìŠ¤íŠ¸ iscomplete = " + quest.iscompleted);
             return true;
         }
-        Debug.Log("Äù½ºÆ® Á¶°Ç ¹Ì ÃæÁ·");
         return false;
     }
+
+
     public void ChangeToNextQuest(int Qidx)
     {
         if (questQueue == null) { return; }
@@ -113,8 +110,15 @@ public class QuestManager : MonoBehaviour
         if (jsonString == "") { return; }
         JsonData QuestJsonData = JsonMapper.ToObject(jsonString);
 
-        Debug.Log("´ÙÀ½Äù½ºÆ®·Î ¾÷µ¥ÀÌÆ® ÇÏÀÚ");
-        questQueue.Enqueue(new QuestData(nextQidx, int.Parse(QuestJsonData[nextQidx]["type"].ToString()), int.Parse(QuestJsonData[nextQidx]["fromQuest"].ToString()), int.Parse(QuestJsonData[nextQidx]["toQuest"].ToString()), int.Parse(QuestJsonData[nextQidx]["goal"][0].ToString()), int.Parse(QuestJsonData[nextQidx]["goal"][1].ToString()), int.Parse(QuestJsonData[nextQidx]["nowstate"][0].ToString()), int.Parse(QuestJsonData[nextQidx]["nowstate"][1].ToString()), int.Parse(QuestJsonData[nextQidx]["compensation_ItemID"].ToString()), int.Parse(QuestJsonData[nextQidx]["compensation_ItemNum"].ToString()), QuestJsonData[nextQidx]["title"].ToString(), QuestJsonData[nextQidx]["desc"].ToString()));
-        UpdateQuestUI();
+        questQueue.Enqueue(new QuestData(nextQidx, int.Parse(QuestJsonData[nextQidx]["type"].ToString()), int.Parse(QuestJsonData[nextQidx]["fromQuest"].ToString()), int.Parse(QuestJsonData[nextQidx]["toQuest"].ToString()), int.Parse(QuestJsonData[nextQidx]["goal"][0].ToString()), int.Parse(QuestJsonData[nextQidx]["goal"][1].ToString()), int.Parse(QuestJsonData[nextQidx]["nowstate"][0].ToString()), int.Parse(QuestJsonData[nextQidx]["nowstate"][1].ToString()), int.Parse(QuestJsonData[nextQidx]["compensation_ItemID"].ToString()), int.Parse(QuestJsonData[nextQidx]["compensation_ItemNum"].ToString()), QuestJsonData[nextQidx]["title"].ToString(), QuestJsonData[nextQidx]["desc"].ToString(), QuestJsonData[nextQidx]["completed_text"].ToString(), bool.Parse(QuestJsonData[nextQidx]["isCompleted"].ToString())));
+        
     }
+
+
+    public Queue<QuestData> getQuestQueue()
+    {
+        if(questQueue.Count == 0) { return null; }
+        return questQueue;
+    }
+
 }

@@ -1,14 +1,16 @@
 {
 	"0": {
-		"type": 1, // 사냥 퀘스트
+		"type": 2, // 말걸기 퀘스트
 		"fromQuest": 0, // 선행퀘스트
 		"toQuest": 1, // 다음 퀘스트
-		"goal": [0, 2], // [몬스터아이디, 목표 마리수]
-		"nowstate" : [0, 0],
+		"goal": [ 1, 2 ], // type1 [Npc아이디, 2 ]
+		"nowstate": [ 0, 0 ],
 		"compensation_ItemID": 0, //보상 아이템 id
-		"compensation_ItemNum": 5, // 보상 아이템 개수
-		"title": " Turtle Shell 사냥 퀘스트 0",
-		"desc": " Turtle Shell 2마리 잡기 "
+		"compensation_ItemNum": 1, // 보상 아이템 개수
+		"title": " 말걸기 퀘스트 1",
+		"desc": " NPC에게 다가가 말을 걸어보자 ",
+		"completed_text": "말걸기 퀘스트1 완료",
+		"isCompleted": false // 0이면 false, 1이면 true
 
 	},
 
@@ -16,25 +18,58 @@
 		"type": 1, // 사냥 퀘스트
 		"fromQuest": 1, // 선행퀘스트
 		"toQuest": 2, // 다음 퀘스트
-		"goal": [0, 5], // [몬스터아이디, 목표 마리수]
-		"nowstate" : [0, 0],
+		"goal": [ 0, 2 ], // [몬스터아이디, 목표 마리수]
+		"nowstate": [ 0, 0 ],
 		"compensation_ItemID": 0, //보상 아이템 id
 		"compensation_ItemNum": 5, // 보상 아이템 개수
 		"title": " Turtle Shell 사냥 퀘스트 1",
-		"desc": " Turtle Shell 5마리 잡기 "
+		"desc": " Turtle Shell 2마리 잡기 ",
+		"completed_text": "Turtle Shell 2마리 잡기 완료",
+		"isCompleted": false // 0이면 false, 1이면 true
+
+	},
+	"2": {
+		"type": 2, // 말걸기 퀘스트
+		"fromQuest": 2, // 선행퀘스트
+		"toQuest": 3, // 다음 퀘스트
+		"goal": [ 1, 2 ], // type1 [Npc아이디, 2 ]
+		"nowstate": [ 0, 0 ],
+		"compensation_ItemID": 0, //보상 아이템 id
+		"compensation_ItemNum": 1, // 보상 아이템 개수
+		"title": " 말걸기 퀘스트 2",
+		"desc": " NPC에게 다가가 말을 걸어보자 ",
+		"completed_text": "말걸기 퀘스트2 완료",
+		"isCompleted": false // 0이면 false, 1이면 true
 
 	},
 
-	"2": {
+	"3": {
 		"type": 1, // 사냥 퀘스트
-		"fromQuest": 2, // 선행퀘스트
-		"toQuest": 3, // 다음 퀘스트
-		"goal": [0, 10], // [몬스터아이디, 목표 마리수]
-		"nowstate" : [0, 0],
+		"fromQuest": 3, // 선행퀘스트
+		"toQuest": 4, // 다음 퀘스트
+		"goal": [ 0, 5 ], // [몬스터아이디, 목표 마리수]
+		"nowstate": [ 0, 0 ],
+		"compensation_ItemID": 0, //보상 아이템 id
+		"compensation_ItemNum": 5, // 보상 아이템 개수
+		"title": " Turtle Shell 사냥 퀘스트 2",
+		"desc": " Turtle Shell 5마리 잡기 ",
+		"completed_text": "Turtle Shell 5마리 잡기 완료",
+		"isCompleted": false // 0이면 false, 1이면 true
+
+	},
+
+	"4": {
+		"type": 1, // 사냥 퀘스트
+		"fromQuest": 4, // 선행퀘스트
+		"toQuest": 5, // 다음 퀘스트
+		"goal": [ 0, 10 ], // [몬스터아이디, 목표 마리수]
+		"nowstate": [ 0, 0 ],
 		"compensation_ItemID": 0, //보상 아이템 id
 		"compensation_ItemNum": 10, // 보상 아이템 개수
-		"title": " Turtle Shell 사냥 퀘스트 2",
-		"desc": " Turtle Shell 10마리 잡기 "
+		"title": " Turtle Shell 사냥 퀘스트 3",
+		"desc": " Turtle Shell 10마리 잡기 ",
+		"completed": "Turtle Shell 10마리 잡기 완료",
+		"isCompleted": false // 0이면 false, 1이면 true
 
 	}
 

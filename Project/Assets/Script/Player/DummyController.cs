@@ -178,7 +178,7 @@ public class DummyController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Npc"))
         {
-            animator.SetTrigger("Talk");
+            //animator.SetTrigger("Talk");
         }
     }
 
@@ -186,6 +186,7 @@ public class DummyController : MonoBehaviour
     {
         return this.transform;
     }
+
     public void killMonster(int Monterid)
     {
         Debug.Log("이거 죽였엄");

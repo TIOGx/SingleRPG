@@ -1,49 +1,21 @@
 {
     "1": {
-        "Name": "NPC1",
-        "type": 1,
-        "quest": [ 1, 2 ],
-        "fromNPC": null,
-        "message": {
-            "title": "[철수]",
-            "desc": " 어서와! 여기 퀘스트 보상이야 "
-        },
-        "isCompleted": false
+        "Name": "철수", // NPC 이름
+        "quest": [ 0, 1, 2 ], // 해당 npc가 가지고 있는 퀘스트 
+        "fromNPC": 0,
+        "title": "[철수]",
+        "desc": [ " 나한테 말을 걸어봐! ", "몬스터를 2마리 잡아와!", " 나한테 다시 말을 걸어봐! " ],
+        "completed_text": [ "잘했어! (말걸기 퀘스트1 완료)", "잘했어! (몬스터 2마리 잡기 퀘스트 완료)", "잘했어! (말걸기 퀘스트2 완료)" ]
+
     },
+
 
     "2": {
-        "name": "NPC1",
-        "type": 2,
-        "quest": [ 3 ],
-        "fromNPC": null,
-        "message": {
-            "title": "[철수]",
-            "desc": "왼쪽 쉬프트키를 누르면 달리기, 왼쪽 컨트롤키를 누르면 점프를, 스페이스바를 누르면 구르기를 할 수 있어."
-        },
-        "isCompleted": false
-    },
-
-    "3": {
-        "name": "NPC1",
-        "type": 3,
-        "quest": [ 4 ],
-        "fromNPC": null,
-        "message": {
-            "title": "[철수]",
-            "desc": " 잘했어! "
-        },
-        "isCompleted": false
-    },
-
-    "4": {
-        "name": "NPC2",
-        "type": 3,
-        "quest": [ 4 ],
-        "fromNPC": "NPC1",
-        "message": {
-            "title": "[영희]",
-            "desc": " "
-        },
-        "isCompleted": false
+        "name": "영희",
+        "quest": [ 3, 4 ],
+        "fromNPC": 1,
+        "title": "[영희]",
+        "desc": [ " 몬스터를 5마리 잡아와! ", " 몬스터를 10마리 잡아와! " ],
+        "completed_text": [ "잘했어! (몬스터 5마리 잡기 퀘스트 완료)", "잘했어! (몬스터 10마리 잡기 퀘스트 완료)" ]
     }
 }

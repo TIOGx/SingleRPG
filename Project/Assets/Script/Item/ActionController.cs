@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class ActionController : MonoBehaviour
 {
     [SerializeField]
-    private float range;  // æ∆¿Ã≈€ Ω¿µÊ¿Ã ∞°¥…«— √÷¥Î ∞≈∏Æ
+    private float range;  // ?????? ?????? ?????? ???? ????
 
-    private bool pickupActivated = false;  // æ∆¿Ã≈€ Ω¿µÊ ∞°¥…«“Ω√ True 
+    private bool pickupActivated = false;  // ?????? ???? ???????? True 
 
-    private RaycastHit hitInfo;  // √Êµπ√º ¡§∫∏ ¿˙¿Â
-
-    [SerializeField]
-    private LayerMask layerMask;  // ∆Ø¡§ ∑π¿ÃæÓ∏¶ ∞°¡¯ ø¿∫Í¡ß∆Æø° ¥Î«ÿº≠∏∏ Ω¿µÊ«“ ºˆ ¿÷æÓæﬂ «—¥Ÿ.
+    private RaycastHit hitInfo;  // ?????? ???? ????
 
     [SerializeField]
-    private Text actionText;  // «‡µø¿ª ∫∏ø© ¡Ÿ ≈ÿΩ∫∆Æ
+    private LayerMask layerMask;  // ???? ???????? ???? ?????????? ???????? ?????? ?? ?????? ????.
+
+    [SerializeField]
+    private Text actionText;  // ?????? ???? ?? ??????
 
     [SerializeField]
     private Inventory theInventory;  // Inventory.cs
@@ -54,7 +54,7 @@ public class ActionController : MonoBehaviour
     {
         pickupActivated = true;
         actionText.gameObject.SetActive(true);
-        actionText.text = hitInfo.transform.GetComponent<ItemPickUp>().item.itemName + " »πµÊ " + "<color=yellow>" + "(E)" + "</color>";
+        actionText.text = hitInfo.transform.GetComponent<ItemPickUp>().item.itemName + " ÌöçÎìù " + "<color=yellow>" + "(E)" + "</color>";
     }
 
     private void ItemInfoDisappear()
@@ -69,7 +69,7 @@ public class ActionController : MonoBehaviour
         {
             if (hitInfo.transform != null)
             {
-                Debug.Log(hitInfo.transform.GetComponent<ItemPickUp>().item.itemName + " »πµÊ «ﬂΩ¿¥œ¥Ÿ.");  // ¿Œ∫•≈‰∏Æ ≥÷±‚
+                Debug.Log(hitInfo.transform.GetComponent<ItemPickUp>().item.itemName + " ÏïÑÏù¥ÌÖúÏùÑ Ï£ºÏö∏ Ïàò ÏûàÏäµÎãàÎã§.");  // ???????? ????
                 theInventory.AcquireItem(hitInfo.transform.GetComponent<ItemPickUp>().item);
                 Destroy(hitInfo.transform.gameObject);
                 ItemInfoDisappear();

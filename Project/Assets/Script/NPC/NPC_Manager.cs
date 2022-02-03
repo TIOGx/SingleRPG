@@ -36,6 +36,7 @@ namespace NPCManager{
 
     // for NPC UI class
     public interface INPCUI {
+
         void SetData(JsonData InNPCData, List<JsonData> InInQuestData);
         JsonData GetCurrentQuestData();
         void SetText();
@@ -65,16 +66,21 @@ namespace NPCManager{
 
     public class NPCBase : MonoBehaviour, INPC
     {
+        public static NPCBase instance;
         private GameObject QuestUI; // NPCUI Prefab을 넣어주기
         private UNPCUI UI;
 
-        protected int NPC_ID;
+        //protected int NPC_ID;
+        public int NPC_ID;
         private List<int> _QuestList;        
         private GameObject _NPCUI;
         private bool bIsTalking = false;
         private string jsonString;
 
-
+        private void Awake()
+        {
+            instance = this;
+        }
         public List<int> QuestList
         {
             get => _QuestList;
@@ -120,7 +126,7 @@ namespace NPCManager{
         {        
             if(UI != null) { return; } //UI 중복으로 안되게
 
-            InitUI(NPC_ID);
+            //InitUI(NPC_ID);
         }
 
         public void InitUI(int NPC_ID)
