@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 948788506649536935}
   - component: {fileID: -2145993340875293844}
   m_Layer: 8
-  m_Name: Apple_Item
+  m_Name: Banana_Item
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7052658652495919744}
-  m_Mesh: {fileID: 4300016, guid: 3f4d2118f6a772542a1635ef5bfa6982, type: 3}
+  m_Mesh: {fileID: 4300014, guid: 3f4d2118f6a772542a1635ef5bfa6982, type: 3}
 --- !u!23 &7052658652495919757
 MeshRenderer:
   m_ObjectHideFlags: 0

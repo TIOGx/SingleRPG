@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -15,10 +16,14 @@ public class EnemyController : MonoBehaviour
     BoxCollider boxCollider;
     public Transform Target;
     NavMeshAgent nav;
-    public GameObject DropItem;
+    public GameObject [] DropItem;
+    public float[] DropItemPercentage;
     private bool IsAlive;
     public GameObject thisObject;
     public int MonsterId = 0;
+    public Image HpBar;
+    public GameObject RandomDropItem;
+    
 
     private void Awake() {
         rigid = GetComponent<Rigidbody>();
@@ -46,11 +51,21 @@ public class EnemyController : MonoBehaviour
         if (!IsAlive){ return; }
         if(other.tag == "Weapon"){
             WeaponController Weapon = other.GetComponent<WeaponController>();
-            CurHealth -= Weapon.damage;
-            Debug.Log(CurHealth);
-            if(CurHealth <= 0){
-                die();
-            }
+            TakeDamage(Weapon.damage);
+        }
+    }
+    void TakeDamage(int value)
+    {
+        CurHealth -= value;
+        // Debug.Log(CurHealth);
+        if (CurHealth < 0)
+        {
+            CurHealth = 0;
+        }
+        HpBar.rectTransform.localScale = new Vector3(CurHealth / MaxHealth, 1f, 1f);
+        if (CurHealth == 0)
+        {
+            die();
         }
     }
 
@@ -72,11 +87,36 @@ public class EnemyController : MonoBehaviour
     {
         Instantiate(gameObject, transform.position, Quaternion.identity);
     }
-
+    void OnEnable()
+    {
+        initialize();
+    }
+    public void initialize()
+    {
+        CurHealth = MaxHealth;
+        HpBar.rectTransform.localScale = new Vector3(CurHealth / MaxHealth, 1f, 1f);
+        IsAlive = true;
+    }
     public void Died(){
         ObjectpoolManager.Instance.ReturnObject(thisObject.GetComponent<Monster>());
-        Debug.Log("아이템 드롭!");
-        ItemDrop(DropItem, gameObject.transform);
+        Debug.Log("랜덤 아이템 드롭!");
+        float random_float = Random.Range(0, 100);
+        Debug.Log(random_float);
+        for (int i = 0; i<DropItemPercentage.Length; i++)
+        {
+            if(random_float <= DropItemPercentage[i])
+            {
+                //i번째 아이템 당첨
+                Debug.Log(i);
+                RandomDropItem = DropItem[i];
+                break;
+            }
+            else
+            {
+                random_float -= DropItemPercentage[i];
+            }
+        }
+        ItemDrop(RandomDropItem, gameObject.transform);
     }
 
   
