@@ -43,7 +43,10 @@ public class NPCActionController : MonoBehaviour
             }
         }
         else
+        {
             NPCInfoDisappear();
+        }
+            
     }
 
     private void NPCInfoAppear()

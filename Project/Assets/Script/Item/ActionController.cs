@@ -56,7 +56,9 @@ public class ActionController : MonoBehaviour
             }
         }
         else
+        {
             ItemInfoDisappear();
+        }
     }
 
     private void ItemInfoAppear()
@@ -84,7 +86,9 @@ public class ActionController : MonoBehaviour
                 Destroy(hitInfo.transform.gameObject);
                 ItemInfoDisappear();
             }
+            else { return; }
         }
+        else { return; }
     }
 }
 
