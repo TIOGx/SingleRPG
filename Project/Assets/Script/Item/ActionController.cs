@@ -21,6 +21,14 @@ public class ActionController : MonoBehaviour
     [SerializeField]
     private Inventory theInventory;  // Inventory.cs
 
+    [SerializeField]
+    private Button InventoryButton;  // Inventory.cs
+
+    
+    private void Start()
+    {
+        InventoryButton.onClick.AddListener(TryAction);
+    }
 
     void Update()
     {
@@ -35,6 +43,7 @@ public class ActionController : MonoBehaviour
             CheckItem();
             CanPickUp();
         }
+    
     }
 
     private void CheckItem()
@@ -71,6 +80,7 @@ public class ActionController : MonoBehaviour
             {
                 Debug.Log(hitInfo.transform.GetComponent<ItemPickUp>().item.itemName + " 아이템을 주울 수 있습니다.");  // ???????? ????
                 theInventory.AcquireItem(hitInfo.transform.GetComponent<ItemPickUp>().item);
+                ItemDataUI.instance.InstantiateItemDataUI(hitInfo.transform.GetComponent<ItemPickUp>().item.itemName, 1.ToString());
                 Destroy(hitInfo.transform.gameObject);
                 ItemInfoDisappear();
             }

@@ -828,7 +828,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.9528302, g: 0.4179868, b: 0.4179868, a: 1}
+    m_NormalColor: {r: 0.34509805, g: 0.35686275, b: 0.36862746, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -850,19 +850,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2054364311432104556}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5969018378054800460}
-        m_TargetAssemblyTypeName: UNPCUI_Manager, Assembly-CSharp
-        m_MethodName: OnClicked_Reject
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &5736649195880239486
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,7 +949,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.13300997, g: 0.37482047, b: 0.5754717, a: 1}
+    m_NormalColor: {r: 0.3453631, g: 0.35774192, b: 0.3679245, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -983,19 +971,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3584096371292100625}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5969018378054800460}
-        m_TargetAssemblyTypeName: UNPCUI, Assembly-CSharp
-        m_MethodName: OnClicked_Next
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6359416508991056893
 GameObject:
   m_ObjectHideFlags: 0
@@ -1054,7 +1030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3254902, g: 0.69411767, b: 1, a: 1}
+  m_Color: {r: 0.7028747, g: 0.7369171, b: 0.764151, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1169,7 +1145,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.13333334, g: 0.3764706, b: 0.5764706, a: 1}
+    m_NormalColor: {r: 0.34509805, g: 0.35686275, b: 0.36862746, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1191,19 +1167,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3057408935602057109}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5969018378054800460}
-        m_TargetAssemblyTypeName: UNPCUI_Manager, Assembly-CSharp
-        m_MethodName: OnClicked_Accept
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6986294469121881474
 GameObject:
   m_ObjectHideFlags: 0
@@ -1420,7 +1384,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.11747954, g: 0.30147728, b: 0.4528302, a: 1}
+    m_NormalColor: {r: 0.32800817, g: 0.35007957, b: 0.3679245, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1764,7 +1728,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.13300997, g: 0.37482047, b: 0.5754717, a: 1}
+    m_NormalColor: {r: 0.34509805, g: 0.35686275, b: 0.36862746, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -1786,19 +1750,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7294360265193850110}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5969018378054800460}
-        m_TargetAssemblyTypeName: UNPCUI, Assembly-CSharp
-        m_MethodName: OnClicked_Completed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &9056231708252957516
 GameObject:
   m_ObjectHideFlags: 0

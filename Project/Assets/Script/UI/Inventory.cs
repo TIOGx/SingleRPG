@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
-    public static bool invectoryActivated = false;  // 인벤토리 활성화 여부. true가 되면 카메라 움직임과 다른 입력을 막을 것이다.
+    public static bool invectoryActivated = false;  // ???????? ?????? ????. true?? ???? ?????? ???????? ???? ?????? ???? ??????.
 
     [SerializeField]
-    private GameObject go_InventoryBase; // Inventory_Base 이미지
+    private GameObject go_InventoryBase; // Inventory_Base ??????
     [SerializeField]
-    private GameObject go_SlotsParent;  // Slot들의 부모인 Grid Setting 
+    private GameObject go_SlotsParent;  // Slot???? ?????? Grid Setting 
 
-    private Slot[] slots;  // 슬롯들 배열
+    private Slot[] slots;  // ?????? ????
+
+    [SerializeField]
+    private Button InventoryButton;  
+
+    [SerializeField]
+    private Button ExitButton;  
+
 
     private void Awake()
     {
@@ -21,25 +29,18 @@ public class Inventory : MonoBehaviour
     void Start()
     {
         slots = go_SlotsParent.GetComponentsInChildren<Slot>();
-    }
-
-    void Update()
-    {
-        TryOpenInventory();
+        InventoryButton.onClick.AddListener(TryOpenInventory);
+        ExitButton.onClick.AddListener(CloseInventory);
     }
 
     private void TryOpenInventory()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            invectoryActivated = !invectoryActivated;
+        invectoryActivated = !invectoryActivated;
 
-            if (invectoryActivated)
-                OpenInventory();
-            else
-                CloseInventory();
-
-        }
+        if (invectoryActivated)
+            OpenInventory();
+        else
+            CloseInventory();
     }
 
     private void OpenInventory()
@@ -58,7 +59,7 @@ public class Inventory : MonoBehaviour
         {
             for (int i = 0; i < slots.Length; i++)
             {
-                if (slots[i].item != null)  // null 이라면 slots[i].item.itemName 할 때 런타임 에러 나서
+                if (slots[i].item != null)  // null ?????? slots[i].item.itemName ?? ?? ?????? ???? ????
                 {
                     if (slots[i].item.itemName == _item.itemName)
                     {
@@ -78,4 +79,5 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
 }

@@ -59,8 +59,8 @@ public class DummyController : MonoBehaviour
     void Start()
     {
         animator = characterBody.GetComponent<Animator>();
-        normalSpeed = 2.0f;
-        runSpeed = 5.0f;
+        normalSpeed = 7.0f;
+        runSpeed = 12.0f;
         attackNum = 0;
         isDiveDelay = false;
         isAttackDelay = false;
