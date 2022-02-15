@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: "\uBC14\uB098\uB098"
   itemId: 1
   itemType: 2
-  itemImage: {fileID: 21300000, guid: fb1e48043961d8f44948225f539a83bb, type: 3}
+  itemImage: {fileID: 21300000, guid: 4d9c156a867213d40a31aff14c1d7bc0, type: 3}
   itemPrefab: {fileID: 7052658652495919744, guid: 378e2115f8d041c48af6b321b7f81b74, type: 3}

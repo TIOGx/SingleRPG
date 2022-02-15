@@ -7,15 +7,14 @@ public class ObjectpoolManager : MonoBehaviour
     [SerializeField] 
     private GameObject poolingObjectPrefab;
     Queue<Monster> poolingObjectQueue = new Queue<Monster>();
-
+    public float SpawnDelay;
     [SerializeField]
-    int MAX_MONSTER_CNT = 10;
+    public int MAX_MONSTER_CNT;
 
     IEnumerator setSpawnDelay(float delayTime)
     {
         Debug.Log("spawn delay " + delayTime + " time");
         yield return new WaitForSeconds(delayTime);
-
 
     }
     private void Awake() {
@@ -49,8 +48,8 @@ public class ObjectpoolManager : MonoBehaviour
     }
     public Vector3 RandomPosition(){
         Vector3 basePos = this.transform.position;
-        float randomX = Random.Range(-5f, 5f); //적이 나타날 X좌표를 랜덤으로 생성해 줍니다.
-        float randomZ = Random.Range(-5f, 5f); //적이 나타날 X좌표를 랜덤으로 생성해 줍니다.
+        float randomX = Random.Range(-3f, 3f); //적이 나타날 X좌표를 랜덤으로 생성해 줍니다.
+        float randomZ = Random.Range(-3f, 3f); //적이 나타날 Z좌표를 랜덤으로 생성해 줍니다.
         float posX = basePos.x + randomX;
         float posY = basePos.y;
         float posZ = basePos.z + randomZ;
@@ -64,10 +63,10 @@ public class ObjectpoolManager : MonoBehaviour
     }
     private void Start()
     {
-        //StartCoroutine("Spawn",10.0f);
+        StartCoroutine("Spawn",10.0f);
     }
     private void Update() {
-       
+
     }
     
     IEnumerator Spawn(float delayTime){

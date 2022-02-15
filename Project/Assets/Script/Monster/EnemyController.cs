@@ -23,8 +23,17 @@ public class EnemyController : MonoBehaviour
     public int MonsterId = 0;
     public Image HpBar;
     public GameObject RandomDropItem;
-    
+    public GameObject hudDamageText;
+    public Transform hudPos;
+    public float tracingRange;
+    public MonsterState NowState;
 
+    public enum MonsterState
+    {
+        Idle,
+        tracing,
+        die
+    }
     private void Awake() {
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
@@ -38,14 +47,32 @@ public class EnemyController : MonoBehaviour
     {
         Target = DummyController.instance.GetPlayerTransform();
         animator = monsterBody.GetComponent<Animator>();
+        NowState = MonsterState.Idle;
     }
 
     // Update is called once per frame
     void Update()
     {
-        nav.SetDestination(Target.position);
+        if(NowState != MonsterState.die)
+        {
+            Tracing();
+        }
+           
     }
-
+    void Tracing()
+    {
+        if (NowState == MonsterState.tracing)
+        {
+            nav.SetDestination(Target.position);
+        }
+        else
+        {
+            if (IsTracing())
+            {
+                NowState = MonsterState.tracing;
+            }
+        }
+    }
     void OnTriggerEnter(Collider other) {
         Debug.Log("Who");
         if (!IsAlive){ return; }
@@ -57,6 +84,9 @@ public class EnemyController : MonoBehaviour
     void TakeDamage(int value)
     {
         CurHealth -= value;
+        GameObject hudText = Instantiate(hudDamageText); // 생성할 텍스트 오브젝트
+        hudText.transform.position = hudPos.position; // 표시될 위치
+        hudText.GetComponent<FloatingText>().damage = value; // 데미지 전달
         // Debug.Log(CurHealth);
         if (CurHealth < 0)
         {
@@ -67,6 +97,14 @@ public class EnemyController : MonoBehaviour
         {
             die();
         }
+    }
+    public bool IsTracing()
+    {
+        if(Vector3.Distance(Target.position, transform.position) < tracingRange)
+        {
+            return true;
+        }
+        return false;
     }
 
     void OnCollisionEnter(Collision other) {
@@ -81,6 +119,9 @@ public class EnemyController : MonoBehaviour
         IsAlive = false;
         animator.SetTrigger("Died");
         SignalToPlayer(MonsterId);
+        NowState = MonsterState.die;
+        nav.SetDestination(transform.position);
+
     }
 
     public void ItemDrop(GameObject gameObject, Transform transform)
@@ -98,6 +139,7 @@ public class EnemyController : MonoBehaviour
         IsAlive = true;
     }
     public void Died(){
+        Debug.Log("몬스터 죽음");
         ObjectpoolManager.Instance.ReturnObject(thisObject.GetComponent<Monster>());
         Debug.Log("랜덤 아이템 드롭!");
         float random_float = Random.Range(0, 100);
