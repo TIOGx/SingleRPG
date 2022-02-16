@@ -78,7 +78,11 @@ public class EnemyController : MonoBehaviour
         if (!IsAlive){ return; }
         if(other.tag == "Weapon"){
             WeaponController Weapon = other.GetComponent<WeaponController>();
-            TakeDamage(Weapon.damage);
+            if (Weapon.attackable)
+            {
+                TakeDamage(Weapon.damage);
+                Weapon.attackable = false;
+            }
         }
     }
     void TakeDamage(int value)
