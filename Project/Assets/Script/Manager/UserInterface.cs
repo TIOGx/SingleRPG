@@ -15,6 +15,7 @@ public class UserInterface : MonoBehaviour
 
     public void UpdateExpBarUI(float value)
     {
+
         ExpBar.value = value;
     }
 }

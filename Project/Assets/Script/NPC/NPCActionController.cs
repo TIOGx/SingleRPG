@@ -41,12 +41,13 @@ public class NPCActionController : MonoBehaviour
             {
                 NPCInfoAppear();
             }
+            else
+            {
+                NPCInfoDisappear();
+            }
+
         }
-        else
-        {
-            NPCInfoDisappear();
-        }
-            
+
     }
 
     private void NPCInfoAppear()

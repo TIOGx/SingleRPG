@@ -190,7 +190,7 @@ public class DummyController : MonoBehaviour
     {
         Debug.Log("이거 죽였엄");
         Debug.Log(Monterid);
-        PlayerInfo.instance.GetExp(3); // 임시로 박아 놓은 임의 경험치 값
+        PlayerInfo.instance.GetExp(10); // 임시로 박아 놓은 임의 경험치 값
         QuestManager.instance.checkQuest(1, Monterid); // 퀘스트 타입: 사냥, 몬스터 id
     }
 }

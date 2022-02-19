@@ -54,11 +54,12 @@ public class ActionController : MonoBehaviour
             {
                 ItemInfoAppear();
             }
+            else
+            {
+                ItemInfoDisappear();
+            }
         }
-        else
-        {
-            ItemInfoDisappear();
-        }
+        
     }
 
     private void ItemInfoAppear()

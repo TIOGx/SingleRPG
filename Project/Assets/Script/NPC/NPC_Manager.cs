@@ -104,14 +104,11 @@ namespace NPCManager{
 
         public virtual void ProccessAccept(int InNPC_ID, int InQ_ID)
         {
-            // Quest1 예시
-            int Compensation_ItemID = int.Parse(UI.GetCurrentQuestData()["compensation_ItemID"].ToString());
-            int Compensation_ItemNum = int.Parse(UI.GetCurrentQuestData()["compensation_ItemNum"].ToString());
-            // GameObject.FindWithTag("Player").GetComponent<InventoryManager>().GetItemfrom(Compensation_ItemID, Compensation_ItemNum, EGetType.Compensation);
-
             UI.EndUI();
         }
 
+        public void CanProgressQuest(bool tf) { }
+        public void CanGetcompensationQuest(bool tf) { }
         public void Reject()
         {
             
@@ -152,7 +149,8 @@ namespace NPCManager{
             // Quest 데이터는 다 불러오고 
 
             List<JsonData> QuestArray = new List<JsonData>();
-        
+
+
             // int인걸 우리는 알지만 컴퓨터는 모름. 왜? 여전히 jsonObject List이기 때문! 그래서 타입추론하게끔 var 사용
             foreach(var el in NPCJsonData[NPC_ID.ToString()]["quest"])
             {

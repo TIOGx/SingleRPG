@@ -16,11 +16,12 @@ public class QuestData
     public int compensation_ItemID;
     public int compensation_ItemNum;
     public bool iscompleted;
+    public bool changeToNext;
     public string title;
     public string desc;
     public string completed_text;
 
-    public QuestData(int questIdx, int questType, int fromQuest, int toQuest, int goal0, int goal1, int nowstate0, int nowstate1, string compensation_ItemName, int compensation_ItemID, int compensation_ItemNum,string title, string desc, string completed_text, bool iscompleted)
+    public QuestData(int questIdx, int questType, int fromQuest, int toQuest, int goal0, int goal1, int nowstate0, int nowstate1, string compensation_ItemName, int compensation_ItemID, int compensation_ItemNum,string title, string desc, string completed_text, bool iscompleted, bool changeToNext)
     {
         this.questIdx = questIdx;
         this.questType = questType;
@@ -37,6 +38,7 @@ public class QuestData
         this.desc = desc;
         this.completed_text = completed_text;
         this.iscompleted = iscompleted;
+        this.changeToNext = changeToNext;
     }
 }
 

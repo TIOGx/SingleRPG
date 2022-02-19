@@ -12,15 +12,13 @@ public class UNPCUI : MonoBehaviour, INPCUI
     [SerializeField]
     private Text Text_Title, Text_Desc;
     [SerializeField]
-    private GameObject NPC_FirstTalk, NPC_QuestTalk, NPC_QuestCompleteTalk;
+    private GameObject NPC_FirstTalk, NPC_QuestTalk, NPC_QuestCompleteTalk, NPC_IdleTalk;
     [SerializeField]
     private Button Button_Next, Button_Exit, Button_Completed;
 
 
     // NPC 인스턴스에 있는 Accept, reject와 바인딩 하기 위해서 public으로 선언
     public Button Button_Accept, Button_Reject;
-
-    private bool isOpening = false;
 
     private JsonData NPCData;
     private List<JsonData> QuestData;
@@ -33,9 +31,6 @@ public class UNPCUI : MonoBehaviour, INPCUI
 
     void Start()
     {
-        // 그냥 버튼만 끌어서 넣어주고 이벤트 리스너에 코드로 직접 함수 바인딩 해주기
-        //버튼이라는 객체의 이벤트 속성으로 onClick,onHover 뭐시기 다 있을거니까
-        //이벤트의 "함수이름"으로 연결해주기 : 사실상 이 과정이 유니티 툴에서 버튼으로 함수 연결하는 과정임
         Button_Next.onClick.AddListener(OnClicked_Next);
         Button_Accept.onClick.AddListener(OnClicked_Accept);
         Button_Reject.onClick.AddListener(OnClicked_Reject);
@@ -47,6 +42,7 @@ public class UNPCUI : MonoBehaviour, INPCUI
     public void EndUI() { Destroy(gameObject); }
     public JsonData GetNPCData() { return NPCData; }
 
+
     // UI 생성 직후 바로 SetData 해주기
     public void SetData(JsonData InNPCData, List<JsonData> InInQuestData)
     {
@@ -57,57 +53,65 @@ public class UNPCUI : MonoBehaviour, INPCUI
         //데이터 받아와서 파싱후 알맞게 넣어주기
         SetText();
     }
-
-    public void SetText()
+    public void OnClicked_Next() // next 버튼 눌렀을 때
     {
-        if (QuestManager.instance.getQuestQueue() == null) { return; }
-
-        Text_Title.GetComponent<Text>().text = NPCData["title"].ToString();
-        if (QuestManager.instance.getQuestQueue().Peek().iscompleted == false)
-        {
-            Text_Desc.GetComponent<Text>().text = NPCData["desc"][QuestManager.instance.nextIdx].ToString();
-        }
-        else if (QuestManager.instance.getQuestQueue().Peek().iscompleted == true) // 다음 퀘스트 띄우기
-        {
-            Text_Desc.GetComponent<Text>().text = NPCData["completed_text"][QuestManager.instance.nextIdx].ToString();
-            QuestManager.instance.nextIdx++;
-        }
-    }
-
-    public void OnClicked_Next()
-    {
-        Debug.Log("퀘스트 내용 띄우기");
         NPC_FirstTalk.SetActive(false);
         ProccessToQuest();
     }
 
-    public void OnClicked_Accept()
+    public void OnClicked_Accept() // accept 버튼 눌렀을 때
     {
+      
         QuestManager.instance.UpdateQuestUI();
-        Debug.Log("퀘스트 수락");
     }
 
-    public void OnClicked_Reject()
+    public void OnClicked_Reject() // reject 버튼 눌렀을 때
     {
         EndUI();
-        Debug.Log("퀘스트 거절");
     }
 
-    public void OnClicked_Exit()
+    public void OnClicked_Exit() // exit 버튼 눌렀을 때
     {
         EndUI();
-        Debug.Log("퀘스트 exit");
     }
 
-    public void OnClicked_Completed()
+    public void OnClicked_Completed() //complete 버튼 눌렀을 때
     {
-        Debug.Log("퀘스트 완료, 보상 받기");
         SetCompensation();
         QuestManager.instance.ResetProgressUI();
-        QuestManager.instance.ChangeToNextQuest(QuestManager.instance.nowCompleteIdx);
+        QuestManager.instance.ChangeToNextQuest(QuestManager.instance.nowQuest.toQuest);
         EndUI();
 
     }
+
+    public void SetText_Title(string str) { Text_Title.GetComponent<Text>().text = str; }
+    public void SetText_Desc(string str) { Text_Desc.GetComponent<Text>().text = str; }
+
+    public void Idle() // Npc가 퀘스트를 주지 않는 기본 상태일 경우
+    {
+        SetText_Title(NPCData["name"].ToString());
+        SetText_Desc("안녕! 나는 " + NPCData["name"].ToString() + "야!");
+        NPC_IdleTalk.SetActive(true);
+    }
+
+    public void SetText()
+    {
+        if (NPCData["isProcessing"].ToString() == "False") {  Idle();  return;}
+        if (QuestManager.instance.getQuestQueue() == null) { return; }
+
+        SetText_Title(NPCData["title"].ToString());
+        if (QuestManager.instance.getQuestQueue().Peek().iscompleted == false)
+        {
+            SetText_Desc(NPCData["desc"][QuestManager.instance.nextIdx].ToString());
+        }
+        else if (QuestManager.instance.getQuestQueue().Peek().iscompleted == true) // 다음 퀘스트 띄우기
+        {
+            SetText_Desc(NPCData["completed_text"][QuestManager.instance.nextIdx].ToString());
+            QuestManager.instance.nextIdx++;
+        }
+    }
+
+   
 
     public void SetCompensation() { // 보상 받는 함수
         Debug.Log("보상 받는 함수 실행");
@@ -117,22 +121,23 @@ public class UNPCUI : MonoBehaviour, INPCUI
         Inventory.instance.AcquireItem(getItem, QuestManager.instance.nowQuest.compensation_ItemNum);
         ItemDataUI.instance.InstantiateItemDataUI(QuestManager.instance.nowQuest.compensation_ItemName.ToString(), QuestManager.instance.nowQuest.compensation_ItemNum.ToString());
     }
-
-    public void ProccessToQuest() // 퀘스트 내용 띄우기
+   
+    public void ProccessToQuest() // 퀘스트 내용 띄우는 함수
     {
         if (QuestManager.instance.getQuestQueue() == null) { return; }
 
-        Text_Title.GetComponent<Text>().text = QuestManager.instance.getQuestQueue().Peek().title;
+        SetText_Title(QuestManager.instance.getQuestQueue().Peek().title);
         if (QuestManager.instance.getQuestQueue().Peek().iscompleted == false)
         {
-            Text_Desc.GetComponent<Text>().text = QuestManager.instance.getQuestQueue().Peek().desc;
+            SetText_Desc( QuestManager.instance.getQuestQueue().Peek().desc);
             NPC_QuestTalk.SetActive(true);
         }
         else if (QuestManager.instance.getQuestQueue().Peek().iscompleted == true) 
         {
-            Text_Desc.GetComponent<Text>().text = QuestManager.instance.getQuestQueue().Peek().completed_text;
+            SetText_Desc(QuestManager.instance.getQuestQueue().Peek().completed_text);
             NPC_QuestCompleteTalk.SetActive(true);
         }
     }
+
 
 }

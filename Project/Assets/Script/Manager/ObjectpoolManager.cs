@@ -49,8 +49,8 @@ public class ObjectpoolManager : MonoBehaviour
     }
     public Vector3 RandomPosition(){
         Vector3 basePos = this.transform.position;
-        float randomX = Random.Range(-5f, 5f); //적이 나타날 X좌표를 랜덤으로 생성해 줍니다.
-        float randomZ = Random.Range(-5f, 5f); //적이 나타날 X좌표를 랜덤으로 생성해 줍니다.
+        float randomX = Random.Range(-15f, 15f); //적이 나타날 X좌표를 랜덤으로 생성해 줍니다.
+        float randomZ = Random.Range(-15f, 15f); //적이 나타날 X좌표를 랜덤으로 생성해 줍니다.
         float posX = basePos.x + randomX;
         float posY = basePos.y;
         float posZ = basePos.z + randomZ;

@@ -18,7 +18,6 @@ public class QuestManager : MonoBehaviour
     [SerializeField]
     private Queue<QuestData> questQueue;
 
-    public int nowCompleteIdx ;
     public int nextIdx = 0;
     public QuestData nowQuest;
     public GameObject[] compensationItemArr = new GameObject[5];
@@ -58,7 +57,7 @@ public class QuestManager : MonoBehaviour
         if (jsonString == "") { return; }
         JsonData NPCJsonData = JsonMapper.ToObject(jsonString);
 
-        questQueue.Enqueue(new QuestData(0, int.Parse(QuestJsonData[0]["type"].ToString()), int.Parse(QuestJsonData[0]["fromQuest"].ToString()), int.Parse(QuestJsonData[0]["toQuest"].ToString()), int.Parse(QuestJsonData[0]["goal"][0].ToString()), int.Parse(QuestJsonData[0]["goal"][1].ToString()), int.Parse(QuestJsonData[0]["nowstate"][0].ToString()), int.Parse(QuestJsonData[0]["nowstate"][1].ToString()), QuestJsonData[0]["compensation_ItemName"].ToString(), int.Parse(QuestJsonData[0]["compensation_ItemID"].ToString()), int.Parse(QuestJsonData[0]["compensation_ItemNum"].ToString()), QuestJsonData[0]["title"].ToString(), QuestJsonData[0]["desc"].ToString(), QuestJsonData[0]["completed_text"].ToString(), bool.Parse(QuestJsonData[0]["isCompleted"].ToString())));
+        questQueue.Enqueue(new QuestData(0, int.Parse(QuestJsonData[0]["type"].ToString()), int.Parse(QuestJsonData[0]["fromQuest"].ToString()), int.Parse(QuestJsonData[0]["toQuest"].ToString()), int.Parse(QuestJsonData[0]["goal"][0].ToString()), int.Parse(QuestJsonData[0]["goal"][1].ToString()), int.Parse(QuestJsonData[0]["nowstate"][0].ToString()), int.Parse(QuestJsonData[0]["nowstate"][1].ToString()), QuestJsonData[0]["compensation_ItemName"].ToString(), int.Parse(QuestJsonData[0]["compensation_ItemID"].ToString()), int.Parse(QuestJsonData[0]["compensation_ItemNum"].ToString()), QuestJsonData[0]["title"].ToString(), QuestJsonData[0]["desc"].ToString(), QuestJsonData[0]["completed_text"].ToString(), bool.Parse(QuestJsonData[0]["isCompleted"].ToString()), bool.Parse(QuestJsonData[0]["changeToNextNPC"].ToString())));
     }
 
     public void UpdateQuestUI()
@@ -68,8 +67,7 @@ public class QuestManager : MonoBehaviour
         {
             ProgressCanvas.SetActive(true);
             ClearCanvas.SetActive(false);
-            Debug.Log(el.title);
-            Debug.Log(el.desc);
+         
             Text_Title.GetComponent<Text>().text = el.title;
             Text_Desc.GetComponent<Text>().text = el.desc;
 
@@ -86,19 +84,19 @@ public class QuestManager : MonoBehaviour
             Text_ProgressMax.text = quest.goal1.ToString();
             if (quest.questType == QType)
             {
-                Debug.Log("퀘스트 큐 안의 퀘스트타입" + quest.questType);
-                if (quest.goal0 == value) // 퀘스트 타입 1일때_ 사냥 퀘스트
+                if (quest.goal0 == value) 
                 {
                     quest.nowstate1 += 1;
                     Text_Progress.text = quest.nowstate1.ToString();
+
                     if (IsComplete(quest))
                     {
                         Debug.Log(" 퀘스트 완료 조건 충족");
-
-
-                        nowCompleteIdx = quest.questIdx;
                         nowQuest = quest;
-
+                        if (quest.changeToNext == true)
+                        {
+                            UNPCUI.instance.GetNPCData()["isProcessing"] = true;
+                        }
                         break;
                     }
                 }
@@ -109,8 +107,6 @@ public class QuestManager : MonoBehaviour
     public bool IsComplete(QuestData quest)
     {
         Debug.Log("퀘스트 완료 조건 확인하기");
-        Debug.Log(quest.goal1);
-        Debug.Log(quest.nowstate1);
         if (quest.goal1 == quest.nowstate1)
         {
             quest.iscompleted = true;
@@ -125,14 +121,14 @@ public class QuestManager : MonoBehaviour
     {
         if (questQueue == null) { return; }
         questQueue.Dequeue();
-        int nextQidx = Qidx + 1;
+        int nextQidx = Qidx; 
 
         if (QuestDataUI == null) { return; }
         jsonString = File.ReadAllText(Application.dataPath + "/Data/Quest_Data/QuestData.json");
         if (jsonString == "") { return; }
         JsonData QuestJsonData = JsonMapper.ToObject(jsonString);
 
-        questQueue.Enqueue(new QuestData(nextQidx, int.Parse(QuestJsonData[nextQidx]["type"].ToString()), int.Parse(QuestJsonData[nextQidx]["fromQuest"].ToString()), int.Parse(QuestJsonData[nextQidx]["toQuest"].ToString()), int.Parse(QuestJsonData[nextQidx]["goal"][0].ToString()), int.Parse(QuestJsonData[nextQidx]["goal"][1].ToString()), int.Parse(QuestJsonData[nextQidx]["nowstate"][0].ToString()), int.Parse(QuestJsonData[nextQidx]["nowstate"][1].ToString()),QuestJsonData[nextQidx]["compensation_ItemName"].ToString(), int.Parse(QuestJsonData[nextQidx]["compensation_ItemID"].ToString()), int.Parse(QuestJsonData[nextQidx]["compensation_ItemNum"].ToString()), QuestJsonData[nextQidx]["title"].ToString(), QuestJsonData[nextQidx]["desc"].ToString(), QuestJsonData[nextQidx]["completed_text"].ToString(), bool.Parse(QuestJsonData[nextQidx]["isCompleted"].ToString())));
+        questQueue.Enqueue(new QuestData(nextQidx, int.Parse(QuestJsonData[nextQidx]["type"].ToString()), int.Parse(QuestJsonData[nextQidx]["fromQuest"].ToString()), int.Parse(QuestJsonData[nextQidx]["toQuest"].ToString()), int.Parse(QuestJsonData[nextQidx]["goal"][0].ToString()), int.Parse(QuestJsonData[nextQidx]["goal"][1].ToString()), int.Parse(QuestJsonData[nextQidx]["nowstate"][0].ToString()), int.Parse(QuestJsonData[nextQidx]["nowstate"][1].ToString()),QuestJsonData[nextQidx]["compensation_ItemName"].ToString(), int.Parse(QuestJsonData[nextQidx]["compensation_ItemID"].ToString()), int.Parse(QuestJsonData[nextQidx]["compensation_ItemNum"].ToString()), QuestJsonData[nextQidx]["title"].ToString(), QuestJsonData[nextQidx]["desc"].ToString(), QuestJsonData[nextQidx]["completed_text"].ToString(), bool.Parse(QuestJsonData[nextQidx]["isCompleted"].ToString()), bool.Parse(QuestJsonData[nextQidx]["changeToNextNPC"].ToString())));
         
     }
 
@@ -150,5 +146,6 @@ public class QuestManager : MonoBehaviour
         if(questQueue.Count == 0) { return null; }
         return questQueue;
     }
+
 
 }
