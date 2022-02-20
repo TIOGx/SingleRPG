@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7900406358772214712}
   - component: {fileID: 8846732223602578063}
   - component: {fileID: 5545058403751923146}
+  - component: {fileID: -8420752649117525274}
   m_Layer: 0
   m_Name: hudDamageText
   m_TagString: Untagged
@@ -184,3 +185,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+--- !u!114 &-8420752649117525274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4647582611293833365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af8a96da8d7fda46aedc54f41b2af73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

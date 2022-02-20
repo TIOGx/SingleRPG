@@ -959,6 +959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MonsterId: 0
+  PoolingId: 0
 --- !u!1 &3336690641894828856
 GameObject:
   m_ObjectHideFlags: 0

@@ -80,6 +80,7 @@ public class EnemyController : MonoBehaviour
             WeaponController Weapon = other.GetComponent<WeaponController>();
             if (Weapon.attackable)
             {
+                animator.SetTrigger("GetHit");
                 TakeDamage(Weapon.damage);
                 Weapon.attackable = false;
             }
@@ -101,6 +102,12 @@ public class EnemyController : MonoBehaviour
         {
             die();
         }
+    }
+
+    void knockback()
+    {
+        monsterBody.position = Vector3.Slerp(monsterBody.position, monsterBody.position - transform.forward * 2, 0.5f);
+            
     }
     public bool IsTracing()
     {
