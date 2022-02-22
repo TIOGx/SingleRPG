@@ -50,18 +50,6 @@ namespace NPCManager{
 
     public class NPC_Manager : MonoBehaviour
     {
-        // 이거 싱글톤으로 해서 어느 객체든 참조하기 쉽게 변경해용!
-        
-        void Start()
-        {
-            
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
-        }
     }
 
     public class NPCBase : MonoBehaviour, INPC
@@ -74,7 +62,7 @@ namespace NPCManager{
         public int NPC_ID;
         private List<int> _QuestList;        
         private GameObject _NPCUI;
-        private bool bIsTalking = false;
+        public JsonData NPCJsonData;
         private string jsonString;
 
         private void Awake()
@@ -92,7 +80,11 @@ namespace NPCManager{
         }
 
         protected virtual void Start()
-        {            
+        {
+            jsonString = File.ReadAllText(Application.dataPath + "/Data/NPC_Data/NPCData.json");
+            if (jsonString == "") { return; }
+            NPCJsonData = JsonMapper.ToObject(jsonString);
+
             // 이렇게 코드에서 로드하려면 꼭 "Assets/Resources" 하위에다가 프리팹을 만들어줘야함
             QuestUI = Resources.Load<GameObject>("Prefab/UI/UNPCUI");
         }
@@ -138,25 +130,12 @@ namespace NPCManager{
 
             if(UI == null) { return; }
 
-            jsonString = File.ReadAllText(Application.dataPath + "/Data/NPC_Data/NPCData.json");
-            if(jsonString == "") { return; }
-            JsonData NPCJsonData = JsonMapper.ToObject(jsonString); 
-            // NPC_ID 에 해당하는 NPC 데이터
-
-            jsonString = File.ReadAllText(Application.dataPath + "/Data/Quest_Data/QuestData.json");
+            jsonString = File.ReadAllText(Application.dataPath + "/Data/Quest_Data/QuestData_" + NPC_ID.ToString()+ ".json");
             if(jsonString == "") { return; }
             JsonData QuestJsonData = JsonMapper.ToObject(jsonString);
-            // Quest 데이터는 다 불러오고 
 
             List<JsonData> QuestArray = new List<JsonData>();
-
-
-            // int인걸 우리는 알지만 컴퓨터는 모름. 왜? 여전히 jsonObject List이기 때문! 그래서 타입추론하게끔 var 사용
-            foreach(var el in NPCJsonData[NPC_ID.ToString()]["quest"])
-            {
-                // NPC_ID에 해당하는 NPC가 가지고 있는 Quest들의 데이터들만 넣어줌
-                QuestArray.Add(QuestJsonData[el.ToString()]);
-            }
+            QuestArray.Add(QuestJsonData);
 
             UI.SetData(NPCJsonData[NPC_ID.ToString()], QuestArray);
         }
