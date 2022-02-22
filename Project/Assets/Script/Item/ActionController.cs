@@ -83,6 +83,7 @@ public class ActionController : MonoBehaviour
             {
                 Debug.Log(hitInfo.transform.GetComponent<ItemPickUp>().item.itemName + " 아이템을 주울 수 있습니다.");  // ???????? ????
                 theInventory.AcquireItem(hitInfo.transform.GetComponent<ItemPickUp>().item);
+                QuestManager.instance.checkQuest(3, hitInfo.transform.GetComponent<ItemPickUp>().item.itemId); 
                 ItemDataUI.instance.InstantiateItemDataUI(hitInfo.transform.GetComponent<ItemPickUp>().item.itemName, 1.ToString());
                 Destroy(hitInfo.transform.gameObject);
                 ItemInfoDisappear();

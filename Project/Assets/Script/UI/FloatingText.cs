@@ -26,9 +26,9 @@ public class FloatingText : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(new Vector3(0, moveSpeed * Time.deltaTime, 0)); // 텍스트 위치
+        transform.Translate(new Vector3(0, moveSpeed * Time.deltaTime, 0)); // ?????? ????
 
-        alpha.a = Mathf.Lerp(alpha.a, 0, Time.deltaTime * alphaSpeed); // 텍스트 알파값
+        alpha.a = Mathf.Lerp(alpha.a, 0, Time.deltaTime * alphaSpeed); // ?????? ??????
         text.color = alpha;
     }
 

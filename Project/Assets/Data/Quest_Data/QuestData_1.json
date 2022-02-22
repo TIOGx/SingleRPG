@@ -15,7 +15,6 @@
 		"changeToNextNPC": false
 
 	},
-
 	"1": {
 		"type": 1, // 사냥 퀘스트
 		"fromQuest": 1, // 나의 퀘스트 idx
@@ -24,7 +23,7 @@
 		"nowstate": [ 0, 0 ],
 		"compensation_ItemName": "사과", //보상 아이템 name
 		"compensation_ItemID": 0, //보상 아이템 id
-		"compensation_ItemNum": 5, // 보상 아이템 개수
+		"compensation_ItemNum": 1, // 보상 아이템 개수
 		"title": " 철수 - 사냥 퀘스트 1",
 		"desc": " Turtle Shell 1마리 잡기 ",
 		"completed_text": " 철수 - Turtle Shell 1마리 잡기 완료",
@@ -33,14 +32,30 @@
 	},
 
 	"2": {
+		"type": 3, // 아이템 줍기 퀘스트
+		"fromQuest": 2, // 나의 퀘스트 idx
+		"toQuest": 3, // 다음 퀘스트
+		"goal": [ 0, 1 ], // type3(아이템 줍기 퀘스트) : [아이템아이디, 목표 아이템 개수]
+		"nowstate": [ 0, 0 ],
+		"compensation_ItemName": "사과", //보상 아이템 name
+		"compensation_ItemID": 0, //보상 아이템 id
+		"compensation_ItemNum": 5, // 보상 아이템 개수
+		"title": " 철수 - 아이템 줍기 퀘스트 1",
+		"desc": " 아이템 1개 줍기 ",
+		"completed_text": " 철수 - 아이템 줍기 퀘스트 완료",
+		"isCompleted": false,
+		"changeToNextNPC": false
+	},
+
+	"3": {
 		"type": 2,
-		"fromQuest": 2,
+		"fromQuest": 3,
 		"toQuest": 0,
 		"goal": [ 2, 1 ],
 		"nowstate": [ 0, 0 ],
 		"compensation_ItemName": "사과",
 		"compensation_ItemID": 0,
-		"compensation_ItemNum": 1,
+		"compensation_ItemNum": 5,
 		"title": " 철수 - 말걸기 퀘스트2",
 		"desc": " 영희에게 다가가 말을 걸어보자 ",
 		"completed_text": "철수 - 영희를 찾아 말걸기 퀘스트 완료",

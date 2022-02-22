@@ -1,19 +1,20 @@
 {
 	"0": {
-		"type": 2,
-		"fromQuest": 5,
+		"type": 1,
+		"fromQuest": 0,
 		"toQuest": 1,
-		"goal": [ 3, 2 ],
+		"goal": [ 1, 10 ],
 		"nowstate": [ 0, 0 ],
 		"compensation_ItemName": "바나나",
 		"compensation_ItemID": 1,
-		"compensation_ItemNum": 10,
-		"title": " 은지 - 말걸기 퀘스트 1",
-		"desc": " 은지에게 다가가 말을 걸어보자 ",
-		"completed_text": "은지 - 말걸기 퀘스트1 완료",
+		"compensation_ItemNum": 5,
+		"title": " 은지 - 사냥 퀘스트 1",
+		"desc": " 슬라임 10마리 잡기 ",
+		"completed_text": " 은지 - 슬라임 10마리 잡기 완료",
 		"isCompleted": false,
 		"changeToNextNPC": false
 
 	}
+
 
 }
