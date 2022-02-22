@@ -1,0 +1,19 @@
+{
+	"0": {
+		"type": 2,
+		"fromQuest": 5,
+		"toQuest": 1,
+		"goal": [ 3, 2 ],
+		"nowstate": [ 0, 0 ],
+		"compensation_ItemName": "바나나",
+		"compensation_ItemID": 1,
+		"compensation_ItemNum": 10,
+		"title": " 은지 - 말걸기 퀘스트 1",
+		"desc": " 은지에게 다가가 말을 걸어보자 ",
+		"completed_text": "은지 - 말걸기 퀘스트1 완료",
+		"isCompleted": false,
+		"changeToNextNPC": false
+
+	}
+
+}

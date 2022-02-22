@@ -16,7 +16,6 @@ public class UNPCUI : MonoBehaviour, INPCUI
     [SerializeField]
     private Button Button_Next, Button_Exit, Button_Completed;
 
-
     // NPC 인스턴스에 있는 Accept, reject와 바인딩 하기 위해서 public으로 선언
     public Button Button_Accept, Button_Reject;
 
@@ -41,7 +40,49 @@ public class UNPCUI : MonoBehaviour, INPCUI
     public JsonData GetCurrentQuestData() { return CurrentQuest; }
     public void EndUI() { Destroy(gameObject); }
     public JsonData GetNPCData() { return NPCData; }
+ 
+    // Next 버튼 눌렀을 때
+    public void OnClicked_Next()
+    {
+        NPC_FirstTalk.SetActive(false);
+        ProccessToQuest();
+    }
+    // Accept 버튼 눌렀을 때
+    public void OnClicked_Accept() 
+    {
+        QuestManager.instance.UpdateQuestUI();
+    }
+    // Reject 버튼 눌렀을 때
+    public void OnClicked_Reject() 
+    {
+        EndUI();
+    }
+    // Exit 버튼 눌렀을 때
+    public void OnClicked_Exit() 
+    {
+        EndUI();
+    }
+    // Complete 버튼 눌렀을 때
+    public void OnClicked_Completed() 
+    {
+        SetCompensation();
+        QuestManager.instance.ResetProgressUI();
+        QuestManager.instance.ChangeToNextQuest(QuestManager.instance.nowQuest.toQuest);
+        EndUI();
 
+    }
+
+    public void SetText_Title(string str) { Text_Title.GetComponent<Text>().text = str; }
+    public void SetText_Desc(string str) { Text_Desc.GetComponent<Text>().text = str; }
+    
+
+    // Npc가 퀘스트를 주지 않는 기본 상태일 경우
+    public void Idle() 
+    {
+        SetText_Title(NPCData["name"].ToString());
+        SetText_Desc("아직 " + NPCData["name"].ToString() + "의 퀘스트를 받을 차례가 아니야");
+        NPC_IdleTalk.SetActive(true);
+    }
 
     // UI 생성 직후 바로 SetData 해주기
     public void SetData(JsonData InNPCData, List<JsonData> InInQuestData)
@@ -53,91 +94,54 @@ public class UNPCUI : MonoBehaviour, INPCUI
         //데이터 받아와서 파싱후 알맞게 넣어주기
         SetText();
     }
-    public void OnClicked_Next() // next 버튼 눌렀을 때
+
+    // UI에 들어갈 Text
+    public void SetText() 
     {
-        NPC_FirstTalk.SetActive(false);
-        ProccessToQuest();
-    }
-
-    public void OnClicked_Accept() // accept 버튼 눌렀을 때
-    {
-      
-        QuestManager.instance.UpdateQuestUI();
-    }
-
-    public void OnClicked_Reject() // reject 버튼 눌렀을 때
-    {
-        EndUI();
-    }
-
-    public void OnClicked_Exit() // exit 버튼 눌렀을 때
-    {
-        EndUI();
-    }
-
-    public void OnClicked_Completed() //complete 버튼 눌렀을 때
-    {
-        SetCompensation();
-        QuestManager.instance.ResetProgressUI();
-        QuestManager.instance.ChangeToNextQuest(QuestManager.instance.nowQuest.toQuest);
-        EndUI();
-
-    }
-
-    public void SetText_Title(string str) { Text_Title.GetComponent<Text>().text = str; }
-    public void SetText_Desc(string str) { Text_Desc.GetComponent<Text>().text = str; }
-
-    public void Idle() // Npc가 퀘스트를 주지 않는 기본 상태일 경우
-    {
-        SetText_Title(NPCData["name"].ToString());
-        SetText_Desc("안녕! 나는 " + NPCData["name"].ToString() + "야!");
-        NPC_IdleTalk.SetActive(true);
-    }
-
-    public void SetText()
-    {
-        if (NPCData["isProcessing"].ToString() == "False") {  Idle();  return;}
         if (QuestManager.instance.getQuestQueue() == null) { return; }
 
+        // 지금 퀘스트를 진행중인 npc가 아닐 경우 idle 상태 
+        if (NPCData["isProcessing"].ToString() == "False") { Debug.Log(NPCData["isProcessing"].ToString()); Idle();  return;}
+
         SetText_Title(NPCData["title"].ToString());
+        // 완료되지 않은 퀘스트일 경우
         if (QuestManager.instance.getQuestQueue().Peek().iscompleted == false)
-        {
+        {      
             SetText_Desc(NPCData["desc"][QuestManager.instance.nextIdx].ToString());
         }
-        else if (QuestManager.instance.getQuestQueue().Peek().iscompleted == true) // 다음 퀘스트 띄우기
+        // 완료된 퀘스트일 경우
+        else if (QuestManager.instance.getQuestQueue().Peek().iscompleted == true) 
         {
-            SetText_Desc(NPCData["completed_text"][QuestManager.instance.nextIdx].ToString());
+            SetText_Desc(QuestManager.instance.getQuestQueue().Peek().completed_text);
+            // 다음 퀘스트 띄우기
             QuestManager.instance.nextIdx++;
         }
     }
 
-   
-
-    public void SetCompensation() { // 보상 받는 함수
-        Debug.Log("보상 받는 함수 실행");
-        Debug.Log(QuestManager.instance.nowQuest.questIdx);
-        
+    // 보상 받는 함수
+    public void SetCompensation() { 
         Item getItem = QuestManager.instance.compensationItemArr[QuestManager.instance.nowQuest.compensation_ItemID].transform.GetComponent<ItemPickUp>().item;
         Inventory.instance.AcquireItem(getItem, QuestManager.instance.nowQuest.compensation_ItemNum);
         ItemDataUI.instance.InstantiateItemDataUI(QuestManager.instance.nowQuest.compensation_ItemName.ToString(), QuestManager.instance.nowQuest.compensation_ItemNum.ToString());
     }
-   
-    public void ProccessToQuest() // 퀘스트 내용 띄우는 함수
+
+    // 퀘스트 내용 띄우는 함수
+    public void ProccessToQuest() 
     {
         if (QuestManager.instance.getQuestQueue() == null) { return; }
 
         SetText_Title(QuestManager.instance.getQuestQueue().Peek().title);
+        // 완료되지 않은 퀘스트일 경우
         if (QuestManager.instance.getQuestQueue().Peek().iscompleted == false)
         {
             SetText_Desc( QuestManager.instance.getQuestQueue().Peek().desc);
-            NPC_QuestTalk.SetActive(true);
+            NPC_QuestTalk.SetActive(true); // 퀘스트 UI 버튼 active
         }
+        // 완료된 퀘스트일 경우
         else if (QuestManager.instance.getQuestQueue().Peek().iscompleted == true) 
         {
             SetText_Desc(QuestManager.instance.getQuestQueue().Peek().completed_text);
-            NPC_QuestCompleteTalk.SetActive(true);
+            NPC_QuestCompleteTalk.SetActive(true);  // 퀘스트 완료 UI 버튼 active
         }
     }
-
-
 }

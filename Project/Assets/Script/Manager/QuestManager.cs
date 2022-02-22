@@ -21,6 +21,7 @@ public class QuestManager : MonoBehaviour
     public int nextIdx = 0;
     public QuestData nowQuest;
     public GameObject[] compensationItemArr = new GameObject[5];
+    private string jsonString;
 
     public Text ProgressTx
     {
@@ -34,7 +35,6 @@ public class QuestManager : MonoBehaviour
         set => Text_ProgressMax = value;
     }
 
-    private string jsonString;
     private void Awake()
     {
         instance = this;
@@ -45,11 +45,13 @@ public class QuestManager : MonoBehaviour
         Init();
     }
 
+    public Queue<QuestData> getQuestQueue() { if (questQueue.Count == 0) { return null; } return questQueue; }
+
     private void Init()
     {
         if (QuestDataUI == null) { return; }
 
-        jsonString = File.ReadAllText(Application.dataPath + "/Data/Quest_Data/QuestData.json");
+        jsonString = File.ReadAllText(Application.dataPath + "/Data/Quest_Data/QuestData_" + NPCManager.NPCBase.instance.NPC_ID + ".json");
         if (jsonString == "") { return; }
         JsonData QuestJsonData = JsonMapper.ToObject(jsonString);
 
@@ -93,10 +95,13 @@ public class QuestManager : MonoBehaviour
                     {
                         Debug.Log(" 퀘스트 완료 조건 충족");
                         nowQuest = quest;
-                        if (quest.changeToNext == true)
+
+                        if(quest.changeToNext == true)
                         {
-                            UNPCUI.instance.GetNPCData()["isProcessing"] = true;
+                            NPChange(quest.goal0);
+                            nextIdx = -1;
                         }
+                        
                         break;
                     }
                 }
@@ -121,10 +126,12 @@ public class QuestManager : MonoBehaviour
     {
         if (questQueue == null) { return; }
         questQueue.Dequeue();
+
         int nextQidx = Qidx; 
 
         if (QuestDataUI == null) { return; }
-        jsonString = File.ReadAllText(Application.dataPath + "/Data/Quest_Data/QuestData.json");
+        Debug.Log("npc id 나와야함"+UNPCUI.instance.GetNPCData()["id"].ToString());
+        jsonString = File.ReadAllText(Application.dataPath + "/Data/Quest_Data/QuestData_"+ UNPCUI.instance.GetNPCData()["id"].ToString() + ".json");
         if (jsonString == "") { return; }
         JsonData QuestJsonData = JsonMapper.ToObject(jsonString);
 
@@ -132,20 +139,20 @@ public class QuestManager : MonoBehaviour
         
     }
 
+    public void NPChange(int idx)
+    {
+        NPCManager.NPCBase.instance.NPCJsonData[idx-1]["isProcessing"] = true;
+        NPCManager.NPCBase.instance.NPCJsonData[idx-2]["isProcessing"] = false;
+    }
+
+    // 퀘스트 진행도 UI 리셋
     public void ResetProgressUI()
     {
         ProgressTx.text = "0";
         ProgressMaxTx.text = "0";
 
-        ProgressCanvas.SetActive(false);
-        ClearCanvas.SetActive(true);
+        ProgressCanvas.SetActive(false); // Quest 진행도 Text
+        ClearCanvas.SetActive(true); // QuestClear Text
     }
-
-    public Queue<QuestData> getQuestQueue()
-    {
-        if(questQueue.Count == 0) { return null; }
-        return questQueue;
-    }
-
 
 }

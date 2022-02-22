@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class NPCActionController : MonoBehaviour
 {
+    public static NPCActionController instance;
     [SerializeField]
     private float range;  // 아이템 습득이 가능한 최대 거리
 
@@ -17,7 +19,10 @@ public class NPCActionController : MonoBehaviour
 
     [SerializeField]
     private Text actionText; // 행동을 보여 줄 텍스트
-
+    private void Awake()
+    {
+        instance = this;
+    }
     void Update()
     {
         CheckNPC();
@@ -78,5 +83,6 @@ public class NPCActionController : MonoBehaviour
         }
         else { return ; }
     }
+
 }
 
