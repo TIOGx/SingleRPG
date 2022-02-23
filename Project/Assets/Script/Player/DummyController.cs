@@ -18,8 +18,10 @@ public class DummyController : MonoBehaviour
     private bool isAttackDelay;
     [SerializeField]
     private bool isJumpDelay;
-
+    public GameObject hudDamageText;
+    public Transform hudPos;
     private int attackNum;
+    
 
     public float moveSpeed { set; get; }
     public float rotationSpeed { set; get; }
@@ -192,5 +194,25 @@ public class DummyController : MonoBehaviour
         Debug.Log(Monterid);
         PlayerInfo.instance.GetExp(10); // 임시로 박아 놓은 임의 경험치 값
         QuestManager.instance.checkQuest(1, Monterid); // 퀘스트 타입: 사냥, 몬스터 id
+    }
+    public void TakeDamage(float value)
+    {
+        PlayerInfo.instance.CurrentHealth -= value;
+        GameObject hudText = Instantiate(hudDamageText); // 생성할 텍스트 오브젝트
+        hudText.transform.position = hudPos.position; // 표시될 위치
+        hudText.GetComponent<FloatingText>().damage = value; // 데미지 전달
+        if (PlayerInfo.instance.CurrentHealth < 0)
+        {
+            PlayerInfo.instance.CurrentHealth = 0;
+        }
+        // HpBar.rectTransform.localScale = new Vector3(CurHealth / MaxHealth, 1f, 1f); // 우리 체력바랑 연동
+        if (PlayerInfo.instance.CurrentHealth == 0)
+        {
+            Playerdie();
+        }
+    }
+    void Playerdie()
+    {
+
     }
 }

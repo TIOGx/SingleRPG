@@ -924,6 +924,10 @@ MonoBehaviour:
   hudPos: {fileID: 3415297831802708698}
   tracingRange: 3
   NowState: 0
+  AttackRange: 2
+  IsAttackDelay: 0
+  AttackDelay: 2
+  power: 5
 --- !u!195 &3335104012272512085
 NavMeshAgent:
   m_ObjectHideFlags: 0

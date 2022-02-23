@@ -27,10 +27,13 @@ public class EnemyController : MonoBehaviour
     public Transform hudPos;
     public float tracingRange;
     public MonsterState NowState;
-
+    public float AttackRange;
+    public bool IsAttackDelay;
+    public float AttackDelay;
+    public float power;
     public enum MonsterState
     {
-        Idle,
+        idle,
         tracing,
         die
     }
@@ -39,6 +42,7 @@ public class EnemyController : MonoBehaviour
         boxCollider = GetComponent<BoxCollider>();
         nav = GetComponent<NavMeshAgent>();
         IsAlive = true;
+        IsAttackDelay = false;
 
 
     }
@@ -47,7 +51,7 @@ public class EnemyController : MonoBehaviour
     {
         Target = DummyController.instance.GetPlayerTransform();
         animator = monsterBody.GetComponent<Animator>();
-        NowState = MonsterState.Idle;
+        NowState = MonsterState.idle;
     }
 
     // Update is called once per frame
@@ -56,21 +60,20 @@ public class EnemyController : MonoBehaviour
         if(NowState != MonsterState.die)
         {
             Tracing();
+            StartCoroutine("AttackPlayer");
         }
            
     }
     void Tracing()
     {
-        if (NowState == MonsterState.tracing)
+        if (IsTracing()) // 거리가 되느냐
         {
+            NowState = MonsterState.tracing;
             nav.SetDestination(Target.position);
         }
         else
         {
-            if (IsTracing())
-            {
-                NowState = MonsterState.tracing;
-            }
+            NowState = MonsterState.idle;
         }
     }
     void OnTriggerEnter(Collider other) {
@@ -117,14 +120,19 @@ public class EnemyController : MonoBehaviour
         }
         return false;
     }
-
-    void OnCollisionEnter(Collision other) {
-        if (!IsAlive) { return; }
-        if (other.gameObject.tag == "Player"){
+    IEnumerator AttackPlayer()
+    {
+        if (Vector3.Distance(Target.position, transform.position) < AttackRange && !IsAttackDelay){
+            transform.LookAt(Target);
             animator.SetTrigger("Attack");
             Debug.Log("Attakc!!!");
-        }   
+            IsAttackDelay = true;
+            DummyController.instance.TakeDamage(power);
+            yield return new WaitForSeconds(AttackDelay);
+            IsAttackDelay = false;
+        }
     }
+
 
     void die(){
         IsAlive = false;
