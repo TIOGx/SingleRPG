@@ -14,6 +14,11 @@ public class PlayerInfo : MonoBehaviour
     public float MaxExpByLevel;
     public int level;
     public int[] ExpListByLevel;
+
+    public float CurrentHealth;
+    public float MaxHealth;
+    [SerializeField]
+    private Text levelText;
     public GameObject levelupCanvas;
     public GameObject playerinfoCanvas;
 

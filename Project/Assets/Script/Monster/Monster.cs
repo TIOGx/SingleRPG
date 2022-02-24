@@ -5,8 +5,8 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int MonsterId = 0;
-
+    public int MonsterId;
+    public int PoolingId;
     void Start()
     {
         

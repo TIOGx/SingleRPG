@@ -10,7 +10,7 @@ public class FloatingText : MonoBehaviour
     private float destroyTime;
     TextMeshPro text;
     Color alpha;
-    public int damage;
+    public float damage;
 
     void Start()
     {
