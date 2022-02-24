@@ -46,6 +46,8 @@ namespace NPCManager{
         void OnClicked_Accept();
         void OnClicked_Reject();
         void EndUI();
+
+
     }
 
     public class NPC_Manager : MonoBehaviour

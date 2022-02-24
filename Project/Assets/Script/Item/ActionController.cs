@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ActionController : MonoBehaviour
 {
     [SerializeField]
@@ -66,7 +67,7 @@ public class ActionController : MonoBehaviour
     {
         pickupActivated = true;
         actionText.gameObject.SetActive(true);
-        actionText.text = hitInfo.transform.GetComponent<ItemPickUp>().item.itemName + " 획득 " + "<color=yellow>" + "(E)" + "</color>";
+        actionText.text = hitInfo.transform.GetComponent<ItemPickUp>().item.itemName + " Acquire " + "<color=yellow>" + "(E)" + "</color>";
     }
 
     private void ItemInfoDisappear()

@@ -22,6 +22,7 @@ public class NPC : NPCBase
     {
         
     }
+
     // 퀘스트를 받을 수 잇는 상태, ? 표시
     public void CanProgressQuest(bool tf) { Qmark.SetActive(tf); }
     // 보상을 받을 수 잇는 상태, ! 표시
