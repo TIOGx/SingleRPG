@@ -1,0 +1,36 @@
+{
+	"0": {
+		"type": 1,
+		"fromQuest": 4,
+		"toQuest": 2,
+		"goal": [ 0, 5 ],
+		"nowstate": [ 0, 0 ],
+		"compensation_ItemName": "바나나",
+		"compensation_ItemID": 1,
+		"compensation_ItemNum": 3,
+		"title": " 영희 - 사냥 퀘스트 1",
+		"desc": " Turtle Shell 5마리 잡기 ",
+		"completed_text": " 영희 -Turtle Shell 5마리 잡기 완료",
+		"isCompleted": false,
+		"changeToNextNPC": false
+
+	},
+
+	"1": {
+		"type": 2,
+		"fromQuest": 5,
+		"toQuest": 0,
+		"goal": [ 3, 1 ],
+		"nowstate": [ 0, 0 ],
+		"compensation_ItemName": "사과",
+		"compensation_ItemID": 1,
+		"compensation_ItemNum": 3,
+		"title": "영희 - 말걸기 퀘스트 2",
+		"desc": "은지에게 다가가 말을 걸어보자 ",
+		"completed_text": "영희 - 은지를 찾아 말걸기 퀘스트 완료",
+		"isCompleted": false,
+		"changeToNextNPC": true
+
+	}
+
+}

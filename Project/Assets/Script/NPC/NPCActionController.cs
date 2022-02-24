@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using UnityEngine.EventSystems;
+
 public class NPCActionController : MonoBehaviour
 {
+    public static NPCActionController instance;
     [SerializeField]
     private float range;  // 아이템 습득이 가능한 최대 거리
 
@@ -18,8 +21,15 @@ public class NPCActionController : MonoBehaviour
     [SerializeField]
     private Text actionText; // 행동을 보여 줄 텍스트
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Update()
     {
+        Vector3 forward = transform.TransformDirection(Vector3.forward) * 10;
+        Debug.DrawRay(transform.position, forward, Color.green);
         CheckNPC();
         TryAction();
     }
@@ -54,7 +64,7 @@ public class NPCActionController : MonoBehaviour
     {
         talkActivated = true;
         actionText.gameObject.SetActive(true);
-        actionText.text = hitInfo.transform.GetComponent<NPC>().npc_Name + " 와 대화하기 " + "<color=blue>" + "(T)" + "</color>";
+        actionText.text = " Talk with " + hitInfo.transform.GetComponent<NPC>().npc_Name + "<color=blue>" + "(T)" + "</color>";
     }
 
     private void NPCInfoDisappear()
@@ -78,5 +88,6 @@ public class NPCActionController : MonoBehaviour
         }
         else { return ; }
     }
+
 }
 
