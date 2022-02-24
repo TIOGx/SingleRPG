@@ -8,6 +8,7 @@ public class UserInterface : MonoBehaviour
     public static UserInterface instance;
     public Slider ExpBar;
 
+
     private void Awake()
     {
         instance = this;

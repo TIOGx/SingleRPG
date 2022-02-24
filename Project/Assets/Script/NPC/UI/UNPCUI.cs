@@ -15,9 +15,12 @@ public class UNPCUI : MonoBehaviour, INPCUI
     private GameObject NPC_FirstTalk, NPC_QuestTalk, NPC_QuestCompleteTalk, NPC_IdleTalk;
     [SerializeField]
     private Button Button_Next, Button_Exit, Button_Completed;
+    [SerializeField]
+    private Image NPCImage;
 
     // NPC 인스턴스에 있는 Accept, reject와 바인딩 하기 위해서 public으로 선언
     public Button Button_Accept, Button_Reject;
+    public Sprite[] NPCImageArr = new Sprite[5];
 
     private JsonData NPCData;
     private List<JsonData> QuestData;
@@ -74,11 +77,11 @@ public class UNPCUI : MonoBehaviour, INPCUI
 
     public void SetText_Title(string str) { Text_Title.GetComponent<Text>().text = str; }
     public void SetText_Desc(string str) { Text_Desc.GetComponent<Text>().text = str; }
-    
-
+   
     // Npc가 퀘스트를 주지 않는 기본 상태일 경우
     public void Idle() 
     {
+        NPC_FirstTalk.SetActive(false);
         SetText_Title(NPCData["name"].ToString());
         SetText_Desc("아직 " + NPCData["name"].ToString() + "의 퀘스트를 받을 차례가 아니야");
         NPC_IdleTalk.SetActive(true);
@@ -100,6 +103,8 @@ public class UNPCUI : MonoBehaviour, INPCUI
     {
         if (QuestManager.instance.getQuestQueue() == null) { return; }
 
+        //npc 이미지 변경
+        NPCImage.sprite = NPCImageArr[int.Parse(NPCData["id"].ToString()) - 1];
         // 지금 퀘스트를 진행중인 npc가 아닐 경우 idle 상태 
         if (NPCData["isProcessing"].ToString() == "False") { Debug.Log(NPCData["isProcessing"].ToString()); Idle();  return;}
 

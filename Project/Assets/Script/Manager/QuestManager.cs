@@ -45,6 +45,12 @@ public class QuestManager : MonoBehaviour
         Init();
     }
 
+    IEnumerator setclearDelay(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        ClearCanvas.SetActive(false);
+    }
+
     public Queue<QuestData> getQuestQueue() { if (questQueue.Count == 0) { return null; } return questQueue; }
 
     private void Init()
@@ -68,7 +74,6 @@ public class QuestManager : MonoBehaviour
         foreach (var el in questQueue)
         {
             ProgressCanvas.SetActive(true);
-            ClearCanvas.SetActive(false);
          
             Text_Title.GetComponent<Text>().text = el.title;
             Text_Desc.GetComponent<Text>().text = el.desc;
@@ -153,6 +158,7 @@ public class QuestManager : MonoBehaviour
 
         ProgressCanvas.SetActive(false); // Quest 진행도 Text
         ClearCanvas.SetActive(true); // QuestClear Text
+        StartCoroutine(setclearDelay(2.0f));
     }
 
 }
