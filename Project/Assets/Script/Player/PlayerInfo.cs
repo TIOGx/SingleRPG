@@ -17,8 +17,6 @@ public class PlayerInfo : MonoBehaviour
 
     public float CurrentHealth;
     public float MaxHealth;
-    [SerializeField]
-    private Text levelText;
     public GameObject levelupCanvas;
     public GameObject playerinfoCanvas;
 
