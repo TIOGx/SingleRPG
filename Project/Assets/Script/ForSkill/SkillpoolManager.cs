@@ -5,12 +5,9 @@ using UnityEngine;
 public class SkillpoolManager : MonoBehaviour
 {
     public static SkillpoolManager Instance;
-
-    [SerializeField]
-    private GameObject poolingObjectPrefab;
     public List<GameObject> SkillPrefabList = new List<GameObject>();
 
-    public Dictionary<KeyCode, Skill> KeyDictionary;
+    public Dictionary<KeyCode, GameObject> KeyDictionary;
 
 
     private void Awake()
@@ -20,11 +17,13 @@ public class SkillpoolManager : MonoBehaviour
 
     private void Start()
     {
-        KeyDictionary = new Dictionary<KeyCode, Skill>
+
+        KeyDictionary = new Dictionary<KeyCode, GameObject>()
         {
-            { KeyCode.Z, new Skill ("fireball")},
-            { KeyCode.X, new Skill ("Iceball") }
+            { KeyCode.Z, SkillPrefabList[0] },
+            { KeyCode.X, SkillPrefabList[1] }
         };
+        
     }
     private void Update()
     {
@@ -39,10 +38,11 @@ public class SkillpoolManager : MonoBehaviour
             {
                 if (Input.GetKeyDown(dic.Key))
                 {
-                    KeyDictionary[dic.Key].UseSkill();
+                    Debug.Log(KeyDictionary[dic.Key]);
+                    // 스킬 시전 조건 체크 해야댐 (마나, 쿨타임 등등)
+                    KeyDictionary[dic.Key].GetComponent<Skill>().UseSkill();
                 }
             }
         }
     }
-
 }

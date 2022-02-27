@@ -89,7 +89,7 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
-    void TakeDamage(int value)
+    public void TakeDamage(int value)
     {
         CurHealth -= value;
         GameObject hudText = Instantiate(hudDamageText); // 생성할 텍스트 오브젝트

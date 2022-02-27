@@ -88,6 +88,10 @@ public class QuestManager : MonoBehaviour
         Debug.Log("들어온 퀘스트 타입" + QType);
         foreach (var quest in questQueue)
         {
+            if(quest.iscompleted == true)
+            {
+                return;
+            }
             Text_ProgressMax.text = quest.goal1.ToString();
             if (quest.questType == QType)
             {

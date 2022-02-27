@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5545058403751923146}
   - component: {fileID: 3422525727689679023}
   - component: {fileID: 3352297522062988244}
+  - component: {fileID: 7601103822371320479}
   m_Layer: 0
   m_Name: hudDamageText
   m_TagString: Untagged
@@ -193,6 +194,7 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+--- !u!114 &7601103822371320479
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
