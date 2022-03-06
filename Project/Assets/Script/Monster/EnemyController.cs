@@ -157,6 +157,7 @@ public class EnemyController : MonoBehaviour
         HpBar.rectTransform.localScale = new Vector3(CurHealth / MaxHealth, 1f, 1f);
         IsAlive = true;
     }
+
     public void Died(){
         Debug.Log("몬스터 죽음");
         ObjectpoolManager.Instance.ReturnObject(thisObject.GetComponent<Monster>());
@@ -186,6 +187,7 @@ public class EnemyController : MonoBehaviour
         Debug.Log("5초만 기다려");
         yield return new WaitForSeconds(delayTime);
     }
+
     void SignalToPlayer(int id)
     {
         DummyController.instance.killMonster(id);

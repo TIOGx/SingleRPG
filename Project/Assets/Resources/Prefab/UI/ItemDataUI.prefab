@@ -78,7 +78,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0
-  m_Text: "\uC774\uB984 "
+  m_Text: APPLE
 --- !u!1 &3421562055809555450
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,9 +189,9 @@ MonoBehaviour:
     m_Left: 0
     m_Right: 0
     m_Top: 0
-    m_Bottom: 4
+    m_Bottom: 5
   m_ChildAlignment: 1
-  m_Spacing: 1
+  m_Spacing: 8
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1

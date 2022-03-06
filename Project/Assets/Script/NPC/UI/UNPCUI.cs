@@ -41,7 +41,7 @@ public class UNPCUI : MonoBehaviour, INPCUI
     }
 
     public JsonData GetCurrentQuestData() { return CurrentQuest; }
-    public void EndUI() { Destroy(gameObject); }
+    public void EndUI() { Destroy(gameObject); NPCBase.instance.Init_QUI = false; }
     public JsonData GetNPCData() { return NPCData; }
  
     // Next 버튼 눌렀을 때
@@ -59,6 +59,11 @@ public class UNPCUI : MonoBehaviour, INPCUI
     public void OnClicked_Reject() 
     {
         EndUI();
+  
+        if (QuestManager.instance.getQuestQueue().Peek().questType == 2)
+        {
+            QuestManager.instance.getQuestQueue().Peek().nowstate1 = 0;
+        }
     }
     // Exit 버튼 눌렀을 때
     public void OnClicked_Exit() 
@@ -105,8 +110,9 @@ public class UNPCUI : MonoBehaviour, INPCUI
 
         //npc 이미지 변경
         NPCImage.sprite = NPCImageArr[int.Parse(NPCData["id"].ToString()) - 1];
+
         // 지금 퀘스트를 진행중인 npc가 아닐 경우 idle 상태 
-        if (NPCData["isProcessing"].ToString() == "False") { Debug.Log(NPCData["isProcessing"].ToString()); Idle();  return;}
+        if (NPCData["isProcessing"].ToString() == "False") { Idle();  return;}
 
         SetText_Title(NPCData["title"].ToString());
         // 완료되지 않은 퀘스트일 경우
@@ -126,8 +132,18 @@ public class UNPCUI : MonoBehaviour, INPCUI
     // 보상 받는 함수
     public void SetCompensation() { 
         Item getItem = QuestManager.instance.compensationItemArr[QuestManager.instance.nowQuest.compensation_ItemID].transform.GetComponent<ItemPickUp>().item;
-        Inventory.instance.AcquireItem(getItem, QuestManager.instance.nowQuest.compensation_ItemNum);
-        ItemDataUI.instance.InstantiateItemDataUI(QuestManager.instance.nowQuest.compensation_ItemName.ToString(), QuestManager.instance.nowQuest.compensation_ItemNum.ToString());
+        if (getItem.itemId == 2 ) // getItem이 돈일 때
+        {
+            PlayerInfo.instance.playerMoneyText.text = (int.Parse(PlayerInfo.instance.playerMoneyText.text) +int.Parse(QuestManager.instance.nowQuest.compensation_ItemNum.ToString())).ToString();
+            Inventory.instance.goldText.text = (int.Parse(Inventory.instance.goldText.text) + int.Parse(QuestManager.instance.nowQuest.compensation_ItemNum.ToString())).ToString(); 
+            //PlayerInfoUI.instance.playerMoney.text = QuestManager.instance.nowQuest.compensation_ItemNum.ToString();
+        }
+        else
+        {
+            Inventory.instance.AcquireItem(getItem, QuestManager.instance.nowQuest.compensation_ItemNum);
+            ItemDataUI.instance.InstantiateItemDataUI(QuestManager.instance.nowQuest.compensation_ItemName.ToString(), QuestManager.instance.nowQuest.compensation_ItemNum.ToString());
+        }
+        
     }
 
     // 퀘스트 내용 띄우는 함수

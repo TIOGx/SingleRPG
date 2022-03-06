@@ -18,11 +18,6 @@ public class NPC : NPCBase
         base.Start(); // 부모의 Start를 먼저 호출해서 QuestUI 로드하기
     }
 
-    void Update()
-    {
-        
-    }
-
     // 퀘스트를 받을 수 잇는 상태, ? 표시
     public void CanProgressQuest(bool tf) { Qmark.SetActive(tf); }
     // 보상을 받을 수 잇는 상태, ! 표시

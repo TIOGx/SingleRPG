@@ -66,6 +66,7 @@ namespace NPCManager{
         private GameObject _NPCUI;
         public JsonData NPCJsonData;
         private string jsonString;
+        public bool Init_QUI = false;
 
         private void Awake()
         {
@@ -122,24 +123,28 @@ namespace NPCManager{
 
         public void InitUI(int NPC_ID)
         {
-            UI = Instantiate(QuestUI).GetComponent<UNPCUI>(); 
-            // 여기서 UI 생성 시키고 UI라는 변수로 물고있고
-            // Obj의 UNPCUI컴포에 접근해서 해당 클래스 함수들 사용하기
+            if (!Init_QUI)
+            {
+                Init_QUI = true;
+                UI = Instantiate(QuestUI).GetComponent<UNPCUI>();
+                // 여기서 UI 생성 시키고 UI라는 변수로 물고있고
+                // Obj의 UNPCUI컴포에 접근해서 해당 클래스 함수들 사용하기
 
-            // public으로 선언된 버튼 2개에 NPC오브젝트의 실제 기능들 바인딩
-            UI.Button_Accept.onClick.AddListener(Accept);
-            UI.Button_Reject.onClick.AddListener(Reject);
+                // public으로 선언된 버튼 2개에 NPC오브젝트의 실제 기능들 바인딩
+                UI.Button_Accept.onClick.AddListener(Accept);
+                UI.Button_Reject.onClick.AddListener(Reject);
 
-            if(UI == null) { return; }
+                if (UI == null) { return; }
 
-            jsonString = File.ReadAllText(Application.dataPath + "/Data/Quest_Data/QuestData_" + NPC_ID.ToString()+ ".json");
-            if(jsonString == "") { return; }
-            JsonData QuestJsonData = JsonMapper.ToObject(jsonString);
+                jsonString = File.ReadAllText(Application.dataPath + "/Data/Quest_Data/QuestData_" + NPC_ID.ToString() + ".json");
+                if (jsonString == "") { return; }
+                JsonData QuestJsonData = JsonMapper.ToObject(jsonString);
 
-            List<JsonData> QuestArray = new List<JsonData>();
-            QuestArray.Add(QuestJsonData);
+                List<JsonData> QuestArray = new List<JsonData>();
+                QuestArray.Add(QuestJsonData);
 
-            UI.SetData(NPCJsonData[NPC_ID.ToString()], QuestArray);
+                UI.SetData(NPCJsonData[NPC_ID.ToString()], QuestArray);
+            }      
         }
     }
 }

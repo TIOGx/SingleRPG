@@ -17,16 +17,16 @@ public class FireBall : Skill
     public override void UseSkill()
     {
         Debug.Log("FireBall~");
-        Debug.Log("자식 스크립트의 UseSkill");
-        Vector3 PlayerPos = DummyController.instance.transform.position; // 플레이어 좌표
-        Collider[] hitCol = Physics.OverlapSphere(PlayerPos, SkillRange); // 공격 범위 내 콜라이더 식별
+        Debug.Log("???? ?????????? UseSkill");
+        Vector3 PlayerPos = DummyController.instance.transform.position; // ???????? ????
+        Collider[] hitCol = Physics.OverlapSphere(PlayerPos, SkillRange); // ???? ???? ?? ???????? ????
         for (int i = 0; i < hitCol.Length; i++)
         {
             Debug.Log(hitCol[i].gameObject.name);
             if (hitCol[i].gameObject.CompareTag("Enemy"))
             {
-                // 스킬 이펙트
-                // Instantiate(SkillEffectPrefab, hitCol[i].gameObject.transform);
+                Instantiate(SkillEffectPrefab, new Vector3(hitCol[i].gameObject.transform.position.x, hitCol[i].gameObject.transform.position.y + 2.0f, hitCol[i].gameObject.transform.position.z), Quaternion.identity);
+                
                 hitCol[i].gameObject.GetComponent<EnemyController>().TakeDamage(SkillDamage);
             }
             else{
