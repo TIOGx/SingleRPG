@@ -1,8 +1,8 @@
 {
 	"0": {
 		"type": 1,
-		"fromQuest": 4,
-		"toQuest": 2,
+		"fromQuest": 0,
+		"toQuest": 1,
 		"goal": [ 0, 5 ],
 		"nowstate": [ 0, 0 ],
 		"compensation_ItemName": "바나나",
@@ -18,7 +18,7 @@
 
 	"1": {
 		"type": 2,
-		"fromQuest": 5,
+		"fromQuest": 1,
 		"toQuest": 0,
 		"goal": [ 3, 1 ],
 		"nowstate": [ 0, 0 ],

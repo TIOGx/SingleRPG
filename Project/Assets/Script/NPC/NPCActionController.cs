@@ -45,7 +45,7 @@ public class NPCActionController : MonoBehaviour
 
     private void CheckNPC()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out hitInfo, range, layerMask))
+        if (Physics.Raycast(transform.position, transform.forward, out hitInfo, range, 1 << LayerMask.NameToLayer("MainCamera")))
         {
             if (hitInfo.transform.tag == "Npc")
             {
@@ -56,6 +56,10 @@ public class NPCActionController : MonoBehaviour
                 NPCInfoDisappear();
             }
 
+        }
+        else
+        {
+            NPCInfoDisappear();
         }
 
     }

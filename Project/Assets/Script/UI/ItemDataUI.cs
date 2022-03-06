@@ -28,6 +28,7 @@ public class ItemDataUI : MonoBehaviour
         ItemData.instance.ItemName.text = ItemName;
         ItemData.instance.ItemNum.text = ItemNum;
 
-        StartCoroutine(setcompensationDelay(2.0f));
+        StartCoroutine(setcompensationDelay(1.5f));
+
     }
 }   

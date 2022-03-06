@@ -30,6 +30,7 @@ public class ItemData : MonoBehaviour
 
     public void EndItemDataUI()
     {
+        if( gameObject == null) { return; }
         Destroy(gameObject); 
     }
 }
