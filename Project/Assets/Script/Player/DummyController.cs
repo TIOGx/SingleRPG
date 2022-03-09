@@ -18,6 +18,7 @@ public class DummyController : MonoBehaviour
     private bool isAttackDelay;
     [SerializeField]
     private bool isJumpDelay;
+
     public GameObject hudDamageText;
     public Transform hudPos;
     private int attackNum;
@@ -195,15 +196,20 @@ public class DummyController : MonoBehaviour
         PlayerInfo.instance.GetExp(10); // 임시로 박아 놓은 임의 경험치 값
         QuestManager.instance.checkQuest(1, Monterid); // 퀘스트 타입: 사냥, 몬스터 id
     }
+
     public void TakeDamage(float value)
     {
         PlayerInfo.instance.CurrentHealth -= value;
+        UserInterface.instance.NowHp.text = PlayerInfo.instance.CurrentHealth.ToString();
+        UserInterface.instance.UpdateHpBarUI(PlayerInfo.instance.CurrentHealth / PlayerInfo.instance.MaxHealth);
+
         GameObject hudText = Instantiate(hudDamageText); // 생성할 텍스트 오브젝트
         hudText.transform.position = hudPos.position; // 표시될 위치
         hudText.GetComponent<FloatingText>().damage = value; // 데미지 전달
-        if (PlayerInfo.instance.CurrentHealth < 0)
+        if (PlayerInfo.instance.CurrentHealth <= 0)
         {
             PlayerInfo.instance.CurrentHealth = 0;
+            UserInterface.instance.NowHp.text = PlayerInfo.instance.CurrentHealth.ToString();
         }
         // HpBar.rectTransform.localScale = new Vector3(CurHealth / MaxHealth, 1f, 1f); // 우리 체력바랑 연동
         if (PlayerInfo.instance.CurrentHealth == 0)
@@ -211,8 +217,10 @@ public class DummyController : MonoBehaviour
             Playerdie();
         }
     }
+
     void Playerdie()
     {
-
+        animator.SetTrigger("isDead");
+        PlayerInfo.instance.playerDieCanvas.SetActive(true);
     }
 }

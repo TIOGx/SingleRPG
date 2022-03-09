@@ -70,7 +70,6 @@ public class QuestManager : MonoBehaviour
 
     public void UpdateQuestUI()
     {
-        Debug.Log("UI 다음 퀘스트 내용으로 업데이트");
         foreach (var el in questQueue)
         {
             ProgressCanvas.SetActive(true);
@@ -85,7 +84,7 @@ public class QuestManager : MonoBehaviour
     {
         if (questQueue == null) { return; }
        
-        Debug.Log("들어온 퀘스트 타입" + QType);
+        //Debug.Log("들어온 퀘스트 타입" + QType);
         foreach (var quest in questQueue)
         {
             if(quest.iscompleted == true)
@@ -102,7 +101,7 @@ public class QuestManager : MonoBehaviour
 
                     if (IsComplete(quest))
                     {
-                        Debug.Log(" 퀘스트 완료 조건 충족");
+                        //Debug.Log(" 퀘스트 완료 조건 충족");
                         nowQuest = quest;
 
                         if(quest.changeToNext == true)
@@ -120,11 +119,10 @@ public class QuestManager : MonoBehaviour
 
     public bool IsComplete(QuestData quest)
     {
-        Debug.Log("퀘스트 완료 조건 확인하기");
+        //Debug.Log("퀘스트 완료 조건 확인하기");
         if (quest.goal1 == quest.nowstate1)
         {
             quest.iscompleted = true;
-            Debug.Log("퀘스트 iscomplete = " + quest.iscompleted);
             return true;
         }
         return false;
@@ -139,7 +137,6 @@ public class QuestManager : MonoBehaviour
         int nextQidx = Qidx; 
 
         if (QuestDataUI == null) { return; }
-        Debug.Log("npc id 나와야함"+UNPCUI.instance.GetNPCData()["id"].ToString());
         jsonString = File.ReadAllText(Application.dataPath + "/Data/Quest_Data/QuestData_"+ UNPCUI.instance.GetNPCData()["id"].ToString() + ".json");
         if (jsonString == "") { return; }
         JsonData QuestJsonData = JsonMapper.ToObject(jsonString);

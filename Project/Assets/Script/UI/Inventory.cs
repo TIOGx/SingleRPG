@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
     public static bool invectoryActivated = false;  // ???????? ?????? ????. true?? ???? ?????? ???????? ???? ?????? ???? ??????.
+
+    public TextMeshProUGUI goldText;
 
     [SerializeField]
     private GameObject go_InventoryBase; // Inventory_Base ??????
@@ -27,6 +30,7 @@ public class Inventory : MonoBehaviour
     {
         instance = this;
     }
+
     void Start()
     {
         slots = go_SlotsParent.GetComponentsInChildren<Slot>();
@@ -34,6 +38,7 @@ public class Inventory : MonoBehaviour
         ExitButton.onClick.AddListener(CloseInventory);
     }
 
+ 
     private void TryOpenInventory()
     {
         invectoryActivated = !invectoryActivated;

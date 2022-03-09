@@ -7,11 +7,15 @@ using TMPro;
 
 public class PlayerInfoUI : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI  playerName, level, playerMoney;
+    public static PlayerInfoUI instance;
+    public TextMeshProUGUI playerName, level, playerMoney;
     [SerializeField]
     private Button Button_Exit;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         Button_Exit.onClick.AddListener(OnClicked_Exit);

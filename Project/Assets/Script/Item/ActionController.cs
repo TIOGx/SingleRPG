@@ -10,7 +10,7 @@ public class ActionController : MonoBehaviour
     private float range;  // ?????? ?????? ?????? ???? ????
 
     private bool pickupActivated = false;  // ?????? ???? ???????? True 
-
+    private bool canPickUp = false;
     private RaycastHit hitInfo;  // ?????? ???? ????
 
     [SerializeField]
@@ -25,7 +25,13 @@ public class ActionController : MonoBehaviour
     [SerializeField]
     private Button InventoryButton;  // Inventory.cs
 
-    
+
+    IEnumerator setPickUpDelay(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        canPickUp = false;
+    }
+
     private void Start()
     {
         InventoryButton.onClick.AddListener(TryAction);
@@ -41,8 +47,13 @@ public class ActionController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            CheckItem();
-            CanPickUp();
+            if (!canPickUp)
+            {
+                canPickUp = true;
+                CheckItem();
+                CanPickUp();
+                StartCoroutine(setPickUpDelay(1.7f));
+            }   
         }
     
     }
@@ -90,6 +101,7 @@ public class ActionController : MonoBehaviour
                 theInventory.AcquireItem(hitInfo.transform.GetComponent<ItemPickUp>().item);
                 QuestManager.instance.checkQuest(3, hitInfo.transform.GetComponent<ItemPickUp>().item.itemId); 
                 ItemDataUI.instance.InstantiateItemDataUI(hitInfo.transform.GetComponent<ItemPickUp>().item.itemName, 1.ToString());
+
                 Destroy(hitInfo.transform.gameObject);
                 ItemInfoDisappear();
             }
