@@ -25,9 +25,9 @@ public class FireBall : Skill
             Debug.Log(hitCol[i].gameObject.name);
             if (hitCol[i].gameObject.CompareTag("Enemy"))
             {
-                Instantiate(SkillEffectPrefab, new Vector3(hitCol[i].gameObject.transform.position.x, hitCol[i].gameObject.transform.position.y + 2.0f, hitCol[i].gameObject.transform.position.z), Quaternion.identity);
-                
-                hitCol[i].gameObject.GetComponent<EnemyController>().TakeDamage(SkillDamage);
+                // ��ų ����Ʈ
+                Vector3 EffectPos = hitCol[i].gameObject.transform.position + new Vector3(0, 2f, 0);
+                Instantiate(SkillEffectPrefab, EffectPos, Quaternion.identity);
             }
             else{
                 continue;
