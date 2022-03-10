@@ -156,6 +156,7 @@ public class EnemyController : MonoBehaviour
         CurHealth = MaxHealth;
         HpBar.rectTransform.localScale = new Vector3(CurHealth / MaxHealth, 1f, 1f);
         IsAlive = true;
+        NowState = MonsterState.idle;
     }
 
     public void Died(){

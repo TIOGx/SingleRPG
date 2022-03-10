@@ -22,6 +22,8 @@ public class DummyController : MonoBehaviour
     public GameObject hudDamageText;
     public Transform hudPos;
     private int attackNum;
+    // 잠시 가라 포션
+    public GameObject Hp_Potion_Prefab;
     
 
     public float moveSpeed { set; get; }
@@ -76,6 +78,7 @@ public class DummyController : MonoBehaviour
         DiveRoll();
         Attack();
         Jump();
+        UsePotion();
     }
 
     void FixedUpdate()
@@ -174,15 +177,25 @@ public class DummyController : MonoBehaviour
 
         }
     }
-
-    // 충돌 함수
-    void OnCollisionEnter(Collision col)
+    // 포션 먹기 함수 일단 인벤토리에 있을 때 먹는 함수 작성해볼 예정
+    private void UsePotion()
     {
-        if (col.gameObject.CompareTag("Npc"))
+        // 키 입력을 받음
+        if (Input.GetKeyDown(KeyCode.Y))
         {
-            //animator.SetTrigger("Talk");
+            Debug.Log("키 눌렸어요 포션먹는 키");
+            if (Inventory.instance.CheckItem(Hp_Potion_Prefab.GetComponent<ItemPickUp>().item)){ // 포션이 존재하면서 피가 달았으면
+                if(PlayerInfo.instance.CurrentHealth < PlayerInfo.instance.MaxHealth)
+                {
+                    // 체력을 회복하고
+                    PlayerInfo.instance.HealPlayer(50);
+                    // 인벤토리에서 갯수를 줄인다.
+                    Inventory.instance.UseItem(Hp_Potion_Prefab.GetComponent<ItemPickUp>().item);
+                }
+            }
         }
     }
+    
 
     public Transform GetPlayerTransform()
     {

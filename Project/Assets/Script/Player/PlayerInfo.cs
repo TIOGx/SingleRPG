@@ -74,7 +74,14 @@ public class PlayerInfo : MonoBehaviour
         Respawn();
         playerDieCanvas.SetActive(false);
     }
-
+    public void HealPlayer(float amount)
+    {
+        CurrentHealth += amount;
+        if(CurrentHealth > MaxHealth)
+        {
+            CurrentHealth = MaxHealth;
+        }
+    }
     public void OnClicked_NDieCanvas() // 로비 씬으로 돌아가기
     {
 
