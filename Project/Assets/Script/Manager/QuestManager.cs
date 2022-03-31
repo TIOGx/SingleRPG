@@ -80,6 +80,14 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+
+    public void ResetQuestUI()
+    {
+        Text_Title.GetComponent<Text>().text = "아직 퀘스트를 받기 전입니다.";
+        Text_Desc.GetComponent<Text>().text = "아직 퀘스트를 받기 전입니다.";
+    }
+
+
     public void checkQuest(int QType, int value)
     {
         if (questQueue == null) { return; }

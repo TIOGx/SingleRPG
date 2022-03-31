@@ -99,6 +99,13 @@ public class ActionController : MonoBehaviour
             {
                 Debug.Log(hitInfo.transform.GetComponent<ItemPickUp>().item.itemName + " 아이템을 주울 수 있습니다.");  // ???????? ????
                 theInventory.AcquireItem(hitInfo.transform.GetComponent<ItemPickUp>().item);
+
+                if (hitInfo.transform.GetComponent<ItemPickUp>().item.itemId == 10) // Item이 포션일 때
+                {
+                    Debug.Log("포션 텍스트 업데이틍");
+                    PlayerInfo.instance.playerPotionText.text = (int.Parse(PlayerInfo.instance.playerPotionText.text) + int.Parse(1.ToString())).ToString();
+                }
+
                 QuestManager.instance.checkQuest(3, hitInfo.transform.GetComponent<ItemPickUp>().item.itemId); 
                 ItemDataUI.instance.InstantiateItemDataUI(hitInfo.transform.GetComponent<ItemPickUp>().item.itemName, 1.ToString());
 

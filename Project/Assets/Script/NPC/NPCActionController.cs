@@ -32,6 +32,7 @@ public class NPCActionController : MonoBehaviour
         Debug.DrawRay(transform.position, forward, Color.green);
         CheckNPC();
         TryAction();
+
     }
 
     private void TryAction()
@@ -92,6 +93,7 @@ public class NPCActionController : MonoBehaviour
         }
         else { return ; }
     }
+
 
 }
 

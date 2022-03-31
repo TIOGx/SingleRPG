@@ -10,7 +10,9 @@ public class PlayerInfo : MonoBehaviour
     public static PlayerInfo instance;
 
     public TextMeshProUGUI levelText;
+    public TextMeshProUGUI levelupCanvasText;
     public TextMeshProUGUI playerMoneyText;
+    public TextMeshProUGUI playerPotionText;
     public float nowExp;
     public float MaxExpByLevel;
     public int level;
@@ -21,6 +23,7 @@ public class PlayerInfo : MonoBehaviour
     public GameObject playerinfoCanvas;
     public GameObject playerDieCanvas;
     public GameObject skillCanvas;
+    public GameObject shopCanvas;
 
     private void Awake()
     {
@@ -36,6 +39,9 @@ public class PlayerInfo : MonoBehaviour
     public void skill_True() { skillCanvas.SetActive(true); }
     public void skill_False() { skillCanvas.SetActive(false); }
 
+    public void shop_True() { shopCanvas.SetActive(true); }
+    public void shop_False() { shopCanvas.SetActive(false); }
+
     public void GetExp(int value)
     {
         nowExp += value;
@@ -50,9 +56,9 @@ public class PlayerInfo : MonoBehaviour
     public void PlayerLevelUp()
     {
         nowExp = nowExp - MaxExpByLevel;
-        levelupCanvas.SetActive(true);
         level += 1;
-        
+        levelupCanvasText.text = level.ToString();
+        levelupCanvas.SetActive(true);
     }
 
     public void OnClicked_Confirm()
@@ -62,18 +68,19 @@ public class PlayerInfo : MonoBehaviour
         levelupCanvas.SetActive(false);
     }
 
-    public void Respawn()
-    {
-        CurrentHealth = MaxHealth;
-        UserInterface.instance.NowHp.text = CurrentHealth.ToString();
-        UserInterface.instance.UpdateHpBarUI(CurrentHealth);
-    }
-
     public void OnClicked_YDieCanvas()
     {
         Respawn();
         playerDieCanvas.SetActive(false);
     }
+
+    public void Respawn()
+    {
+        CurrentHealth = MaxHealth;
+        UserInterface.instance.NowHp.text = CurrentHealth.ToString();
+        UserInterface.instance.UpdateHpBarUI(1);
+    }
+
     public void HealPlayer(float amount)
     {
         CurrentHealth += amount;
@@ -82,6 +89,7 @@ public class PlayerInfo : MonoBehaviour
             CurrentHealth = MaxHealth;
         }
     }
+
     public void OnClicked_NDieCanvas() // 로비 씬으로 돌아가기
     {
 

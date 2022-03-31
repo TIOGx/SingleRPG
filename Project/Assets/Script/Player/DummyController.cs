@@ -189,8 +189,12 @@ public class DummyController : MonoBehaviour
                 {
                     // 체력을 회복하고
                     PlayerInfo.instance.HealPlayer(50);
+                    UserInterface.instance.UpdateHpBarUI(PlayerInfo.instance.CurrentHealth / PlayerInfo.instance.MaxHealth);
+                    UserInterface.instance.NowHp.text = PlayerInfo.instance.CurrentHealth.ToString();
+
                     // 인벤토리에서 갯수를 줄인다.
                     Inventory.instance.UseItem(Hp_Potion_Prefab.GetComponent<ItemPickUp>().item);
+                    PlayerInfo.instance.playerPotionText.text = (int.Parse(PlayerInfo.instance.playerPotionText.text) - int.Parse(1.ToString())).ToString();
                 }
             }
         }

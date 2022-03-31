@@ -8,20 +8,32 @@ public class NPC : NPCBase
 {
     public string npc_Name;
 
-    [SerializeField]
-    private GameObject Qmark;
-    [SerializeField]
-    private GameObject Emark;
+    //[SerializeField]
+    //private GameObject Qmark;
+    //[SerializeField]
+    //private GameObject Emark;
 
     void Start()
     {
         base.Start(); // 부모의 Start를 먼저 호출해서 QuestUI 로드하기
     }
+    //private void Update()
+    //{
+    //    CheckQuestState();
+    //}
 
-    // 퀘스트를 받을 수 잇는 상태, ? 표시
-    public void CanProgressQuest(bool tf) { Qmark.SetActive(tf); }
-    // 보상을 받을 수 잇는 상태, ! 표시
-    public void CanGetcompensationQuest(bool tf) { Emark.SetActive(tf); }
+    //// 퀘스트를 받을 수 잇는 상태, ? 표시
+    //public void CanProgressQuest(bool tf) { Qmark.SetActive(tf); }
+    //// 보상을 받을 수 잇는 상태, ! 표시
+    //public void CanGetcompensationQuest(bool tf) { Emark.SetActive(tf); }
+
+    //public void CheckQuestState()
+    //{
+    //    if(QuestManager.instance.getQuestQueue().Peek().iscompleted == true)
+    //    {
+    //        CanGetcompensationQuest(true);
+    //    }
+    //}
 
 }
 

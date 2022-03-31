@@ -1,7 +1,7 @@
 {
 	"0": {
 		"type": 2, // 말걸기 퀘스트
-		"fromQuest": 0, // 나의 퀘스트 idx
+		"fromQuest": 1, // 현재 퀘스트와 연결된 npc의 id
 		"toQuest": 1, // 다음 퀘스트
 		"goal": [ 1, 2 ], // type2(말걸기 퀘스트) : [Npc아이디, 2 ]
 		"nowstate": [ 0, 0 ],
@@ -18,7 +18,7 @@
 
 	"1": {
 		"type": 1, // 사냥 퀘스트
-		"fromQuest": 1, // 나의 퀘스트 idx
+		"fromQuest": 1, // 현재 퀘스트와 연결된 npc의 id
 		"toQuest": 2, // 다음 퀘스트
 		"goal": [ 0, 1 ], // type1(사냥 퀘스트) : [몬스터아이디, 목표 마리수]
 		"nowstate": [ 0, 0 ],
@@ -34,7 +34,7 @@
 
 	"2": {
 		"type": 3, // 아이템 줍기 퀘스트
-		"fromQuest": 2, // 나의 퀘스트 idx
+		"fromQuest": 1, // 현재 퀘스트와 연결된 npc의 id
 		"toQuest": 3, // 다음 퀘스트
 		"goal": [ 0, 1 ], // type3(아이템 줍기 퀘스트) : [아이템아이디, 목표 아이템 개수]
 		"nowstate": [ 0, 0 ],
@@ -50,7 +50,7 @@
 
 	"3": {
 		"type": 2,
-		"fromQuest": 3,
+		"fromQuest": 1,
 		"toQuest": 0,
 		"goal": [ 2, 1 ],
 		"nowstate": [ 0, 0 ],
