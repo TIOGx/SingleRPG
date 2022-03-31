@@ -24,6 +24,7 @@ public class UserInterface : MonoBehaviour
     {
         ExpBar.value = value;
     }
+
     public void UpdateHpBarUI(float value)
     {
         HpBar.value = value;

@@ -75,6 +75,7 @@ public class UNPCUI : MonoBehaviour, INPCUI
     {
         SetCompensation();
         QuestManager.instance.ResetProgressUI();
+        QuestManager.instance.ResetQuestUI();
         QuestManager.instance.ChangeToNextQuest(QuestManager.instance.nowQuest.toQuest);
         EndUI();
 
@@ -136,7 +137,10 @@ public class UNPCUI : MonoBehaviour, INPCUI
         {
             PlayerInfo.instance.playerMoneyText.text = (int.Parse(PlayerInfo.instance.playerMoneyText.text) +int.Parse(QuestManager.instance.nowQuest.compensation_ItemNum.ToString())).ToString();
             Inventory.instance.goldText.text = (int.Parse(Inventory.instance.goldText.text) + int.Parse(QuestManager.instance.nowQuest.compensation_ItemNum.ToString())).ToString(); 
-            //PlayerInfoUI.instance.playerMoney.text = QuestManager.instance.nowQuest.compensation_ItemNum.ToString();
+        }
+        else if (getItem.itemId == 10) // getItem이 potion일 때
+        {
+            PlayerInfo.instance.playerPotionText.text = (int.Parse(PlayerInfo.instance.playerPotionText.text) + int.Parse(QuestManager.instance.nowQuest.compensation_ItemNum.ToString())).ToString();
         }
         else
         {

@@ -1,7 +1,7 @@
 {
 	"0": {
 		"type": 1,
-		"fromQuest": 0,
+		"fromQuest": 2,
 		"toQuest": 1,
 		"goal": [ 0, 5 ],
 		"nowstate": [ 0, 0 ],
@@ -18,7 +18,7 @@
 
 	"1": {
 		"type": 2,
-		"fromQuest": 1,
+		"fromQuest": 2,
 		"toQuest": 0,
 		"goal": [ 3, 1 ],
 		"nowstate": [ 0, 0 ],

@@ -1,7 +1,7 @@
 {
 	"0": {
 		"type": 1,
-		"fromQuest": 0,
+		"fromQuest": 3,
 		"toQuest": 1,
 		"goal": [ 1, 10 ],
 		"nowstate": [ 0, 0 ],
@@ -11,6 +11,23 @@
 		"title": " 은지 - 사냥 퀘스트 1",
 		"desc": " 슬라임 10마리 잡기 ",
 		"completed_text": " 은지 - 슬라임 10마리 잡기 완료",
+		"isCompleted": false,
+		"changeToNextNPC": false
+
+	},
+
+	"1": {
+		"type": 2,
+		"fromQuest": 0,
+		"toQuest": 0,
+		"goal": [ 2, 1 ],
+		"nowstate": [ 0, 0 ],
+		"compensation_ItemName": "도",
+		"compensation_ItemID": 2,
+		"compensation_ItemNum": 10000,
+		"title": "은지 - 보스 사냥 퀘스트",
+		"desc": "보스 잡기 ",
+		"completed_text": "은지 - 보스 잡기 퀘스트 완료",
 		"isCompleted": false,
 		"changeToNextNPC": false
 
