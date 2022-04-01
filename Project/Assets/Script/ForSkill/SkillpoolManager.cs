@@ -36,11 +36,21 @@ public class SkillpoolManager : MonoBehaviour
         {
             foreach (var dic in KeyDictionary)
             {
-                if (Input.GetKeyDown(dic.Key))
+                if (Input.GetKeyDown(dic.Key)) // 스킬을 배웠는지 확인
                 {
                     Debug.Log(KeyDictionary[dic.Key]);
                     // 스킬 시전 조건 체크 해야댐 (마나, 쿨타임 등등)
-                    KeyDictionary[dic.Key].GetComponent<Skill>().UseSkill();
+                    if(KeyDictionary[dic.Key].GetComponent<Skill>().CanUseSkill == true)
+                    {
+                        KeyDictionary[dic.Key].GetComponent<Skill>().UseSkill();
+                    }
+                    else 
+                    {
+                        Debug.Log(KeyDictionary[dic.Key].GetComponent<Skill>().Skillname);
+                        Debug.Log(KeyDictionary[dic.Key].GetComponent<Skill>().CanUseSkill);
+                        Debug.Log("스킬 시전 조건 미충족");
+                    }
+                    
                 }
             }
         }
