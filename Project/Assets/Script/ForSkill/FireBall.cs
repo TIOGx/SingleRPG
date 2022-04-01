@@ -13,6 +13,8 @@ public class FireBall : Skill
     private void Initialization()
     {
         this.Skillname = "FireBall";
+        this.CanUseSkill = false;
+        this.SkillCoolTime = 5;
     }
     public override void UseSkill()
     {
@@ -34,6 +36,29 @@ public class FireBall : Skill
                 continue;
             }
         }
+        StartCoroutine("CoolTime");
+        CurrentCoolTime = SkillCoolTime;
+        StartCoroutine("CooltimeCounter");
+        // CanUseSkill = false;
         return;
+    }
+    IEnumerator CoolTime()
+    {
+        while (CurrentCoolTime > 0)
+        {
+            yield return null;
+        }
+        CanUseSkill = true;
+        yield break;
+    }
+    IEnumerator CooltimeCounter()
+    {
+        while(CurrentCoolTime > 0)
+        {
+            yield return new WaitForSeconds(1.0f);
+            CurrentCoolTime -= 1f;
+
+        }
+        yield break;
     }
 }

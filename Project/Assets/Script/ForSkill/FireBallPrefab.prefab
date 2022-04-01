@@ -46,5 +46,8 @@ MonoBehaviour:
   Skillname: FireBall
   SkillDamage: 3
   SkillRange: 10
+  CanUseSkill: 1
+  SkillCoolTime: 0
+  CurrentCoolTime: 0
   SkillEffectPrefab: {fileID: 1828176872806910, guid: 32e46ecf66eefe24d866841c4e29f00a,
     type: 3}

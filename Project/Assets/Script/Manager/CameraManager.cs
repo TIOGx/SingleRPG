@@ -22,9 +22,20 @@ public class CameraManager : MonoBehaviour
         //Debug.Log(MainCamera.transform.position.y);
          if (Input.GetMouseButton(1)) // 마우스 오른쪽 버튼 클릭
          {
-            mouseX += Input.GetAxis("Mouse X"); // 프로젝트 세팅에 입력 값 매니저를 보면 이름이 Mouse X로 설정되어있음
-            mouseY += Input.GetAxis("Mouse Y") * -1;
-            centralAxis.rotation = Quaternion.Euler(new Vector3(centralAxis.rotation.x + mouseY, centralAxis.rotation.y + mouseX, 0) * camSpeed);
+            mouseX = Input.GetAxis("Mouse X") * camSpeed; // 프로젝트 세팅에 입력 값 매니저를 보면 이름이 Mouse X로 설정되어있음
+            mouseY = Input.GetAxis("Mouse Y") * -1 * camSpeed;
+            Vector3 camAngle = centralAxis.rotation.eulerAngles;
+            float x = camAngle.x - mouseY;
+            if(x < 180f)
+            {
+                x = Mathf.Clamp(x, 0f, 70f);
+            }
+            else
+            {
+                x = Mathf.Clamp(x, 335f, 361f);
+            }
+
+            centralAxis.rotation = Quaternion.Euler(x, camAngle.y + mouseX, camAngle.z);
          }
     }
 
