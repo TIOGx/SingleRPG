@@ -59,6 +59,7 @@ public class PlayerInfo : MonoBehaviour
         level += 1;
         levelupCanvasText.text = level.ToString();
         levelupCanvas.SetActive(true);
+        Pause.Instance.TimePause();
     }
 
     public void OnClicked_Confirm()
@@ -66,6 +67,7 @@ public class PlayerInfo : MonoBehaviour
         levelText.text = level.ToString();
         MaxExpByLevel = ExpListByLevel[level];
         levelupCanvas.SetActive(false);
+        Pause.Instance.TimePause();
     }
 
     public void OnClicked_YDieCanvas()
@@ -79,6 +81,8 @@ public class PlayerInfo : MonoBehaviour
         CurrentHealth = MaxHealth;
         UserInterface.instance.NowHp.text = CurrentHealth.ToString();
         UserInterface.instance.UpdateHpBarUI(1);
+        gameObject.transform.position = new Vector3(0f, 0f, -10f);
+        Pause.Instance.TimePause();
     }
 
     public void HealPlayer(float amount)

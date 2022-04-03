@@ -239,5 +239,6 @@ public class DummyController : MonoBehaviour
     {
         animator.SetTrigger("isDead");
         PlayerInfo.instance.playerDieCanvas.SetActive(true);
+        Pause.Instance.TimePause();
     }
 }
