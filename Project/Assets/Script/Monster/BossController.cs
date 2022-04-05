@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BossController : Boss
 {
+    public static BossController instance;
     Animator animator;
     Rigidbody rigid;
     BoxCollider boxCollider;
@@ -22,7 +23,10 @@ public class BossController : Boss
     public string[] patternArr;
     public float BossAttackDelay;
     public GameObject LaserSphere;
+    public GameObject FlameStream;
     private Quaternion _rot;
+    public Transform PatternInstantiatePos;
+    public bool IsHeadHutt;
 
     public enum BossState
     {
@@ -32,6 +36,7 @@ public class BossController : Boss
     }
     private void Awake()
     {
+        instance = this;
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         nav = GetComponent<NavMeshAgent>();
@@ -97,6 +102,7 @@ public class BossController : Boss
             }
             else if (NowBossState == BossState.tracing) // 추격 상태
             {
+                
                 nav.SetDestination(Target.position); // 보스가 플레이어를 향해 다가감
             }
         }
@@ -156,11 +162,13 @@ public class BossController : Boss
             case "2":
                 Debug.Log("2번 패턴 사용");
                 animator.SetTrigger("Pattern2");
+                UseFlameStream(Target);
                 break;
 
             case "3":
                 Debug.Log("3번 패턴 사용");
                 animator.SetTrigger("Pattern3");
+                UseHeadButt(Target);
                 break;
 
             case "4":
@@ -211,17 +219,40 @@ public class BossController : Boss
 
     void UseDoubleShot(Transform TargetTransform) // 구체 레이저 2개 발사 맞으면 데미지 및 폭발 파티클
     {
-        Vector3 _dir = ((TargetTransform.position - (transform.position + new Vector3(0f, 5f, 0f))).normalized);
-        _rot = Quaternion.LookRotation(_dir);
-
+        CheckQuaternion(TargetTransform, new Vector3 (0, 5f, 0));
         ShotLaserSphere();
+        CheckQuaternion(TargetTransform, new Vector3(0, 5f, 0));
         Invoke("ShotLaserSphere", 1f);
     }
-
+    void CheckQuaternion(Transform TargetTransform , Vector3 x)
+    {
+        Vector3 _dir = ((TargetTransform.position - (transform.position + x)).normalized);
+        _rot = Quaternion.LookRotation(_dir);
+    }
     void ShotLaserSphere()
     {
-        Instantiate(LaserSphere, transform.position + new Vector3(0f, 5f, 0f), _rot);
+        Instantiate(LaserSphere, PatternInstantiatePos.position, _rot);
     }
 
+    void UseFlameStream(Transform TargetTransform)
+    {
+        CheckQuaternion(TargetTransform, new Vector3(0f, 3f, 0f));
+        ShotFlameStream();
+    }
 
+    void ShotFlameStream()
+    {
+        Instantiate(FlameStream, PatternInstantiatePos.position, _rot); 
+    }
+    void UseHeadButt(Transform TargetTransform)
+    {
+        IsHeadHutt = true;
+        StartCoroutine(setIsHeadButt(1.5f));
+    }
+    IEnumerator setIsHeadButt(float delayTime)
+    {
+        Debug.Log("delay " + delayTime + " time");
+        yield return new WaitForSeconds(delayTime);
+        IsHeadHutt = false;
+    }
 }

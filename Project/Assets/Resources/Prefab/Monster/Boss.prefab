@@ -82,6 +82,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8837862710974958884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2891962750067446834}
+  m_Layer: 6
+  m_Name: ForPatternPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2891962750067446834
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8837862710974958884}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.2, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9011648103020875539}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9011648103021171489
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,6 +363,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9011648103020875537}
   - component: {fileID: 9011648103026449971}
+  - component: {fileID: 469157783680801931}
   m_Layer: 6
   m_Name: BeholderMesh
   m_TagString: Untagged
@@ -452,6 +483,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.34714624, y: 0.13406369, z: 0.007245779}
     m_Extent: {x: 0.8503362, y: 0.9990865, z: 0.82545555}
   m_DirtyAABB: 0
+--- !u!136 &469157783680801931
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9011648103021171505}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.7
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.007245779, y: 1.596101, z: -0.05393523}
 --- !u!1 &9011648103021171507
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +532,7 @@ Transform:
   - {fileID: 9011648103020875537}
   - {fileID: 9011648103020875533}
   - {fileID: 3665331206183910792}
+  - {fileID: 2891962750067446834}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -589,7 +635,11 @@ MonoBehaviour:
   - 3
   - 4
   BossAttackDelay: 4
-  LaserSphere: {fileID: 1470202050022551483, guid: 76b933bdc29720e498ee80114740166b, type: 3}
+  LaserSphere: {fileID: 1470202050022551483, guid: 76b933bdc29720e498ee80114740166b,
+    type: 3}
+  FlameStream: {fileID: 1973075987484898, guid: bccc7a794e75b2a44a4b0dac69160b7b,
+    type: 3}
+  PatternInstantiatePos: {fileID: 2891962750067446834}
 --- !u!1 &9011648103021171509
 GameObject:
   m_ObjectHideFlags: 0
