@@ -34943,6 +34943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StoreMoneyText: {fileID: 1772183206}
   NotEnoughMoneyCanvas: {fileID: 995144986}
+  Pitem: {fileID: 7052658652495919744, guid: 6c4e3899dc2e8644f90814c3e4ce955d, type: 3}
 --- !u!114 &659608650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40727,9 +40728,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 427826481}
-        m_TargetAssemblyTypeName: PlayerInfo, Assembly-CSharp
-        m_MethodName: OnClicked_NDieCanvas
+      - m_Target: {fileID: 228628907}
+        m_TargetAssemblyTypeName: LobbyManager, Assembly-CSharp
+        m_MethodName: GoToLobbyScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

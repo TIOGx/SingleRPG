@@ -30,7 +30,10 @@ public class Inventory : MonoBehaviour
     {
         instance = this;
     }
-
+    private void Update()
+    {
+        goldText.text = PlayerInfo.instance.playerMoneyText.text;
+    }
     void Start()
     {
         slots = go_SlotsParent.GetComponentsInChildren<Slot>();
@@ -100,7 +103,7 @@ public class Inventory : MonoBehaviour
                         return;
                     }
                 }
-                else // 없던 아이템을 먹었을 때
+                else // ???? ???????? ?????? ??
                 {
                     slots[i].AddItem(_item, _count);
                     return;

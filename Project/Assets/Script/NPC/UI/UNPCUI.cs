@@ -136,7 +136,6 @@ public class UNPCUI : MonoBehaviour, INPCUI
         if (getItem.itemId == 2 ) // getItem이 돈일 때
         {
             PlayerInfo.instance.playerMoneyText.text = (int.Parse(PlayerInfo.instance.playerMoneyText.text) +int.Parse(QuestManager.instance.nowQuest.compensation_ItemNum.ToString())).ToString();
-            Inventory.instance.goldText.text = (int.Parse(Inventory.instance.goldText.text) + int.Parse(QuestManager.instance.nowQuest.compensation_ItemNum.ToString())).ToString(); 
         }
         else if (getItem.itemId == 10) // getItem이 potion일 때
         {
