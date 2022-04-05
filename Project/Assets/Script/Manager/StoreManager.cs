@@ -8,6 +8,7 @@ public class StoreManager : MonoBehaviour
 {
     public TextMeshProUGUI StoreMoneyText;
     public GameObject NotEnoughMoneyCanvas;
+    public GameObject Pitem;
     private bool NotEnoughMoneyDelay = false;
 
     private void Update()
@@ -33,6 +34,8 @@ public class StoreManager : MonoBehaviour
 
         else
         {
+            Inventory.instance.AcquireItem(Pitem.GetComponent<ItemPickUp>().item);
+
             PlayerInfo.instance.playerMoneyText.text = (int.Parse(PlayerInfo.instance.playerMoneyText.text) - 10).ToString();
             PlayerInfo.instance.playerPotionText.text = (int.Parse(PlayerInfo.instance.playerPotionText.text) + 1).ToString();
         }

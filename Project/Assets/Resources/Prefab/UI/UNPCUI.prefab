@@ -1589,7 +1589,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -471, y: -245}
+  m_AnchoredPosition: {x: -478, y: -345}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1126102083467920898
@@ -1899,8 +1899,8 @@ MonoBehaviour:
   Button_Reject: {fileID: 1078502571754866558}
   NPCImageArr:
   - {fileID: 21300000, guid: ba7968aa0f1eb472583a9755dc19daec, type: 3}
-  - {fileID: 21300000, guid: 3e4bce5241c7642d392b39886c15f562, type: 3}
-  - {fileID: 21300000, guid: bf2f25e354f8d41eea4fd4355f065041, type: 3}
+  - {fileID: 21300000, guid: 5fbd1c477c7a448218dfd538eaec9445, type: 3}
+  - {fileID: 21300000, guid: 3e10284e3fc074db9b0aaf70a21720c0, type: 3}
   - {fileID: 21300000, guid: bf2f25e354f8d41eea4fd4355f065041, type: 3}
   - {fileID: 21300000, guid: bf2f25e354f8d41eea4fd4355f065041, type: 3}
 --- !u!1 &8315397339372074732
