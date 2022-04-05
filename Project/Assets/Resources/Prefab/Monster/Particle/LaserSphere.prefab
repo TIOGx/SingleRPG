@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4192768718430517727}
   - component: {fileID: 9118320072486143149}
   - component: {fileID: 1215794892139056639}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: LaserSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

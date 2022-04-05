@@ -23,7 +23,7 @@ public class BossController : Boss
     public float BossAttackDelay;
     public GameObject LaserSphere;
     private Quaternion _rot;
-    public Image HpBar;
+    //public Image HpBar;
 
     public enum BossState
     {
@@ -33,7 +33,7 @@ public class BossController : Boss
     }
     private void Awake()
     {
-        HpBar.rectTransform.localScale = new Vector3(BossCurHealth / BossMaxHealth, 1f, 1f);
+        //HpBar.rectTransform.localScale = new Vector3(BossCurHealth / BossMaxHealth, 1f, 1f);
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         nav = GetComponent<NavMeshAgent>();
@@ -179,7 +179,7 @@ public class BossController : Boss
         {
             BossCurHealth = 0;
         }
-        HpBar.rectTransform.localScale = new Vector3(BossCurHealth / BossMaxHealth, 1f, 1f);
+        //HpBar.rectTransform.localScale = new Vector3(BossCurHealth / BossMaxHealth, 1f, 1f);
         if (BossCurHealth == 0)
         {
             BossDie();
