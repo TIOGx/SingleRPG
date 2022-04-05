@@ -590,6 +590,7 @@ MonoBehaviour:
   - 4
   BossAttackDelay: 4
   LaserSphere: {fileID: 1470202050022551483, guid: 76b933bdc29720e498ee80114740166b, type: 3}
+  HpBar: {fileID: 0}
 --- !u!1 &9011648103021171509
 GameObject:
   m_ObjectHideFlags: 0
