@@ -20,6 +20,7 @@ public class QuestManager : MonoBehaviour
 
     public int nextIdx = 0;
     public QuestData nowQuest;
+    public bool cangotoboss = false;
     public GameObject[] compensationItemArr = new GameObject[5];
     private string jsonString;
 
@@ -99,6 +100,8 @@ public class QuestManager : MonoBehaviour
             {
                 return;
             }
+            if (quest.questType == 1 && quest.goal0 == 2) { cangotoboss = true; }
+
             Text_ProgressMax.text = quest.goal1.ToString();
             if (quest.questType == QType)
             {

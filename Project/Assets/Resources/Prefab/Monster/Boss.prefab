@@ -466,6 +466,7 @@ GameObject:
   - component: {fileID: 3636354442578036587}
   - component: {fileID: -7677471319237478300}
   - component: {fileID: 5700591266866795760}
+  - component: {fileID: -6451059088384863274}
   m_Layer: 6
   m_Name: Boss
   m_TagString: Enemy
@@ -590,6 +591,21 @@ MonoBehaviour:
   - 4
   BossAttackDelay: 4
   LaserSphere: {fileID: 1470202050022551483, guid: 76b933bdc29720e498ee80114740166b, type: 3}
+  HpBar: {fileID: 0}
+--- !u!114 &-6451059088384863274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9011648103021171507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 400f5141e88ec8f47a4e1ddba0f7541d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MonsterId: 2
+  PoolingId: 2
 --- !u!1 &9011648103021171509
 GameObject:
   m_ObjectHideFlags: 0

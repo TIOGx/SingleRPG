@@ -9,7 +9,8 @@ public class ActionController : MonoBehaviour
     [SerializeField]
     private float range;  // ?????? ?????? ?????? ???? ????
 
-    private bool pickupActivated = false;  // ?????? ???? ???????? True 
+    private bool pickupActivated = false;  // ?????? ???? ???????? True
+    private bool gotobossActivated = false;
     private bool canPickUp = false;
     private RaycastHit hitInfo;  // ?????? ???? ????
 
@@ -18,6 +19,9 @@ public class ActionController : MonoBehaviour
 
     [SerializeField]
     private Text actionText;  // ?????? ???? ?? ??????
+
+    [SerializeField]
+    private Text ToBossText;  // ?????? ???? ?? ??????
 
     [SerializeField]
     private Inventory theInventory;  // Inventory.cs
@@ -55,7 +59,13 @@ public class ActionController : MonoBehaviour
                 StartCoroutine(setPickUpDelay(1.7f));
             }   
         }
-    
+
+        else if (Input.GetKeyDown(KeyCode.Y))
+        {
+            CheckItem();
+            CanGoToBoss();
+        }
+
     }
 
     private void CheckItem()
@@ -66,16 +76,38 @@ public class ActionController : MonoBehaviour
             {
                 ItemInfoAppear();
             }
+            else if (hitInfo.transform.tag == "ToBoss")
+            {
+                Debug.Log("보스한테 가자고@!!");
+                if (QuestManager.instance.cangotoboss) { GoToBossInfoAppear(); }
+            }
+
             else
             {
                 ItemInfoDisappear();
+                GoToBossInfoDisappear();
             }
         }
         else
         {
+            GoToBossInfoDisappear();
             ItemInfoDisappear();
         }
 
+    }
+
+
+    private void GoToBossInfoAppear()
+    {
+        gotobossActivated = true;
+        ToBossText.gameObject.SetActive(true);
+        ToBossText.text = " Go to Boss " + "<color=red>" + "(Y)" + "</color>";
+    }
+
+    private void GoToBossInfoDisappear()
+    {
+        gotobossActivated = false;
+        ToBossText.gameObject.SetActive(false);
     }
 
     private void ItemInfoAppear()
@@ -111,6 +143,20 @@ public class ActionController : MonoBehaviour
 
                 Destroy(hitInfo.transform.gameObject);
                 ItemInfoDisappear();
+            }
+            else { return; }
+        }
+        else { return; }
+    }
+
+    private void CanGoToBoss()
+    {
+        if (gotobossActivated)
+        {
+            if (hitInfo.transform != null)
+            {
+                Debug.Log(" 보스에게 갈 수 있습니다.");
+                PlayerInfo.instance.GoToBoss();
             }
             else { return; }
         }
