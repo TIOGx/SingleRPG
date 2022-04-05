@@ -23,7 +23,7 @@ public class CameraManager : MonoBehaviour
          if (Input.GetMouseButton(1)) // 마우스 오른쪽 버튼 클릭
          {
             mouseX = Input.GetAxis("Mouse X") * camSpeed; // 프로젝트 세팅에 입력 값 매니저를 보면 이름이 Mouse X로 설정되어있음
-            mouseY = Input.GetAxis("Mouse Y") * -1 * camSpeed;
+            mouseY = Input.GetAxis("Mouse Y") * camSpeed;
             Vector3 camAngle = centralAxis.rotation.eulerAngles;
             float x = camAngle.x - mouseY;
             if(x < 180f)

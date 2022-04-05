@@ -8,7 +8,7 @@
 		"compensation_ItemName": "돈", //보상 아이템 name
 		"compensation_ItemID": 2, //보상 아이템 id
 		"compensation_ItemNum": 100, // 보상 아이템 개수
-		"title": "철수 - 말걸기 퀘스트 1",
+		"title": "철수",
 		"desc": "철수에게 다가가 말을 걸어보자 ",
 		"completed_text": "철수 - 말걸기 퀘스트1 완료",
 		"isCompleted": false,
@@ -22,10 +22,10 @@
 		"toQuest": 2, // 다음 퀘스트
 		"goal": [ 0, 1 ], // type1(사냥 퀘스트) : [몬스터아이디, 목표 마리수]
 		"nowstate": [ 0, 0 ],
-		"compensation_ItemName": "사과", //보상 아이템 name
-		"compensation_ItemID": 0, //보상 아이템 id
-		"compensation_ItemNum": 1, // 보상 아이템 개수
-		"title": " 철수 - 사냥 퀘스트 1",
+		"compensation_ItemName": "돈", //보상 아이템 name
+		"compensation_ItemID": 2, //보상 아이템 id
+		"compensation_ItemNum": 20, // 보상 아이템 개수
+		"title": "철수",
 		"desc": " Turtle Shell 1마리 잡기 ",
 		"completed_text": " 철수 - Turtle Shell 1마리 잡기 완료",
 		"isCompleted": false,
@@ -40,8 +40,8 @@
 		"nowstate": [ 0, 0 ],
 		"compensation_ItemName": "돈", //보상 아이템 name
 		"compensation_ItemID": 2, //보상 아이템 id
-		"compensation_ItemNum": 500, // 보상 아이템 개수
-		"title": " 철수 - 아이템 줍기 퀘스트 1",
+		"compensation_ItemNum": 30, // 보상 아이템 개수
+		"title": "철수",
 		"desc": " 아이템 1개 줍기 ",
 		"completed_text": " 철수 - 아이템 줍기 퀘스트 완료",
 		"isCompleted": false,
@@ -57,7 +57,7 @@
 		"compensation_ItemName": "사과",
 		"compensation_ItemID": 0,
 		"compensation_ItemNum": 5,
-		"title": " 철수 - 말걸기 퀘스트2",
+		"title": "철수",
 		"desc": " 영희에게 다가가 말을 걸어보자 ",
 		"completed_text": "철수 - 영희를 찾아 말걸기 퀘스트 완료",
 		"isCompleted": false,

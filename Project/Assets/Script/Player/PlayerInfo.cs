@@ -19,11 +19,13 @@ public class PlayerInfo : MonoBehaviour
     public int[] ExpListByLevel;
     public float CurrentHealth;
     public float MaxHealth;
+    public GameObject bossHp;
     public GameObject levelupCanvas;
     public GameObject playerinfoCanvas;
     public GameObject playerDieCanvas;
     public GameObject skillCanvas;
     public GameObject shopCanvas;
+    public GameObject gameclearCanvas;
 
     private void Awake()
     {
@@ -83,6 +85,12 @@ public class PlayerInfo : MonoBehaviour
         UserInterface.instance.UpdateHpBarUI(1);
         gameObject.transform.position = new Vector3(0f, 0f, -10f);
         Pause.Instance.TimePause();
+    }
+
+    public void GoToBoss()
+    {
+        gameObject.transform.position = new Vector3(1100f, 0f, -10f);
+        bossHp.SetActive(true);
     }
 
     public void HealPlayer(float amount)
