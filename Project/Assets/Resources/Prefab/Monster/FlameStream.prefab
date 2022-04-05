@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4422890984368646}
   - component: {fileID: 198161444309756460}
   - component: {fileID: 199086891411180386}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FireEmbers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4738,7 +4738,7 @@ GameObject:
   - component: {fileID: 198421077076039884}
   - component: {fileID: 199355249067051742}
   - component: {fileID: 4161775966479052966}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FlameStream
   m_TagString: Untagged
   m_Icon: {fileID: 0}
