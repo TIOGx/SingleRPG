@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class BossController : Boss
 {
+    public static BossController instance;
     Animator animator;
     Rigidbody rigid;
     BoxCollider boxCollider;
@@ -21,9 +22,12 @@ public class BossController : Boss
     public string SelectedPatternName;
     public string[] patternArr;
     public float BossAttackDelay;
+    public GameObject FlameStream;
     public GameObject LaserSphere;
     private Quaternion _rot;
-    //public Image HpBar;
+    public Transform PatternInstantiatePos;
+    public bool IsHeadHutt;
+    public Image HpBar;
 
     public enum BossState
     {
@@ -33,25 +37,25 @@ public class BossController : Boss
     }
     private void Awake()
     {
-        //HpBar.rectTransform.localScale = new Vector3(BossCurHealth / BossMaxHealth, 1f, 1f);
+        instance = this;
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         nav = GetComponent<NavMeshAgent>();
         monsterBody = GetComponent<Transform>();
         animator = GetComponent<Animator>();
-        
+
 
     }
-    void Start() // ?? ?????????? on ?????? ?? ????
+    void Start() // 이 스크립트를 on 해줬을 때 작동
     {
-        Target = DummyController.instance.GetPlayerTransform(); // ?????????? ???????? ????
+        Target = DummyController.instance.GetPlayerTransform(); // 플레이어를 타겟으로 잡음
         NowBossState = BossState.idle;
     }
 
 
-    void Update() // ???????? ???? ????
+    void Update() // 보스와의 전투 구조
     {
-        if(NowBossState == BossState.die)
+        if (NowBossState == BossState.die)
         {
             return;
         }
@@ -68,7 +72,7 @@ public class BossController : Boss
         {
             NowBossState = BossState.idle;
         }
-        else if(Vector3.Distance(Target.position, transform.position) > BossTracingRange)
+        else if (Vector3.Distance(Target.position, transform.position) > BossTracingRange)
         {
             NowBossState = BossState.tracing;
         }
@@ -78,41 +82,42 @@ public class BossController : Boss
         }
     }
 
-    void BossMove()// ?????? ?????? ????
-                   // ?????? ?????? die?? ?? ?? ???? ???? ????
-                   // ?????? ?????? die ?? ?????? idle ???? tracing ????
-                   // idle ?????? ???? ???????? ???? -> ???????? ???? ?? ???? ???? ?? ?????? ???? ????
-                   // tracing ?????? ???? ???????? ???? -> ?????????? ?????? ??????????
-                   // ???? ?????? ?????? ?? ?? ???????? ???? ????
+    void BossMove()// 보스의 움직임 구조
+                   // 보스의 상태가 die가 될 때 까지 계속 진행
+                   // 보스의 상태가 die 가 아니면 idle 또는 tracing 상태
+                   // idle 상태인 경우 제자리에 정지 -> 플레이가 때릴 수 있는 시간 및 보스도 공격 실시
+                   // tracing 상태인 경우 플레이어 추격 -> 플레이어와 거리가 가까워지면
+                   // 어떤 패턴의 공격을 할 지 결정하고 패턴 진행
     {
-        transform.LookAt(LookAtTarget); // ???? ?????????? ??????????
-        if (NowBossState == BossState.die) // ?????? ?????? die?? ?? ?? ???? ???? ????
+        transform.LookAt(LookAtTarget); // 항상 플레이어를 바라보도록
+        if (NowBossState == BossState.die) // 보스의 상태가 die가 될 때 까지 계속 진행
         {
-            // ???? ???? ????
-            nav.SetDestination(monsterBody.position); // ?????? ???????? ????
+            // 전투 종료 구현
+            nav.SetDestination(monsterBody.position); // 보스가 제자리에 멈춤
         }
-        else // ?????? ?????? die ?? ?????? idle ???? tracing ????
+        else // 보스의 상태가 die 가 아니면 idle 또는 tracing 상태
         {
             if (NowBossState == BossState.idle)
             {
-                nav.SetDestination(monsterBody.position); // ?????? ???????? ????
+                nav.SetDestination(monsterBody.position); // 보스가 제자리에 멈춤
             }
-            else if (NowBossState == BossState.tracing) // ???? ????
+            else if (NowBossState == BossState.tracing) // 추격 상태
             {
-                nav.SetDestination(Target.position); // ?????? ?????????? ???? ??????
+
+                nav.SetDestination(Target.position); // 보스가 플레이어를 향해 다가감
             }
         }
     }
 
-    void BossAttack() // ?????? ???? ????
-                      // ?????? ???? ?????? ?????????? ???? ???? -> ???????????? ?????? ???? ???? ?? idle ????, ???? ???? ??????
+    void BossAttack() // 보스의 공격 구조
+                      // 공격을 위한 조건이 만족되어야 공격 실시 -> 플레이어와의 거리와 공격 범위 및 idle 상태, 공격 쿨이 아닌지
     {
-        if (IsAttack()) // ?????? ???????? ???? ?????? ???????????? ????
+        if (IsAttack()) // 보스의 플레이어 공격 조건이 만족되었는지 확인
         {
-            SelectedPatternName = SelectRandomPattern();  // ???? ???? ??????
-            UsePattern(SelectedPatternName); // ???? ????
+            SelectedPatternName = SelectRandomPattern();  // 공격 패턴 고르기
+            UsePattern(SelectedPatternName); // 패턴 사용
             isAttackDelay = true;
-            StartCoroutine(setBossAttackDelay(BossAttackDelay));// ???? ?????? ???? 
+            StartCoroutine(setBossAttackDelay(BossAttackDelay));// 공격 딜레이 주기 
         }
     }
     IEnumerator setBossAttackDelay(float delayTime)
@@ -123,15 +128,15 @@ public class BossController : Boss
     }
     bool IsAttack()
     {
-        if(NowBossState != BossState.idle)
+        if (NowBossState != BossState.idle)
         {
             return false;
         }
-        if(Vector3.Distance(Target.position, transform.position) > BossAttackRange)
+        if (Vector3.Distance(Target.position, transform.position) > BossAttackRange)
         {
             return false;
         }
-        if(isAttackDelay == true)
+        if (isAttackDelay == true)
         {
             return false;
         }
@@ -141,7 +146,7 @@ public class BossController : Boss
     {
         int patternArrLen = patternArr.Length;
         System.Random r = new System.Random();
-        int SelectedPatternIdx = r.Next(0, patternArrLen); // ???? ???? ???????? ????
+        int SelectedPatternIdx = r.Next(0, patternArrLen); // 랜덤 패턴 인덱스를 고름
         return patternArr[SelectedPatternIdx];
     }
 
@@ -150,23 +155,25 @@ public class BossController : Boss
         switch (patternName)
         {
             case "1":
-                Debug.Log("1?? ???? ????");
+                Debug.Log("1번 패턴 사용");
                 animator.SetTrigger("Pattern1");
                 UseDoubleShot(Target);
                 break;
 
             case "2":
-                Debug.Log("2?? ???? ????");
+                Debug.Log("2번 패턴 사용");
                 animator.SetTrigger("Pattern2");
+                UseFlameStream(Target);
                 break;
 
             case "3":
-                Debug.Log("3?? ???? ????");
+                Debug.Log("3번 패턴 사용");
                 animator.SetTrigger("Pattern3");
+                UseHeadButt(Target);
                 break;
 
             case "4":
-                Debug.Log("4?? ???? ????");
+                Debug.Log("4번 패턴 사용");
                 animator.SetTrigger("Pattern4");
                 break;
         }
@@ -179,7 +186,6 @@ public class BossController : Boss
         {
             BossCurHealth = 0;
         }
-        //HpBar.rectTransform.localScale = new Vector3(BossCurHealth / BossMaxHealth, 1f, 1f);
         if (BossCurHealth == 0)
         {
             BossDie();
@@ -190,18 +196,15 @@ public class BossController : Boss
     {
         NowBossState = BossState.die;
         SignalToPlayer(MonsterId);
-        PlayerInfo.instance.gameclearCanvas.SetActive(true);
     }
-
     void SignalToPlayer(int id)
     {
         DummyController.instance.killMonster(id);
     }
-
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Who");
-        if ( NowBossState == BossState.die) { return; }
+        if (NowBossState == BossState.die) { return; }
 
         if (other.tag == "Weapon")
         {
@@ -215,19 +218,42 @@ public class BossController : Boss
         }
     }
 
-    void UseDoubleShot(Transform TargetTransform) // ???? ?????? 2?? ???? ?????? ?????? ?? ???? ??????
+    void UseDoubleShot(Transform TargetTransform) // 구체 레이저 2개 발사 맞으면 데미지 및 폭발 파티클
     {
-        Vector3 _dir = ((TargetTransform.position - (transform.position + new Vector3(0f, 5f, 0f))).normalized);
-        _rot = Quaternion.LookRotation(_dir);
-
+        CheckQuaternion(TargetTransform, new Vector3(0, 5f, 0));
         ShotLaserSphere();
+        CheckQuaternion(TargetTransform, new Vector3(0, 5f, 0));
         Invoke("ShotLaserSphere", 1f);
     }
-
+    void CheckQuaternion(Transform TargetTransform, Vector3 x)
+    {
+        Vector3 _dir = ((TargetTransform.position - (transform.position + x)).normalized);
+        _rot = Quaternion.LookRotation(_dir);
+    }
     void ShotLaserSphere()
     {
-        Instantiate(LaserSphere, transform.position + new Vector3(0f, 5f, 0f), _rot);
+        Instantiate(LaserSphere, PatternInstantiatePos.position, _rot);
     }
 
+    void UseFlameStream(Transform TargetTransform)
+    {
+        CheckQuaternion(TargetTransform, new Vector3(0f, 3f, 0f));
+        ShotFlameStream();
+    }
 
+    void ShotFlameStream()
+    {
+        Instantiate(FlameStream, PatternInstantiatePos.position, _rot);
+    }
+    void UseHeadButt(Transform TargetTransform)
+    {
+        IsHeadHutt = true;
+        StartCoroutine(setIsHeadButt(1.5f));
+    }
+    IEnumerator setIsHeadButt(float delayTime)
+    {
+        Debug.Log("delay " + delayTime + " time");
+        yield return new WaitForSeconds(delayTime);
+        IsHeadHutt = false;
+    }
 }

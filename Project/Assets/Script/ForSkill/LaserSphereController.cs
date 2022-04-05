@@ -16,6 +16,7 @@ public class LaserSphereController : MonoBehaviour
         {
             Instantiate(Particle, transform.position, Quaternion.identity);
             DummyController.instance.TakeDamage(10f);
+            Destroy(gameObject);
         }
         else
         {

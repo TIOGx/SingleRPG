@@ -271,6 +271,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9011648103020875533}
+  - component: {fileID: 1615519688045242694}
+  - component: {fileID: 4486639512941807166}
+  - component: {fileID: 2554999960841840197}
   m_Layer: 6
   m_Name: Root
   m_TagString: Untagged
@@ -293,6 +296,48 @@ Transform:
   m_Father: {fileID: 9011648103020875539}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1615519688045242694
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9011648103021171501}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.8
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &4486639512941807166
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9011648103021171501}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &2554999960841840197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9011648103021171501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33f3d50747e8f644fa436f534156412f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9011648103021171503
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,7 +634,11 @@ MonoBehaviour:
   - 3
   - 4
   BossAttackDelay: 4
-  LaserSphere: {fileID: 1470202050022551483, guid: 76b933bdc29720e498ee80114740166b, type: 3}
+  FlameStream: {fileID: 0}
+  LaserSphere: {fileID: 1470202050022551483, guid: 76b933bdc29720e498ee80114740166b,
+    type: 3}
+  PatternInstantiatePos: {fileID: 0}
+  IsHeadHutt: 0
   HpBar: {fileID: 0}
 --- !u!1 &9011648103021171509
 GameObject:
