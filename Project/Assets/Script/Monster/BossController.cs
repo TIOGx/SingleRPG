@@ -214,7 +214,7 @@ public class BossController : Boss
             if (Weapon.attackable)
             {
                 animator.SetTrigger("GetHit");
-                BossTakeDamage(Weapon.damage);
+                BossTakeDamage(PlayerInfo.instance.AttackDamage);
                 Weapon.attackable = false;
             }
         }

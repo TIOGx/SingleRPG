@@ -6,7 +6,6 @@ public class WeaponController : MonoBehaviour
 {
     public static WeaponController instance;
     public BoxCollider SwordArea;
-    public int damage;
     public TrailRenderer TrailEffect;
     public bool attackable;
     // Start is called before the first frame update
@@ -19,7 +18,6 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
     public void TurnOnWeaponEffect()
     {

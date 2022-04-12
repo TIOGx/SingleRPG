@@ -27,6 +27,9 @@ public class PlayerInfo : MonoBehaviour
     public GameObject shopCanvas;
     public GameObject gameclearCanvas;
 
+    public float AttackDamage;
+    public float MagicDamage;
+
     private void Awake()
     {
         instance = this;
@@ -54,11 +57,22 @@ public class PlayerInfo : MonoBehaviour
         }
         UserInterface.instance.UpdateExpBarUI(nowExp/ MaxExpByLevel);
     }
+    void IncreasePlayerStatByLevel(int level)
+    {
+        AttackDamage += 5 ;
+        MagicDamage +=  5 ;
+        MaxHealth += level * 10;
+        CurrentHealth = MaxHealth;
+        // PlayerUI Update
+
+    }
 
     public void PlayerLevelUp()
     {
+        
         nowExp = nowExp - MaxExpByLevel;
         level += 1;
+        IncreasePlayerStatByLevel(level);
         levelupCanvasText.text = level.ToString();
         levelupCanvas.SetActive(true);
         Pause.Instance.TimePause();
