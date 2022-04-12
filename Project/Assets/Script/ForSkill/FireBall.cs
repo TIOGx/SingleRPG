@@ -18,6 +18,7 @@ public class FireBall : Skill
     }
     public override void UseSkill()
     {
+        this.SkillDamage = PlayerInfo.instance.MagicDamage;
         Debug.Log("FireBall~");
         Debug.Log("???? ?????????? UseSkill");
         Vector3 PlayerPos = DummyController.instance.transform.position; // ???????? ????
@@ -28,17 +29,26 @@ public class FireBall : Skill
             if (hitCol[i].gameObject.CompareTag("Enemy"))
             {
                 // ��ų ����Ʈ
-                hitCol[i].gameObject.GetComponent<EnemyController>().TakeDamage(SkillDamage);
-                Vector3 EffectPos = hitCol[i].gameObject.transform.position + new Vector3(0, 2f, 0);
-                Instantiate(SkillEffectPrefab, EffectPos, Quaternion.identity);
+                if(hitCol[i].gameObject.name == "Boss")
+                {
+                    hitCol[i].gameObject.GetComponent<BossController>().BossTakeDamage(SkillDamage);
+                    Vector3 EffectPos = hitCol[i].gameObject.transform.position + new Vector3(0, 2f, 0);
+                    Instantiate(SkillEffectPrefab, EffectPos, Quaternion.identity);
+                }
+                else
+                {
+                    hitCol[i].gameObject.GetComponent<EnemyController>().TakeDamage(SkillDamage);
+                    Vector3 EffectPos = hitCol[i].gameObject.transform.position + new Vector3(0, 2f, 0);
+                    Instantiate(SkillEffectPrefab, EffectPos, Quaternion.identity);
+                }
             }
             else{
                 continue;
             }
         }
-        StartCoroutine("CoolTime");
-        CurrentCoolTime = SkillCoolTime;
-        StartCoroutine("CooltimeCounter");
+        // StartCoroutine("CoolTime");
+        // CurrentCoolTime = SkillCoolTime;
+        // StartCoroutine("CooltimeCounter");
         // CanUseSkill = false;
         return;
     }

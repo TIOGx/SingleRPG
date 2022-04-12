@@ -6,7 +6,7 @@ public class Skill : MonoBehaviour
 {
 
     public string Skillname;
-    public int SkillDamage;
+    public float SkillDamage;
     public int SkillRange;
     public bool CanUseSkill ;
     public float SkillCoolTime;
