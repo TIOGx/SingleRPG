@@ -9,8 +9,8 @@
 		"compensation_ItemID": 1,
 		"compensation_ItemNum": 5,
 		"title": "은지",
-		"desc": " 슬라임 10마리 잡기 ",
-		"completed_text": " 은지 - 슬라임 10마리 잡기 완료",
+		"desc": "슬라임 10마리 잡기 ",
+		"completed_text": "슬라임 10마리 잡기 퀘스트 완료",
 		"isCompleted": false,
 		"changeToNextNPC": false
 
@@ -27,7 +27,7 @@
 		"compensation_ItemNum": 10000,
 		"title": "보스 사냥 퀘스트",
 		"desc": "보스 잡기 ",
-		"completed_text": "은지 - 보스 잡기 퀘스트 완료",
+		"completed_text": "보스 잡기 퀘스트 완료",
 		"isCompleted": false,
 		"changeToNextNPC": false
 

@@ -133,6 +133,9 @@ public class UNPCUI : MonoBehaviour, INPCUI
     // 보상 받는 함수
     public void SetCompensation() { 
         Item getItem = QuestManager.instance.compensationItemArr[QuestManager.instance.nowQuest.compensation_ItemID].transform.GetComponent<ItemPickUp>().item;
+        ItemDataUI.instance.InstantiateItemDataUI(QuestManager.instance.nowQuest.compensation_ItemName.ToString(), QuestManager.instance.nowQuest.compensation_ItemNum.ToString());
+        PlayerInfo.instance.GetExp(10);
+
         if (getItem.itemId == 2 ) // getItem이 돈일 때
         {
             PlayerInfo.instance.playerMoneyText.text = (int.Parse(PlayerInfo.instance.playerMoneyText.text) +int.Parse(QuestManager.instance.nowQuest.compensation_ItemNum.ToString())).ToString();
@@ -143,8 +146,7 @@ public class UNPCUI : MonoBehaviour, INPCUI
         }
         else
         {
-            Inventory.instance.AcquireItem(getItem, QuestManager.instance.nowQuest.compensation_ItemNum);
-            ItemDataUI.instance.InstantiateItemDataUI(QuestManager.instance.nowQuest.compensation_ItemName.ToString(), QuestManager.instance.nowQuest.compensation_ItemNum.ToString());
+            Inventory.instance.AcquireItem(getItem, QuestManager.instance.nowQuest.compensation_ItemNum);   
         }
         
     }

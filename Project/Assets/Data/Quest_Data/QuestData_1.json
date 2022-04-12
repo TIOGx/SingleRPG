@@ -9,8 +9,8 @@
 		"compensation_ItemID": 2, //보상 아이템 id
 		"compensation_ItemNum": 100, // 보상 아이템 개수
 		"title": "철수",
-		"desc": "철수에게 다가가 말을 걸어보자 ",
-		"completed_text": "철수 - 말걸기 퀘스트1 완료",
+		"desc": "철수에게 다가가 말을 걸기 ",
+		"completed_text": "철수에게 말걸기 퀘스트 완료",
 		"isCompleted": false,
 		"changeToNextNPC": false
 
@@ -26,8 +26,8 @@
 		"compensation_ItemID": 2, //보상 아이템 id
 		"compensation_ItemNum": 20, // 보상 아이템 개수
 		"title": "철수",
-		"desc": " Turtle Shell 1마리 잡기 ",
-		"completed_text": " 철수 - Turtle Shell 1마리 잡기 완료",
+		"desc": "파란 거북이 1마리 잡기 ",
+		"completed_text": "파란 거북이 1마리 잡기 완료",
 		"isCompleted": false,
 		"changeToNextNPC": false
 	},
@@ -42,8 +42,8 @@
 		"compensation_ItemID": 2, //보상 아이템 id
 		"compensation_ItemNum": 30, // 보상 아이템 개수
 		"title": "철수",
-		"desc": " 아이템 1개 줍기 ",
-		"completed_text": " 철수 - 아이템 줍기 퀘스트 완료",
+		"desc": " 사과 아이템 1개 줍기",
+		"completed_text": " 아이템 1개 줍기 퀘스트 완료",
 		"isCompleted": false,
 		"changeToNextNPC": false
 	},
@@ -58,8 +58,8 @@
 		"compensation_ItemID": 0,
 		"compensation_ItemNum": 5,
 		"title": "철수",
-		"desc": " 영희에게 다가가 말을 걸어보자 ",
-		"completed_text": "철수 - 영희를 찾아 말걸기 퀘스트 완료",
+		"desc": " 영희에게 다가가 말을 걸기 ",
+		"completed_text": "영희를 찾아 말걸기 퀘스트 완료",
 		"isCompleted": false,
 		"changeToNextNPC": true
 	}

@@ -23,7 +23,7 @@ public class PlayerInfo : MonoBehaviour
     public GameObject levelupCanvas;
     public GameObject playerinfoCanvas;
     public GameObject playerDieCanvas;
-    public GameObject skillCanvas;
+    public GameObject informationCanvas;
     public GameObject shopCanvas;
     public GameObject gameclearCanvas;
 
@@ -41,8 +41,8 @@ public class PlayerInfo : MonoBehaviour
     public void playerinfo_True() { playerinfoCanvas.SetActive(true); }
     public void playerinfo_False() { playerinfoCanvas.SetActive(false); }
 
-    public void skill_True() { skillCanvas.SetActive(true); }
-    public void skill_False() { skillCanvas.SetActive(false); }
+    public void information_True() { informationCanvas.SetActive(true); }
+    public void information_False() { informationCanvas.SetActive(false); }
 
     public void shop_True() { shopCanvas.SetActive(true); }
     public void shop_False() { shopCanvas.SetActive(false); }
@@ -57,22 +57,23 @@ public class PlayerInfo : MonoBehaviour
         }
         UserInterface.instance.UpdateExpBarUI(nowExp/ MaxExpByLevel);
     }
+
     void IncreasePlayerStatByLevel(int level)
     {
         AttackDamage += 5 ;
         MagicDamage +=  5 ;
         MaxHealth += level * 10;
         CurrentHealth = MaxHealth;
-        // PlayerUI Update
-
     }
 
     public void PlayerLevelUp()
     {
-        
         nowExp = nowExp - MaxExpByLevel;
         level += 1;
         IncreasePlayerStatByLevel(level);
+        UserInterface.instance.UpdateHpBarUI(CurrentHealth / MaxHealth);
+        UserInterface.instance.NowHp.text = CurrentHealth.ToString();
+        UserInterface.instance.MaxHp.text = MaxHealth.ToString();
         levelupCanvasText.text = level.ToString();
         levelupCanvas.SetActive(true);
         Pause.Instance.TimePause();
