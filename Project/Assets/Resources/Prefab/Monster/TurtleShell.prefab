@@ -936,7 +936,7 @@ MonoBehaviour:
   MonsterId: 0
   HpBar: {fileID: 694219303483239894}
   RandomDropItem: {fileID: 0}
-  hudDamageText: {fileID: 4647582611293833365, guid: cf95c509d5b2fd246a0bcc66d25eaffc, type: 3}
+  hudDamageText: {fileID: 4647582611293833365, guid: 60124d57b6c9a4d4ebb2e9c4f8b9a567, type: 3}
   hudPos: {fileID: 3415297831802708698}
   tracingRange: 3
   NowState: 0

@@ -101,7 +101,7 @@ public class ActionController : MonoBehaviour
     {
         gotobossActivated = true;
         ToBossText.gameObject.SetActive(true);
-        ToBossText.text = " Go to Boss " + "<color=red>" + "(Y)" + "</color>";
+        ToBossText.text = " 보스에게 가기 " + "<color=red>" + "(Y)" + "</color>";
     }
 
     private void GoToBossInfoDisappear()
@@ -114,7 +114,7 @@ public class ActionController : MonoBehaviour
     {
         pickupActivated = true;
         actionText.gameObject.SetActive(true);
-        actionText.text = hitInfo.transform.GetComponent<ItemPickUp>().item.itemName + " Acquire " + "<color=yellow>" + "(E)" + "</color>";
+        actionText.text = hitInfo.transform.GetComponent<ItemPickUp>().item.itemName + " 얻기 " + "<color=yellow>" + "(E)" + "</color>";
     }
 
     private void ItemInfoDisappear()

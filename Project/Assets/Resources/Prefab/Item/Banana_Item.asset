@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f7d65ee18dcf52499fdfeee760414b0, type: 3}
   m_Name: Banana_Item
   m_EditorClassIdentifier: 
-  itemName: Banana
+  itemName: "\uBC14\uB098\uB098"
   itemId: 1
   itemType: 2
   itemImage: {fileID: 21300000, guid: b314c947e04e94748a3c969aa138e553, type: 3}

@@ -69,7 +69,7 @@ public class NPCActionController : MonoBehaviour
     {
         talkActivated = true;
         actionText.gameObject.SetActive(true);
-        actionText.text = " Talk with " + hitInfo.transform.GetComponent<NPC>().npc_Name + "<color=blue>" + "(T)" + "</color>";
+        actionText.text = hitInfo.transform.GetComponent<NPC>().npc_Name + "와 상호작용하기 " +"<color=blue>" + "(T)" + "</color>";
     }
 
     private void NPCInfoDisappear()
