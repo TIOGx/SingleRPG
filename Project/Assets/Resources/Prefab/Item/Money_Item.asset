@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f7d65ee18dcf52499fdfeee760414b0, type: 3}
   m_Name: Money_Item
   m_EditorClassIdentifier: 
-  itemName: Money
+  itemName: "\uB3C8"
   itemId: 2
   itemType: 3
   itemImage: {fileID: 21300000, guid: b2c956cfb47c640ea80fb559ed2f55f7, type: 3}
