@@ -8,7 +8,9 @@ using TMPro;
 public class PlayerInfoUI : MonoBehaviour
 {
     public static PlayerInfoUI instance;
-    public TextMeshProUGUI playerName, level, playerMoney;
+    public TextMeshProUGUI playerName, level, attackDamage, magicDamage;
+    public Text NowHp;
+
     public Image Xp,Hp;
     [SerializeField]
     private Button Button_Exit;
@@ -36,6 +38,9 @@ public class PlayerInfoUI : MonoBehaviour
     public void SetPlayerInfo()
     {
         level.text = PlayerInfo.instance.level.ToString();
+        NowHp.text = PlayerInfo.instance.CurrentHealth.ToString();
+        attackDamage.text = PlayerInfo.instance.AttackDamage.ToString();
+        magicDamage.text = PlayerInfo.instance.MagicDamage.ToString();
         Hp.rectTransform.localScale = new Vector3(PlayerInfo.instance.CurrentHealth / PlayerInfo.instance.MaxHealth, 1f, 1f);
         Xp.rectTransform.localScale = new Vector3(PlayerInfo.instance.nowExp / PlayerInfo.instance.MaxExpByLevel, 1f, 1f);
     }
