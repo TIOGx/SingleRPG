@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2282853569763964351}
-  - component: {fileID: 491372267993921932}
+  - component: {fileID: -4053871876281265778}
   m_Layer: 0
   m_Name: IceBallPrefab
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &491372267993921932
+--- !u!114 &-4053871876281265778
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,5 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Skillname: IceBall
-  SkillDamage: 5
-  SkillRange: 3
+  SkillDamage: 10
+  SkillRange: 0
+  CanUseSkill: 1
+  SkillCoolTime: 0
+  CurrentCoolTime: 0
+  SkillEffectPrefab: {fileID: 1820680284854294, guid: 68bd37bc2d8e781408ff0093d67f447e,
+    type: 3}
