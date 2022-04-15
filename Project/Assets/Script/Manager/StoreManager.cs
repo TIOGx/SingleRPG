@@ -19,8 +19,8 @@ public class StoreManager : MonoBehaviour
     IEnumerator setNotEnoughMoneyDelay(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        NotEnoughMoneyDelay = true;
         NotEnoughMoneyCanvas.SetActive(false);
+        NotEnoughMoneyDelay = false;
     }
 
     public void BuyPotion()
@@ -28,10 +28,12 @@ public class StoreManager : MonoBehaviour
         if(int.Parse(PlayerInfo.instance.playerMoneyText.text) < 10)
         {
             Debug.Log("돈 부족");
-            if (NotEnoughMoneyDelay) { NotEnoughMoneyCanvas.SetActive(true); }
-            StartCoroutine(setNotEnoughMoneyDelay(3.0f));
+            if (!NotEnoughMoneyDelay) {
+                NotEnoughMoneyDelay = true;
+                NotEnoughMoneyCanvas.SetActive(true);
+                StartCoroutine(setNotEnoughMoneyDelay(3.0f));
+            }
         }
-
         else
         {
             Inventory.instance.AcquireItem(Pitem.GetComponent<ItemPickUp>().item);
