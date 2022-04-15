@@ -196,9 +196,12 @@ public class BossController : Boss
 
     void BossDie()
     {
+        PlayerInfo.instance.gameclearCanvas.SetActive(true);
+        Pause.Instance.TimePause();
         NowBossState = BossState.die;
         SignalToPlayer(MonsterId);
     }
+
     void SignalToPlayer(int id)
     {
         DummyController.instance.killMonster(id);
