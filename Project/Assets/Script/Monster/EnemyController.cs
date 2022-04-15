@@ -91,6 +91,7 @@ public class EnemyController : MonoBehaviour
     }
     public void TakeDamage(float value)
     {
+        if (!IsAlive) { return; }
         CurHealth -= value;
         GameObject hudText = Instantiate(hudDamageText); // 생성할 텍스트 오브젝트
         hudText.transform.position = hudPos.position; // 표시될 위치

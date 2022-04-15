@@ -58,11 +58,11 @@ public class QuestManager : MonoBehaviour
     {
         if (QuestDataUI == null) { return; }
 
-        jsonString = File.ReadAllText(Application.dataPath + "/Data/Quest_Data/QuestData_" + NPCManager.NPCBase.instance.NPC_ID + ".json");
+        jsonString = File.ReadAllText(Application.dataPath + "/StreamingAssets/Quest_Data/QuestData_" + NPCManager.NPCBase.instance.NPC_ID + ".json");
         if (jsonString == "") { return; }
         JsonData QuestJsonData = JsonMapper.ToObject(jsonString);
 
-        jsonString = File.ReadAllText(Application.dataPath + "/Data/NPC_Data/NPCData.json");
+        jsonString = File.ReadAllText(Application.dataPath + "/StreamingAssets/NPC_Data/NPCData.json");
         if (jsonString == "") { return; }
         JsonData NPCJsonData = JsonMapper.ToObject(jsonString);
 
@@ -148,7 +148,7 @@ public class QuestManager : MonoBehaviour
         int nextQidx = Qidx; 
 
         if (QuestDataUI == null) { return; }
-        jsonString = File.ReadAllText(Application.dataPath + "/Data/Quest_Data/QuestData_"+ UNPCUI.instance.GetNPCData()["id"].ToString() + ".json");
+        jsonString = File.ReadAllText(Application.dataPath + "/StreamingAssets/Quest_Data/QuestData_" + UNPCUI.instance.GetNPCData()["id"].ToString() + ".json");
         if (jsonString == "") { return; }
         JsonData QuestJsonData = JsonMapper.ToObject(jsonString);
 

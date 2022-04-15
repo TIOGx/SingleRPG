@@ -84,7 +84,7 @@ namespace NPCManager{
 
         protected virtual void Start()
         {
-            jsonString = File.ReadAllText(Application.dataPath + "/Data/NPC_Data/NPCData.json");
+            jsonString = File.ReadAllText(Application.dataPath + "/StreamingAssets/NPC_Data/NPCData.json");
             if (jsonString == "") { return; }
             NPCJsonData = JsonMapper.ToObject(jsonString);
 
@@ -136,7 +136,7 @@ namespace NPCManager{
 
                 if (UI == null) { return; }
 
-                jsonString = File.ReadAllText(Application.dataPath + "/Data/Quest_Data/QuestData_" + NPC_ID.ToString() + ".json");
+                jsonString = File.ReadAllText(Application.dataPath + "/StreamingAssets/Quest_Data/QuestData_" + NPC_ID.ToString() + ".json");
                 if (jsonString == "") { return; }
                 JsonData QuestJsonData = JsonMapper.ToObject(jsonString);
 
