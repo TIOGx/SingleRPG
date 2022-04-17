@@ -241,7 +241,7 @@
 > 계속 플레이하지 않으면 로비로 돌아간다.
 </p>
 
-### 10. 보스 전투 시스템**
+### 10. 보스 전투 시스템
 <p>
 <a>
 <img width="885" alt="KakaoTalk_Photo_2022-04-16-01-16-09" src="https://user-images.githubusercontent.com/43170505/163594823-41a6c336-770f-4e17-9250-f75f23d1b855.png">
@@ -266,3 +266,4 @@
 <hr>
 
 ## GamePlay Video
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/q8_eigAlNiA/0.jpg)](https://youtu.be/q8_eigAlNiA)
