@@ -89,7 +89,7 @@
   ```
 * 카메라 방향 전환 및 줌인 줌아웃
   * 마우스 입력에 따라 카메라를 돌려준다. 이때 x,y축 방향으로 제한을 두어 특정 각도 이상 카메라가 회전하는 것을 막는다.
- ```cs
+   ```cs
   mouseX = Input.GetAxis("Mouse X") * camSpeed; // 프로젝트 세팅에 입력 값 매니저를 보면 이름이 Mouse X로 설정되어있음
   mouseY = Input.GetAxis("Mouse Y") * camSpeed;
 
@@ -104,7 +104,7 @@
       x = Mathf.Clamp(x, 335f, 361f);
   }
   centralAxis.rotation = Quaternion.Euler(x, camAngle.y + mouseX, camAngle.z);
-  ```
+    ```
   * 마우스 휠을 활용하여 줌 구현 및 최대, 최소 줌 거리 제한
   
   ```cs
@@ -115,7 +115,7 @@
         else if(wheel <= -7){wheel = -7;}
         cam.localPosition = new Vector3(0, 0, wheel);
     }
-  ``` 
+      ``` 
 * 미니맵
   * 미니맵용 카메라 객체 생성하여 미니맵 레이어에 해당하는 미니맵 이미지를 촬영하는 형식으로 구현 
 
@@ -266,4 +266,6 @@
 <hr>
 
 ## GamePlay Video
-[![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/43170505/163591752-1bdde2e2-8bfd-434d-a3e9-4347f30dd0ae.png)](https://youtu.be/q8_eigAlNiA)
+### ⬇ `Youtube Link `⬇ 
+    
+[![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/22341383/163707951-ac685c0a-d6ee-4ecb-9303-ac87b76174f6.png)](https://youtu.be/q8_eigAlNiA)
