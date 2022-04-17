@@ -266,4 +266,4 @@
 <hr>
 
 ## GamePlay Video
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/q8_eigAlNiA/0.jpg)](https://youtu.be/q8_eigAlNiA)
+[![IMAGE ALT TEXT HERE](https://user-images.githubusercontent.com/43170505/163591752-1bdde2e2-8bfd-434d-a3e9-4347f30dd0ae.png)](https://youtu.be/q8_eigAlNiA)
