@@ -175,7 +175,12 @@
 </a>
 </p>
 
-* NCPActionContoller와 같은 원리로 아이템을 식별하고 줍기 키 (E)를 활성화하여 인벤토리에 추가하는 식의 작업을 실시
+
+* 아이템 획득 퀘스트 진행시, 퀘스트 클리어 조건으로 명시된 아이템을 획득해야 한다. 
+* Ray가  태그가 Item인 오브젝트와 충돌하게 되면 `ActionController.ItemInfoAppear()` 함수가 실행. 
+ 이를 통해 현재 어떤 아이템을 획득할 수 있는지 알려주는 Text가 게임 상단에 나타난다. 
+* (E)키를 눌러 아이템을 획득하면, 해당 아이템이 Inventory에 추가되고, `ItemDataUI.InstantiateItemDataUI()`를 통해 어떤 아이템을 획득했는지 UI를 통해 플레이어에게 알려준다.
+
 
 ### 8. 퀘스트 보상 및 store ui를 이용한 골드 소비
 <p>
@@ -189,7 +194,9 @@
 </a>
 </p>
 
-* 현재 보유 골드에 따라 포션을 구매 할 수 있으며, 골드가 부족 시 UI 출력
+* 획득한 아이템이 money일 경우, 인벤토리에 저장되지 않고 게임 상단의 `playerGold` UI에 명시된다.
+* 골드를 통해 상점에서 포션을 구매할 수 있다. 만약 충분한 돈을 가지고 있지 않으면 `NotEnoughMoney` 오브젝트가 나타난다.
+* 구매한 포션은 인벤토리에 저장된다.
 
 ### 9. 스킬 구현 및 추가 기능 설명
 <p>
@@ -210,18 +217,28 @@
   * 각 스킬 prefab
   > 각 프리팹의 경우 고유한 스킬 이름, 데미지, 쿨타임 및 UseSkill() 메소드 보유
 * 추가 기능
-  * 플레이어 인포 UI
-  * 게임 인포 UI
-  * Respawn 기능
+  * 게임 좌측 버튼을 통해 여러 UI에 접근할 수 있다.
 <p>
 <a>
 
   <img width="885" alt="KakaoTalk_Photo_2022-04-16-01-08-30" src="https://user-images.githubusercontent.com/43170505/163594010-6440a373-3e2e-4162-9698-4f2c2cd440e0.png">
-
+</a>
+    
+* 플레이어 정보
+> 플레이어 레벨, Xp, 현재 체력, 공격력, 주문력 
+<a>
   <img width="876" alt="스크린샷 2022-04-16 오전 12 12 16" src="https://user-images.githubusercontent.com/43170505/163594117-995141d9-8720-42c3-bd5f-f39c8e6cec30.png">
-
+</a>
+    
+* 게임 정보
+> 게임 플레이 시 필요한 키들이 정리되어 있다.
+<a>
   <img width="885" alt="KakaoTalk_Photo_2022-04-16-01-10-46" src="https://user-images.githubusercontent.com/22341383/163705408-da6df9f0-20fa-4f6a-b813-f1fd170c34d4.gif">
 </a>
+    
+* 플레이어의 현재 체력이 0이 되면 플레이어의 상태가 Die로 변하고 `PlayerDieUI `가 켜진다.
+> 계속 플레이하게 되면 리스폰 장소로 이동한다.
+> 계속 플레이하지 않으면 로비로 돌아간다.
 </p>
 
 ### 10. 보스 전투 시스템**
